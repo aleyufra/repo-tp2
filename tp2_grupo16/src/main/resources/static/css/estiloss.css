@@ -1,0 +1,50 @@
+/* Consejos de salud */
+
+#consejos-de-salud {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lobster', cursive;
+}
+
+#consejos-de-salud header {
+    background-color: lightblue;
+    padding: 20px;
+    font-size: 25px;
+    font-family: 'Lobster', cursive;
+/*   	font-family: sans-serif, Times New Roman, Arial, Helvetica; */
+ 	font-style: oblique;
+}
+
+#consejos-de-salud #cuerpo-de-pagina {
+    background-color: #eee;
+    padding: 50px;
+}
+
+#consejos-de-salud article {
+    border-radius: 5px;
+    display: inline-block;
+    margin: 0px 5px;
+    width: 200px;
+    border: solid 1px #000;
+}
+
+#consejos-de-salud .imagen-articulo {
+	height: 200px;
+    width: 200px;
+    margin: 0;
+}
+
+#consejos-de-salud article h5 {
+    background-color: lightblue;
+    padding: 5px;
+    margin-top: 0;
+}
+
+#consejos-de-salud article p {
+    padding: 5px;
+}
+
+#consejos-de-salud footer {
+    padding: 30px;
+    background-color: blue;
+}
