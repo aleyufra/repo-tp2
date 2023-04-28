@@ -20,7 +20,7 @@
     padding: 50px;
 }
 
-#consejos-de-salud article {
+#consejos-de-salud .producto {
     border-radius: 5px;
     display: inline-block;
     margin: 0px 5px;
@@ -28,23 +28,24 @@
     border: solid 1px #000;
 }
 
-#consejos-de-salud .imagen-articulo {
+#consejos-de-salud .imagen-producto {
 	height: 200px;
     width: 200px;
     margin: 0;
 }
 
-#consejos-de-salud article h5 {
+#consejos-de-salud .producto h5 {
     background-color: lightblue;
     padding: 5px;
     margin-top: 0;
 }
 
-#consejos-de-salud article p {
+#consejos-de-salud .producto p {
     padding: 5px;
 }
 
 #consejos-de-salud footer {
     padding: 30px;
+    color: #fff;
     background-color: blue;
 }
