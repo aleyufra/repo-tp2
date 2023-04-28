@@ -1,12 +1,11 @@
-/* Consejos de salud */
-
-#consejos-de-salud {
+body {
+	background-color: #eee;
     margin: 0;
     padding: 0;
     font-family: 'Lobster', cursive;
 }
 
-#consejos-de-salud header {
+header {
     background-color: lightblue;
     font-size: 25px;
     font-family: 'Lobster', cursive;
@@ -14,36 +13,42 @@
  	font-style: oblique;
 }
 
-#consejos-de-salud header .titulo {
+header .titulo {
 	padding: 20px;
 }
 
-#consejos-de-salud nav {
+nav {
 	background-color: darkslategray;
 }
 
-#consejos-de-salud header nav ul li {
+header nav ul li {
 	display: inline-block;
 	list-style: none;
 	padding: 10px;
 }
 
-#consejos-de-salud header nav ul li a {
+header nav ul li a {
 	color: #fff;
 	font-size: 16px;
 	text-decoration: none;
 }
 
-#consejos-de-salud header nav ul li:hover {
+header nav ul li:hover {
 	background-color: #eee;
 }
 
-#consejos-de-salud header nav ul li:hover a {
+header nav ul li:hover a {
 	color: darkslategray;
 }
 
+footer {
+    padding: 30px;
+    color: #fff;
+    background-color: blue;
+}
+
+/* Consejos de salud */
 #consejos-de-salud #cuerpo-de-pagina {
-    background-color: #eee;
     padding: 50px;
 }
 
@@ -70,9 +75,33 @@
 #consejos-de-salud .producto p {
     padding: 5px;
 }
+/* Fin consejos de salud */
 
-#consejos-de-salud footer {
-    padding: 30px;
-    color: #fff;
-    background-color: blue;
+/* Contacto */
+.contacto {
+	text-align: center;
+	padding: 20px;
 }
+
+.contacto ul li {
+	list-style: none;
+	display: inline-block;
+}
+
+.contacto ul li {
+	background-color: blue;
+	display: inline-block;
+	list-style: none;
+	padding: 10px;
+}
+
+.contacto ul li a {
+	color: #fff;
+	font-size: 16px;
+	text-decoration: none;
+}
+
+.contacto ul li:hover {
+	background-color: darkblue;
+}
+/* Fin contacto */
