@@ -8,11 +8,38 @@
 
 #consejos-de-salud header {
     background-color: lightblue;
-    padding: 20px;
     font-size: 25px;
     font-family: 'Lobster', cursive;
 /*   	font-family: sans-serif, Times New Roman, Arial, Helvetica; */
  	font-style: oblique;
+}
+
+#consejos-de-salud header .titulo {
+	padding: 20px;
+}
+
+#consejos-de-salud nav {
+	background-color: darkslategray;
+}
+
+#consejos-de-salud header nav ul li {
+	display: inline-block;
+	list-style: none;
+	padding: 10px;
+}
+
+#consejos-de-salud header nav ul li a {
+	color: #fff;
+	font-size: 16px;
+	text-decoration: none;
+}
+
+#consejos-de-salud header nav ul li:hover {
+	background-color: #eee;
+}
+
+#consejos-de-salud header nav ul li:hover a {
+	color: darkslategray;
 }
 
 #consejos-de-salud #cuerpo-de-pagina {
@@ -20,7 +47,7 @@
     padding: 50px;
 }
 
-#consejos-de-salud article {
+#consejos-de-salud .producto {
     border-radius: 5px;
     display: inline-block;
     margin: 0px 5px;
@@ -28,23 +55,24 @@
     border: solid 1px #000;
 }
 
-#consejos-de-salud .imagen-articulo {
+#consejos-de-salud .imagen-producto {
 	height: 200px;
     width: 200px;
     margin: 0;
 }
 
-#consejos-de-salud article h5 {
+#consejos-de-salud .producto h5 {
     background-color: lightblue;
     padding: 5px;
     margin-top: 0;
 }
 
-#consejos-de-salud article p {
+#consejos-de-salud .producto p {
     padding: 5px;
 }
 
 #consejos-de-salud footer {
     padding: 30px;
+    color: #fff;
     background-color: blue;
 }
