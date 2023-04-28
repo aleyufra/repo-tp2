@@ -8,11 +8,38 @@
 
 #consejos-de-salud header {
     background-color: lightblue;
-    padding: 20px;
     font-size: 25px;
     font-family: 'Lobster', cursive;
 /*   	font-family: sans-serif, Times New Roman, Arial, Helvetica; */
  	font-style: oblique;
+}
+
+#consejos-de-salud header .titulo {
+	padding: 20px;
+}
+
+#consejos-de-salud nav {
+	background-color: darkslategray;
+}
+
+#consejos-de-salud header nav ul li {
+	display: inline-block;
+	list-style: none;
+	padding: 10px;
+}
+
+#consejos-de-salud header nav ul li a {
+	color: #fff;
+	font-size: 16px;
+	text-decoration: none;
+}
+
+#consejos-de-salud header nav ul li:hover {
+	background-color: #eee;
+}
+
+#consejos-de-salud header nav ul li:hover a {
+	color: darkslategray;
 }
 
 #consejos-de-salud #cuerpo-de-pagina {
