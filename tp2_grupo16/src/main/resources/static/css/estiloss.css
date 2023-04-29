@@ -1,9 +1,20 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+
 body {
 	background-color: #eee;
     margin: 0;
     padding: 0;
     font-family: 'Lobster', cursive;
     overflow-x: hidden;
+}
+
+a:link, a:visited {
+	color: white;
+	text-decoration: none;
 }
 
 header {
@@ -16,16 +27,24 @@ header {
 
 header .titulo {
 	padding: 20px;
+	text-align: center;
+	color: #444;
 }
 
 nav {
 	background-color: darkslategray;
 }
 
+header nav ul {
+	padding-left: 50px;
+}
+
 header nav ul li {
 	display: inline-block;
 	list-style: none;
-	padding: 10px;
+	padding: 10px 20px;
+	border: none;
+	outline: none;
 }
 
 header nav ul li a {
@@ -36,10 +55,14 @@ header nav ul li a {
 
 header nav ul li:hover {
 	background-color: #eee;
+	border: none;
+	outline: none;
 }
 
 header nav ul li:hover a {
 	color: darkslategray;
+	border: none;
+	outline: none;
 }
 
 .container {
@@ -48,8 +71,9 @@ header nav ul li:hover a {
 
 footer {
     padding: 30px;
-    color: #fff;
-    background-color: blue;
+    color: #aaa;
+    background-color: darkslategray;
+    text-align: center;
 }
 
 /* Pagina de inicio */
@@ -59,7 +83,59 @@ footer {
 	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
 	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
 }
+.imagen-banner {
+	width: 100%;
+	height: 400px;
+}
+
+.pagina-inicio {
+	height: 600px;
+	margin-bottom: 10px
+}
+.pagina-inicio section {
+	width: 68%;
+	float: left;
+	padding: 40px 50px;
+	background-color: lightblue;
+	margin-right: 20px
+}
+
+.pagina-inicio section article {
+	margin-bottom: 50px;
+	font-size: 20px;
+	color: #fff;
+	padding: 20px 30px;
+	background-color: darkslategray;
+	border: 5px solid #fff;
+	box-shadow: -3px 5px 3px 0px #555;
+}
+.pagina-inicio aside {
+	width: 30%;
+	height: 547px;
+	float: right;
+	padding: 20px;
+	background-color: lightblue;
+}
+.pagina-inicio aside img {
+	width: 100%;
+	height: 400px;
+	box-shadow: none;
+	padding: 0;
+	border-radius: 0px;
+}
+.pagina-inicio aside h2 {
+	color: #fff;
+	padding: 10px 10px;
+	text-align: center;
+	background-color: darkslategray;
+	margin-bottom: 15px;
+	border: 3px solid #fff;
+}
+
+
 /* Fin */
+
+
 
 /* Pagina de productos */
 .productos img {
@@ -103,6 +179,53 @@ footer {
 	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
 	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
 }
+.servicio-paseos { 
+	height: 550px;
+}
+.servicio-paseos section article table {
+	border: 1px solid #000;
+	background-color: #000;
+	width: 1300px;
+}
+.servicio-paseos section article table tr th,
+.servicio-paseos section article table tr td {
+	font-size: 20px;
+	padding: 5px 10px;
+	border: 1px solid #000;
+	background-color: #fff;
+}
+.servicio-paseos section article table tr th {
+	background-color: #545566;
+	color: #fff;
+	text-align: center;
+}
+.servicio-paseos section article table tr td {
+	background-color: #ccc;
+	color: #000;
+	text-align: center;
+	font-weight: bold;
+}
+.servicio-paseadores {
+	margin-top: 30px;
+	background-color: darkslategray;
+	padding: 20px;
+	height: 230px;
+}
+.servicio-paseadores img {
+	width: 400px;
+	height: 100%;
+	box-shadow: none;
+	float: left;
+	border-radius: 0px;
+	padding-right: 30px;
+}
+.servicio-paseadores p {
+	font-size: 30px;
+	font-weight: bold;
+	float: rigth;
+	color: #fff;
+}
+
 /* Fin paseos*/
 
 /* Pagina de sucursales */
