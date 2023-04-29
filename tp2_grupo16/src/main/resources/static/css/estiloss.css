@@ -1,12 +1,12 @@
-/* Consejos de salud */
-
-#consejos-de-salud {
+body {
+	background-color: #eee;
     margin: 0;
     padding: 0;
     font-family: 'Lobster', cursive;
+    overflow-x: hidden;
 }
 
-#consejos-de-salud header {
+header {
     background-color: lightblue;
     font-size: 25px;
     font-family: 'Lobster', cursive;
@@ -14,40 +14,64 @@
  	font-style: oblique;
 }
 
-#consejos-de-salud header .titulo {
+header .titulo {
 	padding: 20px;
 }
 
-#consejos-de-salud nav {
+nav {
 	background-color: darkslategray;
 }
 
-#consejos-de-salud header nav ul li {
+header nav ul li {
 	display: inline-block;
 	list-style: none;
 	padding: 10px;
 }
 
-#consejos-de-salud header nav ul li a {
+header nav ul li a {
 	color: #fff;
 	font-size: 16px;
 	text-decoration: none;
 }
 
-#consejos-de-salud header nav ul li:hover {
+header nav ul li:hover {
 	background-color: #eee;
 }
 
-#consejos-de-salud header nav ul li:hover a {
+header nav ul li:hover a {
 	color: darkslategray;
 }
 
-#consejos-de-salud #cuerpo-de-pagina {
-    background-color: #eee;
-    padding: 50px;
+.container {
+	padding: 20px 50px;
 }
 
-#consejos-de-salud .producto {
+footer {
+    padding: 30px;
+    color: #fff;
+    background-color: blue;
+}
+
+/* Pagina de inicio */
+.pagina-inicio img {
+	border-radius: 15px;
+	box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+}
+/* Fin */
+
+/* Pagina de productos */
+.productos img {
+	border-radius: 15px;
+	box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+}
+/* Fin productos*/
+
+/* Consejos de salud */
+.consejos-de-salud .producto {
     border-radius: 5px;
     display: inline-block;
     margin: 0px 5px;
@@ -55,24 +79,74 @@
     border: solid 1px #000;
 }
 
-#consejos-de-salud .imagen-producto {
+.consejos-de-salud .imagen-producto {
 	height: 200px;
     width: 200px;
     margin: 0;
 }
 
-#consejos-de-salud .producto h5 {
+.consejos-de-salud .producto h5 {
     background-color: lightblue;
     padding: 5px;
     margin-top: 0;
 }
 
-#consejos-de-salud .producto p {
+.consejos-de-salud .producto p {
     padding: 5px;
 }
+/* Fin consejos de salud */
 
-#consejos-de-salud footer {
-    padding: 30px;
-    color: #fff;
-    background-color: blue;
+/* Pagina de paseos */
+.servicio-paseos img {
+	border-radius: 15px;
+	box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
 }
+/* Fin paseos*/
+
+/* Pagina de sucursales */
+.sucursales .sucursal {
+	width: 500px;
+	display: inline-block;
+	padding: 20px;
+	margin: 5px;
+	border: solid 1px #000;
+	border-radius: 10px;
+}
+
+.sucursales img {
+	border-radius: 15px;
+	box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+}
+/* Fin sucursales*/
+
+/* Contacto */
+.contacto {
+	text-align: center;
+}
+
+.contacto ul li {
+	list-style: none;
+	display: inline-block;
+}
+
+.contacto ul li {
+	background-color: blue;
+	display: inline-block;
+	list-style: none;
+	padding: 10px;
+}
+
+.contacto ul li a {
+	color: #fff;
+	font-size: 16px;
+	text-decoration: none;
+}
+
+.contacto ul li:hover {
+	background-color: darkblue;
+}
+/* Fin contacto */
