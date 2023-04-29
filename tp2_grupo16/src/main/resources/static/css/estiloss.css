@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Lobster', cursive;
+    overflow-x: hidden;
 }
 
 header {
@@ -41,18 +42,36 @@ header nav ul li:hover a {
 	color: darkslategray;
 }
 
+.container {
+	padding: 20px 50px;
+}
+
 footer {
     padding: 30px;
     color: #fff;
     background-color: blue;
 }
 
-/* Consejos de salud */
-#consejos-de-salud #cuerpo-de-pagina {
-    padding: 50px;
+/* Pagina de inicio */
+.pagina-inicio img {
+	border-radius: 15px;
+	box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
 }
+/* Fin */
 
-#consejos-de-salud .producto {
+/* Pagina de productos */
+.productos img {
+	border-radius: 15px;
+	box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+}
+/* Fin productos*/
+
+/* Consejos de salud */
+.consejos-de-salud .producto {
     border-radius: 5px;
     display: inline-block;
     margin: 0px 5px;
@@ -60,27 +79,53 @@ footer {
     border: solid 1px #000;
 }
 
-#consejos-de-salud .imagen-producto {
+.consejos-de-salud .imagen-producto {
 	height: 200px;
     width: 200px;
     margin: 0;
 }
 
-#consejos-de-salud .producto h5 {
+.consejos-de-salud .producto h5 {
     background-color: lightblue;
     padding: 5px;
     margin-top: 0;
 }
 
-#consejos-de-salud .producto p {
+.consejos-de-salud .producto p {
     padding: 5px;
 }
 /* Fin consejos de salud */
 
+/* Pagina de paseos */
+.servicio-paseos img {
+	border-radius: 15px;
+	box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+}
+/* Fin paseos*/
+
+/* Pagina de sucursales */
+.sucursales .sucursal {
+	width: 500px;
+	display: inline-block;
+	padding: 20px;
+	margin: 5px;
+	border: solid 1px #000;
+	border-radius: 10px;
+}
+
+.sucursales img {
+	border-radius: 15px;
+	box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+}
+/* Fin sucursales*/
+
 /* Contacto */
 .contacto {
 	text-align: center;
-	padding: 20px;
 }
 
 .contacto ul li {
