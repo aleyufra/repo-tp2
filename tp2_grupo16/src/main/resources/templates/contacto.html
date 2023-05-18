@@ -1,58 +1,37 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Datos de Contacto </title>
-		<link rel="stylesheet" type="text/css" href="../static/css/estiloss.css" />
-	</head>
-	<body>
-		<header>
-			<div class="titulo">
-				<h1>Contactanos!!!</h1>
-			</div>
-			<nav>
-				<ul>
-					<li>
-						<a href="./index.html">Inicio</a>
-					</li>
-					<li>
-						<a href="./productos.html">Productos</a>
-					</li>
-					<li>
-						<a href="./consejos_de_salud.html">Consejos de Salud</a>
-					</li>
-					<li>
-						<a href="./sdpaseos.html">Servicio de Paseos</a>
-					</li>
-					<li>
-						<a href="./sucursales.html">Sucursales</a>
-					</li>
-					<li>
-						<a href="./contacto.html">Contactanos</a>
-					</li>
-				</ul>
-			</nav>
-	   	</header>
-	   	<div class="container contacto">
-			<p>3915 Av. General Belgrano, 388-4999999</p>
-			<p> Lunes a Viernes: 9:00 a. m. a 8:00 p. m.</p>
-			<p> Sabado a Domingo: 9:00 a. m. a 12:30 p. m.</p>
-			<a id="correo" href= "https://www.gmail.com">contacto@mail.com.ar</a>
-			<ul>
-				<li><a href="https://www.facebook.com" >Facebook</a></li>
-				<li><a href="https://www.instagram.com">Instagram</a></li>
-				<li><a href="https://www.twitter.com">Twitter</a></li>
-			</ul>
-			<form>
-				<p>Nombre <input type="text" name="Nombre" placeholder="Ingrese su nombre"></p>
-				<p>Email <input type="text" name="Email" placeholder="Ingrese un email valido" required></p>
-				<p>Ciudad <input type="text" name="Ciudad" placeholder="Ingrese su ciudad" required></p>
-				<p>Mensaje <input type="text" style="width: 350px; height: 75px" size=30 name="Mensaje" required></p>
-				<button>Enviar</button>
-			</form>
-		</div>
-		<footer>
-			<p>Copyright 2023 - El Arriero - Diseñado por Grupo 16 – Jujuy – República Argentina</p>
-		</footer>
-	</body>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Datos de Contacto </title>
+   <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+</head>
+
+<body>
+
+   <header th:replace="~{layouts/header :: header}"></header>
+
+   <div class="container contacto">
+      <p>3915 Av. General Belgrano, 388-4999999</p>
+      <p> Lunes a Viernes: 9:00 a. m. a 8:00 p. m.</p>
+      <p> Sabado a Domingo: 9:00 a. m. a 12:30 p. m.</p>
+      <a id="correo" href="https://www.gmail.com">contacto@mail.com.ar</a>
+      <ul>
+         <li><a href="https://www.facebook.com">Facebook</a></li>
+         <li><a href="https://www.instagram.com">Instagram</a></li>
+         <li><a href="https://www.twitter.com">Twitter</a></li>
+      </ul>
+      <form>
+         <p>Nombre <input type="text" name="Nombre" placeholder="Ingrese su nombre"></p>
+         <p>Email <input type="text" name="Email" placeholder="Ingrese un email valido" required></p>
+         <p>Ciudad <input type="text" name="Ciudad" placeholder="Ingrese su ciudad" required></p>
+         <p>Mensaje <input type="text" style="width: 350px; height: 75px" size=30 name="Mensaje" required></p>
+         <button>Enviar</button>
+      </form>
+   </div>
+
+   <footer th:replace="~{layouts/footer :: footer}"></footer>
+
+</body>
+
 </html>
