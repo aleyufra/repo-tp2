@@ -2,7 +2,7 @@ package ar.edu.unju.fi.model;
 
 /**
  * 
- * @author grupo16
+ * @author Grupo16
  *
  */
 
