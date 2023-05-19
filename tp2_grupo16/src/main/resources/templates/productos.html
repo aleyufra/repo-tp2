@@ -12,7 +12,7 @@
    <header th:replace="~{layouts/header :: header}"></header>
 
    <div class="productos-container">
-      <img id="imagenproductos" width="500 px" height="370 px" src="../static/productos-images/petshop.jpg"
+      <img id="imagenproductos" width="500 px" height="370 px" th:src="@{/productos-images/petshop.jpg}"
          alt="Suministros para mascotas">
       <section id="Alimentacion">
          <h2>Productos de Alimentacion para la mascota</h2>
@@ -21,7 +21,7 @@
                <div class="fila">
                   <div class="producto">
                      <h3>Alimento para Perro</h3>
-                     <img src="../static/productos-images/alimento_rosco.jpg" alt="Alimento Rosco">
+                     <img th:src="@{/productos-images/alimento_rosco.jpg}" alt="Alimento Rosco">
                      <p>Lo que tenés que saber de este producto </p>
                      <ul>
                         <li>Recomendado para perro adulto</li>
@@ -32,7 +32,7 @@
                      </ul>
                   </div>
                   <div class="producto">
-                     <img src="../static/productos-images/alimento_raza.jpg" alt="Alimento Raza">
+                     <img th:src="@{/productos-images/alimento_raza.jpg}" alt="Alimento Raza">
                      <p>Lo que tenés que saber de este producto </p>
                      <ul>
                         <li>Un alimento ideal para perros adultos que llevan una vida sedentaria y conviven con su
@@ -44,7 +44,7 @@
                      </ul>
                   </div>
                   <div class="producto">
-                     <img src="../static/productos-images/alimento_dogui.jpg" alt="Alimento Dogui">
+                     <img th:src="@{/productos-images/alimento_dogui.jpg}" alt="Alimento Dogui">
                      <p>Lo que tenés que saber de este producto </p>
                      <ul>
                         <li>Alimento para todas las razas y tamaños</li>
@@ -55,7 +55,7 @@
                      </ul>
                   </div>
                   <div class="producto">
-                     <img src="../static/productos-images/alimento_pedigree.jpg" alt="Alimento Pedigree">
+                     <img th:src="@{/productos-images/alimento_pedigree.jpg}" alt="Alimento Pedigree">
                      <p>Lo que tenés que saber de este producto </p>
                      <ul>
                         <li>24 vitaminas y minerales para una nutrición completa y balanceada</li>
@@ -74,7 +74,7 @@
                <div class="bloque">
                   <div class="fila">
                      <div class="producto">
-                        <img src="../static/productos-images/whiskas.jpg" alt="Alimento Whiskas">
+                        <img th:src="@{/productos-images/whiskas.jpg}" alt="Alimento Whiskas">
                         <p>Lo que tenés que saber de este producto </p>
                         <ul>
                            <li>Recomendado para gato adulto.</li>
@@ -85,15 +85,13 @@
                         </ul>
                      </div>
                      <div class="producto">
-                        <img width="220 px" height="200 px" src="../static/productos-images/gati.jpg"
+                        <img width="220 px" height="200 px" th:src="@{/productos-images/gati.jpg}"
                            alt="Alimento Gati">
                         <p>Lo que tenés que saber de este producto </p>
                         <ul>
                            <li>Etapa de vida de la mascota: Adulto</li>
                            <li>Comida seca.</li>
                            <li>Sabor: Pescado con vegetales</li>
-                           <li>Elaborado con los mejores ingredientes que aportan al alimento un balance nutricional
-                              superior y máxima palatabilidad con beneficios concretos para tu gato.</li>
                            <li><strong>Precio: </strong>$1900</li>
                         </ul>
                      </div>
@@ -108,27 +106,23 @@
                   <div class="fila">
                      <div class="producto">
                         <img width="220 px" height="200 px"
-                           src="../static/productos-images/alimento_conejosyroedores.jpg"
+                           th:src="@{/productos-images/alimento_conejosyroedores.jpg}"
                            alt="Alimento para Conejos o roedores">
                         <p>Lo que tenés que saber de este producto </p>
                         <ul>
                            <li>Alimento fresco diario para Conejos y Roedores</li>
                            <li>Bajo en calorías.</li>
-                           <li>Con propiedades antiinflamatorias y cicatrizantes</li>
                            <li>Ayuda al sistema digestivo además de ser un gran estimulante para tu mascota.</li>
                            <li><strong>Precio: </strong>$1500</li>
                         </ul>
                      </div>
                      <div class="producto">
-                        <img width="170 px" height="190 px" src="../static/productos-images/alimentoparahamster.jpg"
+                        <img width="170 px" height="190 px" th:src="@{/productos-images/alimentoparahamster.jpg}"
                            alt="Alimento para Hamster">
                         <p>Lo que tenés que saber de este producto </p>
                         <ul>
                            <li>Alimento para hámster RedKite</li>
                            <li>Aporta los nutrientes necesarios para el óptimo desarrollo del roedor.</li>
-                           <li>Adicionado con vitaminas y minerales para reforzar el sistema inmune y beneficiar la
-                              salud general de tu mascota.</li>
-                           <li>Alimento en forma de rosetas balanceados</li>
                            <li><strong>Precio: </strong>$900</li>
                         </ul>
                      </div>
@@ -143,7 +137,7 @@
             <div class="bloque">
                <div class="fila">
                   <div class="producto">
-                     <img width="220 px" height="200 px" src="../static/productos-images/accesorio1.jpg" alt="Cepillo">
+                     <img width="220 px" height="200 px" th:src="@{/productos-images/accesorio1.jpg}" alt="Cepillo">
                      <ul>
                         <li>Cepillo Grande Plástico Punta Protegida </li>
                         <li>Medida: 15 x 10cm</li>
@@ -153,7 +147,7 @@
                      </ul>
                   </div>
                   <div class="producto">
-                     <img width="220 px" height="200 px" src="../static/productos-images/accesorio2.jpg"
+                     <img width="220 px" height="200 px" th:src="@{/productos-images/accesorio2.jpg}"
                         alt="Plato para comida">
                      <ul>
                         <li>Comedero </li>
@@ -163,7 +157,7 @@
                      </ul>
                   </div>
                   <div class="producto">
-                     <img width="220 px" height="200 px" src="../static/productos-images/accesorio3.jpg"
+                     <img width="220 px" height="200 px" th:src="@{/productos-images/accesorio3.jpg}"
                         alt="Cama para mascotas">
                      <ul>
                         <li>Camita estrellas para perros y gatos</li>
@@ -174,7 +168,7 @@
                      </ul>
                   </div>
                   <div class="producto">
-                     <img width="220 px" height="200 px" src="../static/productos-images/arnes.jpg"
+                     <img width="220 px" height="200 px" th:src="@{/productos-images/arnes.jpg}"
                         alt="Arnes para conejos,gatos,roedores">
                      <ul>
                         <li>Arnes Pretal Roedores Bebé Cobayos Conejos Gatos</li>
@@ -186,7 +180,7 @@
                      </ul>
                   </div>
                   <div class="producto">
-                     <img width="220 px" height="200 px" src="../static/productos-images/accesorio4.jpg"
+                     <img width="220 px" height="200 px" th:src="@{/productos-images/accesorio4.jpg}"
                         alt="Trnsportador de mascota">
                      <ul>
                         <li>Transportador Atlas 10</li>
@@ -207,31 +201,29 @@
             <div class="bloque">
                <div class="fila">
                   <div class="producto">
-                     <img width="240 px" height="200 px" src="../static/productos-images/juguete1.jpg "
+                     <img width="240 px" height="200 px" th:src="@{/productos-images/juguete1.jpg}"
                         alt="Juguete de goma">
                      <p>Juguete de goma para perros, sirve para mascar y ayuda en la limpieza de dientes.Tiene
                         elasticidad suave,Ideal para cachorros</p>
                      <p><strong>Precio: </strong>$11900</p>
                   </div>
                   <div class="producto">
-                     <img width="240 px" height="200 px" src="../static/productos-images/juguetegato.jpg "
+                     <img width="240 px" height="200 px" th:src="@{/productos-images/juguetegato.jpg}"
                         alt="Juguete para gato">
                      <p>Juguete Interactivo Para Gatos: Son diseñados para despertar el instinto cazador de tu gato y
                         son ideales para el vínculo entre el ser humano y su mascota.</p>
                      <p><strong>Precio: </strong>$670</p>
                   </div>
                   <div class="producto">
-                     <img width="240 px" height="200 px" src="../static/productos-images/juguetehamster.jpg "
-                        alt="Jugeutes para conejos/hamster">
-                     <p>Juguetes Masticables De Conejo /Hámster: Paquete de 11 juguetes de madera: juguetes de madera
+                     <img width="240 px" height="200 px" th:src="@{/productos-images/juguetehamster.jpg}"
+                        alt="Juguetes para conejos/hamster">
+                     <p>Juguetes Masticables De Conejo/Hámster: Paquete de 11 juguetes de madera: juguetes de madera
                         para mascotas, conejo, hámster, juego de dientes, juego combinado de productos
-                        Natural y no tóxico: juguetes de chinchilla de madera de fuentes de madera de alta calidad,
-                        madera seleccionada de primera clase, secado al sol de forma natural, tasa de deshidratación
-                        estrictamente controlada, más cómodos de usar.</p>
+                        Natural y no tóxico.</p>
                      <p><strong>Precio: </strong>$1050</p>
                   </div>
                   <div class="producto">
-                     <img width="240 px" height="200 px" src="../static/productos-images/juguetesoga.jpg "
+                     <img width="240 px" height="200 px" th:src="@{/productos-images/juguetesoga.jpg}"
                         alt="Nudos para perros">
                      <p> Puro algodón, muy resistente y no daña a su perro. Favorece la limpieza e higiene de la
                         dentadura de su mascota. Ningún juguete para perro/gato es indestructible. Se debe prestar
@@ -250,7 +242,7 @@
             <div class="bloque">
                <div class="fila">
                   <div class="producto">
-                     <img width="270 px" height="200 px" src="../static/productos-images/vitaminas.jpg"
+                     <img width="270 px" height="200 px" th:src="@{/productos-images/vitaminas.jpg}"
                         alt="Vitaminas para mascotas">
                      <ul>
                         <li>Vitaminas y minerales</li>
@@ -261,7 +253,7 @@
                      </ul>
                   </div>
                   <div class="producto">
-                     <img width="240 px" height="200 px" src="../static/productos-images/shampooparagatos.jpg"
+                     <img width="240 px" height="200 px" th:src="@{/productos-images/shampooparagatos.jpg}"
                         alt="Shampoo para gatos">
                      <ul>
                         <li>Shampoo para gatos</li>
@@ -270,7 +262,7 @@
                      </ul>
                   </div>
                   <div class="producto">
-                     <img src="../static/productos-images/limpiador.jpg" alt="Limpiador de orejas">
+                     <img th:src="@{/productos-images/limpiador.jpg}" alt="Limpiador de orejas">
                      <ul>
                         <li>Bioline Cuidado de Orejas es para perros, gatos y otros animales pequeños</li>
                         <li>Limpia suavemente las orejas, mejora el procedimiento de auto limpieza y desodoriza.</li>
@@ -279,7 +271,7 @@
                      </ul>
                   </div>
                   <div class="producto">
-                     <img src="../static/productos-images/pipeta.jpg" alt="Pipetas">
+                     <img th:src="@{/productos-images/pipeta.jpg}" alt="Pipetas">
                      <ul>
                         <li>SPOT MAX PERROS</li>
                         <li>Pipeta pulguicida, garrapaticida y repelente de insectos</li>
@@ -287,7 +279,7 @@
                      </ul>
                   </div>
                   <div class="producto">
-                     <img src="../static/productos-images/collaresantipulgas.jpg" alt="Collar antipulgas">
+                     <img th:src="@{/productos-images/collaresantipulgas.jpg}" alt="Collar antipulgas">
                      <ul>
                         <li>Collar pulguicida, garrapaticida y piojicida</li>
                         <li>Prevención y control de infestaciones por pulgas, garrapatas y todo tipo de parásitos
@@ -296,7 +288,7 @@
                      </ul>
                   </div>
                   <div class="producto">
-                     <img width="240 px" height="200 px" src="../static/productos-images/rasqueta.jpg"
+                     <img width="240 px" height="200 px" th:src="@{/productos-images/rasqueta.jpg}"
                         alt="Cepillo para Mascotas">
                      <ul>
                         <li>Con el cepillado habitual logramos eliminar los pelos muertos y partículas de suciedad

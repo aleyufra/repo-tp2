@@ -307,20 +307,33 @@ footer {
 /* Fin paseos*/
 
 /* Pagina de sucursales */
-.sucursales .sucursal {
+.sucursales {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+} 
+
+.sucursal {
 	width: 500px;
 	display: inline-block;
 	padding: 20px;
 	margin: 5px;
-	border: solid 1px #000;
+	border: solid 1px #898989;
 	border-radius: 10px;
 }
-
+.sucursal h1 {
+	font-size: 24px;
+	font-family: sans-serif;
+	padding: 10px 0px;
+}
+.sucursales p {
+	font-size: 18px;
+	color: #777;
+}
 .sucursales img {
-	border-radius: 15px;
-	box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
-	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
-	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+	border-radius: 5px;
+	width: 100%;
+	height: 200px;
 }
 /* Fin sucursales*/
 
@@ -340,11 +353,12 @@ footer {
 	display: inline-block;
 }
 input {
-	background: #f2e6ff;
+	background: #fff;
 	border-radius: 10px;
 	margin:4px 6px;
 	font-family: 'Lobster', cursive;
-	text-align: center; 
+	text-align: center;
+	padding: 5px 10px; 
 }
 #correo {
 	color:#0066cc;
@@ -356,12 +370,19 @@ button{
     font-family: 'Lobster', cursive;
     border-radius: 10px;
     margin:15px 13px;
+    padding: 5px 15px;
+}
+.enviar:hover {
+	background-color: darkblue;
+	cursor: pointer;
 }
 .contacto ul li {
 	background-color: blue;
 	display: inline-block;
 	list-style: none;
 	padding: 10px;
+	border-radius: 12px;
+	margin: 10px 3px;
 }
 .contacto ul li a {
 	color: #fff;
