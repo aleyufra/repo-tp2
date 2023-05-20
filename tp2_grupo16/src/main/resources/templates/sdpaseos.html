@@ -45,12 +45,43 @@
             </table>
          </article>
       </section>
+      
+    <a id="anadir-turno" th:href="@{/servicios/nuevo}">Anotarte</a>
+      <section>
+      	<article id="tabla-de-servicios">
+      		<table>
+      			<thead>
+      				<tr>
+      					<th>Dueño</th>
+      					<th>Nombre</th>
+      					<th>Servicio</th>
+      					<th>Dia</th>
+      					<th>Acciones</th>
+      				</tr>
+      			</thead>
+      			<tbody>
+      				<tr th:each="servi: ${servicios}">
+      					<td th:text="${servi.nombre}">Maria</td>
+      					<td th:text="${servi.nombreMascota}">Tutu</td>
+      					<td th:text="${servi.servicio}">Peluqueria</td>
+      					<td th:text="${servi.dia}">Jueves</td>
+      					<td>
+      						<a th:href="@{/servicios/modificar/}+${servi.nombre}" id="acciones1">Modificar</a>
+      						<a th:href="@{/servicios/eliminar/}+${servi.nombre}" id="acciones2">Eliminar</a>
+      					</td>
+      				</tr>
+      			</tbody>
+      		</table>
+      	</article>
+      </section>
+      
       <div class="servicio-paseadores">
          <img width="500 px" height="300 px" th:src="@{/productos-images/petshop.jpg}"
             alt="Suministros para mascotas">
          <p>Contrata nuestro servicio y reserva tu turno!</p>
          <p>Tel: 3884569876</p>
       </div>
+      
    </div>
 
    <footer th:replace="~{layouts/footer :: footer}"></footer>

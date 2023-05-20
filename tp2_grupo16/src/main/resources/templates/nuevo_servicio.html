@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Insert title here</title>
+   <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+</head>
+
+<body>
+
+   <header th:replace="~{layouts/header :: header}"></header>
+
+   <div class="nuevo-servicio container">
+      <div class="form-container">
+   		<h2 class="label-header" th:text="${edicion}?'Modificacion de turno':'Consegui tu turno!'"></h2>
+      	<form th:action="${edicion} ? @{/servicios/modificar} : @{/servicios/guardar}" th:object="${servicio}" method="post">
+         <label for="nombre">Nombre del Dueño: </label>
+         <input type="text" class="input-servicio" name="nombre" id="nombre" th:disabled="${disabled ? 'disabled' : null}" required th:field="*{nombre}">
+         <label for="nombreMascota">Nombre de la mascota: </label>
+         <input type="text" class="input-servicio" name="nombreMascota" id="nombreMascota" required th:field="*{nombreMascota}">
+         <label for="servicio">Servicio: </label>
+         <select name="servicio" class="input-servicio" id="servicio" required th:field="*{servicio}">
+            <option value="Paseo" selected>Servicio de paseos</option>
+            <option value="Peluqueria">Servicio de peluqueria</option>
+            <option value="Baño">Servicio de Baño de mascotas</option>
+         </select>
+         <label for="dia">Seleccione el día</label>
+         <select name="dia" class="input-servicio" id="dia" required th:field="*{dia}">
+            <option value="Lunes" selected>Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miercoles">Miercoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sabado">Sabado</option>
+         </select>
+         <input type="submit" class="boton-anotarse" th:value="${edicion} ? 'Guardar Cambios' : 'Anotarse'">
+      </form>
+      </div>
+   </div>
+
+   <footer th:replace="~{layouts/footer :: footer}"></footer>
+
+</body>
+
+</html>
