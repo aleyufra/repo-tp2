@@ -251,15 +251,20 @@ footer {
 /* Fin consejos de salud */
 
 /* Pagina de paseos */
+.servicio-paseos section {
+	margin: 30px 0px;
+}
+.servicio-paseos {
+	height: 110vh;
+	max-height: fit-content;
+}
 .servicio-paseos img {
 	border-radius: 15px;
 	box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
 	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
 	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
 }
-.servicio-paseos { 
-	height: 550px;
-}
+
 .servicio-paseos section article table {
 	border: 1px solid #000;
 	background-color: #000;
@@ -303,7 +308,64 @@ footer {
 	float: rigth;
 	color: #fff;
 }
+/* -------------- */
+#tabla-de-servicios table thead tr th {
+	background-color: #fa0e0e;
+	color: white;
+}
+#anadir-turno {
+	padding: 5px 15px;
+	background-color: darkslategray;
+	color: white;
+	margin-bottom: 25px;
+	border-radius: 8px;
+}
 
+.nuevo-servicio {
+	height: 100vh;
+}
+.form-container {
+	width: 300px;
+	height: fit-content;
+	background-color: darkslategray;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 20px 30px;
+	margin: 50px auto;
+}
+.form-container form label {
+	color: white;
+}
+.input-servicio {
+	width: 90%;
+	height: 35px;
+	padding: 5px 10px;
+	border-radius: 6px;
+	margin: 10px 0px;
+	text-align: left;
+}
+.label-header {
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.boton-anotarse {
+	font-size: 18px;
+	color: black;
+	padding: 5px 15px;
+}
+.boton-anotarse:hover {
+	cursor: pointer;
+	background-color: #aaa;
+}
+#acciones1 {
+	color: blue;
+	margin-right: 15px;
+}
+#acciones2 {
+	color: red;
+}
 /* Fin paseos*/
 
 /* Pagina de sucursales */
@@ -311,6 +373,7 @@ footer {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	margin-top: 20px;
 } 
 
 .sucursal {
@@ -334,6 +397,78 @@ footer {
 	border-radius: 5px;
 	width: 100%;
 	height: 200px;
+}
+/*--------------------*/
+.sucursal {
+	margin: auto;
+	margin: 30px 20px;
+}
+#agregar-sucursal{
+	color: #000;
+	font-weight: bold;
+	padding: 10px 20px;
+	border-radius: 12px;
+	background-color: #dedede;
+	border: 2px solid #000;
+	text-align: left;
+}
+#agregar-sucursal:hover {
+	background-color: #aaa;
+}
+.sucursales section article {
+	text-align: center;
+}
+.tabla-sucursales {
+	padding: 0px;
+	border-spacing: 0px;
+	border: 2px solid #000;
+	margin: 40px auto;
+}
+.tabla-sucursales thead tr th {
+	background-color: #b9b9b9;
+	color: #000;
+	width: fit-content;
+	border: 1px solid black;
+	padding: 10px 20px;
+	font-weight: bold;
+}
+.tabla-sucursales tbody tr td {
+	text-align: center;
+	border: 1px solid black;
+	padding: 5px 20px;
+	color: #000;
+}
+.tabla-sucursales tbody {
+	background-color: #dddddd;
+}
+.form-sucursal-container {
+	width: 450px;
+	height: fit-content;
+	background-color: #ff8306;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 20px 30px;
+	margin: 50px auto;
+}
+.form-sucursal-container form label {
+	color: white;
+}
+.input-sucursal {
+	width: 90%;
+	height: 35px;
+	padding: 5px 10px;
+	border-radius: 6px;
+	margin: 10px 0px;
+	text-align: left;
+}
+#boton-registrar {
+	background-color: #fff;
+	margin-top: 20px;
+	width: auto;
+}
+#boton-registrar:hover {
+	background-color: #aaa;
+	cursor: pointer;
 }
 /* Fin sucursales*/
 
