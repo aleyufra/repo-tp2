@@ -10,7 +10,7 @@ public class Producto {
 
 	String nombre, categoria;
 	int codigo;
-	double precio;
+	double precio, precioFinal;
 	byte descuento;
 	
 	public String getNombre() {
@@ -44,6 +44,10 @@ public class Producto {
 		this.descuento = descuento;
 	}
 	
+	public double getPrecioFinal() {
+		return precioFinal;
+	}
+	
 	/**
 	 * 
 	 * @param nombre del producto
@@ -60,6 +64,7 @@ public class Producto {
 		this.codigo = codigo;
 		this.precio = precio;
 		this.descuento = descuento;
+		this.precioFinal = this.calcularDescuento();
 	}
 	
 	/**
@@ -71,10 +76,9 @@ public class Producto {
 	
 		double precioConDescuento = this.precio;
 	
-		if(this.descuento <= 0 && this.descuento >= 50) {
+		if(this.descuento > 0 && this.descuento <= 50) {
 			
-			double descuento = this.precio * (this.descuento / 100);
-			precioConDescuento -= descuento;
+			precioConDescuento = this.precio * (float)this.descuento / 100;
 		}
 		return precioConDescuento;
 	}
