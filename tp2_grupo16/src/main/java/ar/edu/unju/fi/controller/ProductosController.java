@@ -3,8 +3,8 @@ package ar.edu.unju.fi.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import ar.edu.unju.fi.controller.form.FormProducto;
 import ar.edu.unju.fi.listas.ListaProductos;
@@ -28,11 +28,22 @@ public class ProductosController {
 	}
 	
 	@PostMapping("/productos")
-	public String postNuevoProductoPage(Model model, FormProducto formProducto) {
+	public String postNuevoProductoPage(FormProducto formProducto) {
 		Producto nuevoProducto = new Producto(formProducto.getNombre(),formProducto.getCategoria(), formProducto.getCodigo(), formProducto.getPrecio(), formProducto.getDescuento());
 		
 		listaProductos.getProductos().add(nuevoProducto);
-		model.addAttribute("productos", listaProductos.getProductos());
-		return "productos";
+		return "redirect:/productos";
+	}
+	
+	@GetMapping("/productos/eliminar/{codigo}")
+	public String deleteProductoPage(@PathVariable(value="codigo")String codigo) {
+    	for (Producto prod : listaProductos.getProductos()) {
+    		String codigoProducto = String.valueOf(prod.getCodigo()); 
+    		if (codigoProducto.equals(codigo)) {
+    			listaProductos.getProductos().remove(prod);
+    			break;
+    		}
+    	}
+    	return "redirect:/productos";
 	}
 }
