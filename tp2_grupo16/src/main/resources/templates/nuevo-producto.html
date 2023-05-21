@@ -12,7 +12,7 @@
 	<header th:replace="~{layouts/header :: header}"></header>
 
 	<section class="container">
-		<form th:action="@{/productos}" th:object="${formProducto}" method="POST" class="w-50 m-auto">
+		<form th:action="${codigo} ? @{/productos/}+${codigo} : @{/productos}" th:object="${formProducto}" method="POST" class="w-50 m-auto">
 			<div class="mb-3">
 				<label for="nombre-producto" class="form-label">Producto</label>
 				<input th:field="*{nombre}" type="text" class="form-control" id="nombre-producto" placeholder="Nombre de producto" required>
@@ -20,7 +20,7 @@
 			<div class="row mb-3">
 				<div class="col">
 					<label for="codigo-producto" class="form-label">Codigo</label>
-					<input th:field="*{codigo}" type="number" class="form-control" id="codigo-producto" placeholder="Codigo" required>
+					<input th:field="*{codigo}" th:disabled="${codigo} ? disabled : null" type="number" class="form-control" id="codigo-producto" placeholder="Codigo" required>
 				</div>
 				<div class="col">
 					<label for="categorias" class="form-label">Categoria</label>
