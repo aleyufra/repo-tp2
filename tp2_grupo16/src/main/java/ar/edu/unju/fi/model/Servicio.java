@@ -1,5 +1,10 @@
 package ar.edu.unju.fi.model;
 
+/**
+ * 
+ * @author Grupo16
+ *
+ */
 public class Servicio {
 	
 	private String nombre;
@@ -9,6 +14,15 @@ public class Servicio {
 	
 	public Servicio() {}
 
+	/**
+	 * Crea una nueva instancia de la clase Servicio
+	 * 
+	 * @param nombre El nombre del dueño de la mascota
+	 * @param nombreMascota El nombre de la mascota
+	 * @param servicio El nombre del servicio a realizar
+	 * @param dia El dia a realizar el servicio
+	 */
+	
 	public Servicio(String nombre, String nombreMascota, String servicio, String dia) {
 		super();
 		this.nombre = nombre;
