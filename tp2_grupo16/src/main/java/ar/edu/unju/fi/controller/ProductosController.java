@@ -14,12 +14,14 @@ import ar.edu.unju.fi.model.Producto;
 public class ProductosController {
 	private ListaProductos listaProductos = new ListaProductos();
 
+	// Controlador para mostrar la página de productos
 	@GetMapping("/productos")
 	public String getProductosPage(Model model) {
 		model.addAttribute("productos", listaProductos.getProductos());
 		return "productos";
 	}
 	
+	// Controlador para mostrar la página de nuevo producto
 	@GetMapping("/productos/nuevo")
 	public String getNuevoProductoPage(Model model) {
 		FormProducto miFormulario = new FormProducto();
@@ -27,6 +29,7 @@ public class ProductosController {
 		return "nuevo-producto";
 	}
 	
+	// Controlador para procesar el envío del formulario de nuevo producto
 	@PostMapping("/productos")
 	public String postNuevoProductoPage(FormProducto formProducto) {
 		Producto nuevoProducto = new Producto(formProducto.getNombre(),formProducto.getCategoria(), formProducto.getCodigo(), formProducto.getPrecio(), formProducto.getDescuento());
@@ -35,6 +38,7 @@ public class ProductosController {
 		return "redirect:/productos";
 	}
 	
+	// Controlador para mostrar la página de modificación de un producto específico
 	@GetMapping("/productos/editar/{codigo}")
 	public String getEditarProductoPage(@PathVariable(value="codigo")String codigo, Model model) {
 		Producto prod = this.buscarProducto(codigo);
@@ -44,6 +48,7 @@ public class ProductosController {
 		
 	}
 	
+	// Controlador para procesar la modificación de un producto específico
 	@PostMapping("/productos/{codigo}")
 	public String postNuevoProductoPage(@PathVariable(value="codigo")String codigo, FormProducto formProducto) {
 		Producto producto = this.buscarProducto(codigo);
@@ -56,6 +61,7 @@ public class ProductosController {
 		return "redirect:/productos";
 	}
 	
+	// Controlador para eliminar un producto específico
 	@GetMapping("/productos/eliminar/{codigo}")
 	public String deleteProductoPage(@PathVariable(value="codigo")String codigo) {
     	Producto producto = this.buscarProducto(codigo);
@@ -64,6 +70,12 @@ public class ProductosController {
     	return "redirect:/productos";
 	}
 	
+	/**
+	 * Busca un producto por su código.
+	 * 
+	 * @param codigo El código del producto a buscar.
+	 * @return El producto encontrado o null si no se encuentra ningún producto con ese código.
+	 */
 	private Producto buscarProducto(String codigo) {
 		Producto productoBuscado = null;
     	for (Producto prod : listaProductos.getProductos()) {
