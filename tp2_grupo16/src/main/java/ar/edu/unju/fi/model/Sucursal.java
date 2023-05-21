@@ -1,8 +1,13 @@
 package ar.edu.unju.fi.model;
 
 import java.time.LocalDate;
-
 import org.springframework.format.annotation.DateTimeFormat;
+
+/**
+ * 
+ * @author Grupo16
+ *
+ */
 
 public class Sucursal {
 	
@@ -15,6 +20,17 @@ public class Sucursal {
 	private LocalDate fechaInauguracion;
 	
 	public Sucursal() {}
+	
+	/**
+	 * Crea una nueva instancia de la clase Sucursal
+	 * 
+	 * @param nombre El nombre de la sucursal
+	 * @param direccion La dirección de la sucursal
+	 * @param barrio El barrio donde se encuentra la sucursal
+	 * @param ciudad La ciudad donde se encuentra la sucursal
+	 * @param fechaInauguracion La fecha de inauguración de la sucursal
+	 * @param telefono El telefono de la sucursal
+	 */
 	
 	public Sucursal(String nombre, String direccion, String barrio, String ciudad, LocalDate fechaInauguracion, String telefono) {
 		super();
@@ -70,6 +86,12 @@ public class Sucursal {
 		return fechaInauguracion;
 	}
 
+	/**
+	 * Establece la fecha de inauguración
+	 * 
+	 * @param fechaInauguracion es la fecha de inauguración a establecer
+	 */
+	
 	public void setFechaInauguracion(LocalDate fechaInauguracion) {
 		this.fechaInauguracion = fechaInauguracion;
 	}
