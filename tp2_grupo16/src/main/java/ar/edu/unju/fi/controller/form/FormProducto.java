@@ -4,14 +4,14 @@ public class FormProducto {
 	private String nombre;
 	private String categoria;
 	private int codigo;
-	private float precio;
+	private double precio;
 	private byte descuento;
 	
 	public FormProducto() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public FormProducto(String nombre, String categoria, int codigo, float precio, byte descuento) {
+	public FormProducto(String nombre, String categoria, int codigo, double precio, byte descuento) {
 		super();
 		this.nombre = nombre;
 		this.categoria = categoria;
@@ -38,10 +38,10 @@ public class FormProducto {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-	public float getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
-	public void setPrecio(float precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 	public byte getDescuento() {

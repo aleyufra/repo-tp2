@@ -8,10 +8,10 @@ package ar.edu.unju.fi.model;
 
 public class Producto {
 
-	String nombre, categoria;
-	int codigo;
-	double precio, precioFinal;
-	byte descuento;
+	private String nombre, categoria;
+	private int codigo;
+	private double precio, precioFinal;
+	private byte descuento;
 	
 	public String getNombre() {
 		return nombre;
@@ -48,6 +48,10 @@ public class Producto {
 		return precioFinal;
 	}
 	
+	public void setPrecioFinal(double precioFinal) {
+		this.precioFinal = precioFinal;
+	}
+	
 	/**
 	 * 
 	 * @param nombre del producto
@@ -78,7 +82,7 @@ public class Producto {
 	
 		if(this.descuento > 0 && this.descuento <= 50) {
 			
-			precioConDescuento = this.precio * (float)this.descuento / 100;
+			precioConDescuento = this.precio - this.precio * (float)this.descuento / 100;
 		}
 		return precioConDescuento;
 	}

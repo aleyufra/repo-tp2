@@ -11,7 +11,7 @@ public class ListaProductos {
 
 	public ListaProductos() {
 		productos = new ArrayList<Producto>();
-		Producto unProducto = new Producto("alimento para gato", "alimento", 111, 500, (byte)50);
+		Producto unProducto = new Producto("alimento para gato", "alimentos", 111, 500, (byte)50);
 		productos.add(unProducto);
 	}
 

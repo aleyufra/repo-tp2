@@ -36,7 +36,7 @@
 	                    <td th:text="${prod.descuento}"></td>
 	                    <td th:text="${prod.precioFinal}"></td>
 	                    <td>
-	                        <a class="btn btn-secondary">Modificar</a>
+	                        <a th:href="@{/productos/editar/}+${prod.codigo}" class="btn btn-secondary">Modificar</a>
 	                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal">
 		  						Eliminar
 							</button>
