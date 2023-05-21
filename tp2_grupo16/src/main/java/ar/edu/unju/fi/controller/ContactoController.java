@@ -12,18 +12,21 @@ public class ContactoController {
 	
 	boolean enviado = false;
 	
+	// Controlador para redireccionar a la página de mensajes de contacto
 	@GetMapping("")
 	public String goToContactoPage() {
 		enviado = false;
 		return "redirect:/contacto/mensaje";
 	}
 	
+	// Controlador para mostrar la página de mensajes de contacto
 	@GetMapping("/mensaje")
 	public String getContactoPage(Model model) {
 		model.addAttribute("enviado", enviado);
 		return "contacto";
 	}
 	
+	// Controlador para enviar un mensaje de contacto
 	@PostMapping("/enviar")
 	public String enviarMensaje(Model model) {
 		
