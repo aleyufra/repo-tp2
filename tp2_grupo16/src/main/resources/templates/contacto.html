@@ -21,11 +21,12 @@
          <li><a href="https://www.instagram.com">Instagram</a></li>
          <li><a href="https://www.twitter.com">Twitter</a></li>
       </ul>
-      <form>
-         <p>Nombre <input type="text" name="Nombre" placeholder="Ingrese su nombre"></p>
+      <form th:action="@{/contacto/enviar}" th:object="${contacto}" method="post">
+         <p>Nombre <input type="text" name="Nombre" placeholder="Ingrese su nombre" required></p>
          <p>Email <input type="text" name="Email" placeholder="Ingrese un email valido" required></p>
          <p>Ciudad <input type="text" name="Ciudad" placeholder="Ingrese su ciudad" required></p>
          <p>Mensaje <input type="text" style="width: 350px; height: 75px" size=30 name="Mensaje" required></p>
+         <p th:if="${enviado}">Su mensaje ha sido enviado</p>
          <button class="enviar">Enviar</button>
       </form>
    </div>
