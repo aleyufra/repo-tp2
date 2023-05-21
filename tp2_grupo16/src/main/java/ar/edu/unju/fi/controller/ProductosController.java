@@ -13,7 +13,7 @@ import ar.edu.unju.fi.model.Producto;
 @Controller
 public class ProductosController {
 	private ListaProductos listaProductos = new ListaProductos();
-	
+
 	@GetMapping("/productos")
 	public String getProductosPage(Model model) {
 		model.addAttribute("productos", listaProductos.getProductos());
