@@ -11,6 +11,14 @@ public class FormProducto {
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * 
+	 * @param nombre El nombre del producto.
+	 * @param categoria La categoría del producto.
+	 * @param codigo El código del producto.
+	 * @param precio El precio del producto.
+	 * @param descuento El descuento aplicado al producto.
+	 */
 	public FormProducto(String nombre, String categoria, int codigo, double precio, byte descuento) {
 		super();
 		this.nombre = nombre;
