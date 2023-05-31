@@ -12,18 +12,41 @@
 <body>
    <header>
       <div class="titulo">
-         <h1>Bienvenido a nuestra Tienda de Mascotas "El Arriero"</h1>
+         <h1 class="fw-bold text-black">Bienvenido a nuestra Tienda de Mascotas "El Arriero"</h1>
       </div>
-      <nav>
-         <ul>
-            <li><a th:href="@{/inicio}">Inicio</a></li>
-            <li><a th:href="@{/productos}">Productos</a></li>
-            <li><a th:href="@{/consejos_de_salud}">Consejos de Salud</a></li>
-            <li><a th:href="@{/servicios/listado}">Servicios</a></li>
-            <li><a th:href="@{/sucursales/listado}">Sucursales</a></li>
-            <li><a th:href="@{/contacto}">Contactanos</a></li>
-         </ul>
-      </nav>
+	  <nav class="navbar navbar-expand-lg navbar-dark" id="navbar-container">
+		   <div class="container-navbar">
+		      <div class="container">
+		         <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+		         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+		            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		            <span class="navbar-toggler-icon"></span>
+		         </button>
+		         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		               <li class="nav-item">
+		                  <a th:href="@{/inicio}">Inicio</a>
+		               </li>
+		               <li class="nav-item">
+		                  <a th:href="@{/productos}">Productos</a>
+		               </li>
+		               <li class="nav-item">
+		                  <a th:href="@{/consejos_de_salud}">Consejos de Salud</a>
+		               </li>
+		               <li class="nav-item">
+		                  <a th:href="@{/servicios/listado}">Servicios</a>
+		               </li>
+		               <li class="nav-item">
+		                  <a th:href="@{/sucursales/listado}">Sucursales</a>
+		               </li>
+		               <li class="nav-item">
+		                  <a th:href="@{/contacto}">Contactanos</a>
+		               </li>
+		            </ul>
+		         </div>
+		      </div>
+		   </div>
+	   </nav>
    </header>
    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>

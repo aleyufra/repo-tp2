@@ -13,81 +13,104 @@
 
    <header th:replace="~{layouts/header :: header}"></header>
 
-   <div class="servicio-paseos container">
-      <section>
-         <article>
-            <table>
-               <tr>
-                  <th>Dia</th>
-                  <th>Lunes</th>
-                  <th>Martes</th>
-                  <th>Miercoles</th>
-                  <th>Jueves</th>
-                  <th>Viernes</th>
-                  <th>Sabado</th>
-               </tr>
-               <tr>
-                  <th>Horario</th>
-                  <td>9 a 12 - 16 a 18</td>
-                  <td>9 a 12 - 16 a 18</td>
-                  <td>9 a 12 - 16 a 18</td>
-                  <td>9 a 12 - 16 a 18</td>
-                  <td>9 a 12 - 16 a 18</td>
-                  <td>9 a 12 - 16 a 18</td>
-               </tr>
-               <tr>
-                  <th>Paseador</th>
-                  <td>Juan Pérez</td>
-                  <td>Lucas Díaz</td>
-                  <td>Juan Pérez</td>
-                  <td>María Gómez</td>
-                  <td>Lucas Díaz</td>
-                  <td>Roberto Vázquez</td>
-               </tr>
-            </table>
-         </article>
-      </section>
-      
-    <a id="anadir-turno" th:href="@{/servicios/nuevo}">Anotarte</a>
-      <section>
-      	<article id="tabla-de-servicios">
-      		<table>
-      			<thead>
-      				<tr>
-      					<th>Dueño</th>
-      					<th>Nombre</th>
-      					<th>Servicio</th>
-      					<th>Dia</th>
-      					<th>Acciones</th>
-      				</tr>
-      			</thead>
-      			<tbody>
-      				<tr th:each="servi: ${servicios}">
-      					<td th:text="${servi.nombre}">Maria</td>
-      					<td th:text="${servi.nombreMascota}">Tutu</td>
-      					<td th:text="${servi.servicio}">Peluqueria</td>
-      					<td th:text="${servi.dia}">Jueves</td>
-      					<td>
-      						<a th:href="@{/servicios/modificar/}+${servi.nombre}" id="acciones1">Modificar</a>
-      						<a th:href="@{/servicios/eliminar/}+${servi.nombre}" id="acciones2">Eliminar</a>
-      					</td>
-      				</tr>
-      			</tbody>
-      		</table>
-      	</article>
-      </section>
-      
-      <div class="servicio-paseadores">
-         <img width="500 px" height="300 px" th:src="@{/productos-images/petshop.jpg}"
-            alt="Suministros para mascotas">
-         <p>Anotate a nuestro servicio y llamanos para reservar tu turno!</p>
-         <p>Teléfono: 3884569876</p>
+   <div class="container-fluid">
+      <div class="servicio-paseos container">
+         <div class="row">
+            <div class="col-12">
+               <section>
+                  <article>
+                     <div class="table-responsive">
+                        <table>
+                           <tr>
+                              <th>Dia</th>
+                              <th>Lunes</th>
+                              <th>Martes</th>
+                              <th>Miercoles</th>
+                              <th>Jueves</th>
+                              <th>Viernes</th>
+                              <th>Sabado</th>
+                           </tr>
+                           <tr>
+                              <th>Horario</th>
+                              <td>9 a 12 - 16 a 18</td>
+                              <td>9 a 12 - 16 a 18</td>
+                              <td>9 a 12 - 16 a 18</td>
+                              <td>9 a 12 - 16 a 18</td>
+                              <td>9 a 12 - 16 a 18</td>
+                              <td>9 a 12 - 16 a 18</td>
+                           </tr>
+                           <tr>
+                              <th>Paseador</th>
+                              <td>Juan Pérez</td>
+                              <td>Lucas Díaz</td>
+                              <td>Juan Pérez</td>
+                              <td>María Gómez</td>
+                              <td>Lucas Díaz</td>
+                              <td>Roberto Vázquez</td>
+                           </tr>
+                        </table>
+                     </div>
+                  </article>
+               </section>
+            </div>
+         </div>
+
+         <div class="row">
+            <div class="col-12">
+               <a class="btn btn-secondary" th:href="@{/servicios/nuevo}">Anotarte</a>
+               <section>
+                  <article id="tabla-de-servicios">
+                     <div class="table-responsive">
+                        <table class="table-servicios">
+                           <thead>
+                              <tr>
+                                 <th>Dueño</th>
+                                 <th>Nombre</th>
+                                 <th>Servicio</th>
+                                 <th>Dia</th>
+                                 <th>Acciones</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr th:each="servi: ${servicios}">
+                                 <td th:text="${servi.nombre}">Maria</td>
+                                 <td th:text="${servi.nombreMascota}">Tutu</td>
+                                 <td th:text="${servi.servicio}">Peluqueria</td>
+                                 <td th:text="${servi.dia}">Jueves</td>
+                                 <td>
+                                    <a class="btn btn-secondary" th:href="@{/servicios/modificar/}+${servi.nombre}">Modificar</a>
+                                    <a class="btn btn-danger" th:href="@{/servicios/eliminar/}+${servi.nombre}">Eliminar</a>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </article>
+               </section>
+            </div>
+         </div>
+
+         <div class="row">
+            <div class="col-12">
+               <div class="servicio-paseadores row">
+                  <div class="servicio-imagen col-12 col-md-4">
+                  	<img th:src="@{/productos-images/petshop.jpg}"
+                     alt="Suministros para mascotas">
+                  </div>
+                  <div class="servicio-info col-12 col-md-8">
+                  	<p>Anotate a nuestro servicio y llamanos para reservar tu turno!</p>
+                  	<p>Teléfono: 3884569876</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+
       </div>
-      
    </div>
 
    <footer th:replace="~{layouts/footer :: footer}"></footer>
 
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+   <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
+
 </html>

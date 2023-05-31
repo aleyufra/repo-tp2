@@ -13,24 +13,32 @@
 
    <header th:replace="~{layouts/header :: header}"></header>
 
-   <div class="container contacto">
-      <p>3915 Av. General Belgrano, 388-4999999</p>
-      <p> Lunes a Viernes: 9:00 a. m. a 8:00 p. m.</p>
-      <p> Sabado a Domingo: 9:00 a. m. a 12:30 p. m.</p>
-      <a id="correo" href="https://www.gmail.com">contacto@mail.com.ar</a>
-      <ul>
-         <li><a href="https://www.facebook.com">Facebook</a></li>
-         <li><a href="https://www.instagram.com">Instagram</a></li>
-         <li><a href="https://www.twitter.com">Twitter</a></li>
-      </ul>
-      <form th:action="@{/contacto/enviar}" th:object="${contacto}" method="post">
-         <p>Nombre <input type="text" name="Nombre" placeholder="Ingrese su nombre" required></p>
-         <p>Email <input type="text" name="Email" placeholder="Ingrese un email valido" required></p>
-         <p>Ciudad <input type="text" name="Ciudad" placeholder="Ingrese su ciudad" required></p>
-         <p>Mensaje <input type="text" style="width: 350px; height: 75px" size=30 name="Mensaje" required></p>
-         <p th:if="${enviado}">Su mensaje ha sido enviado</p>
-         <button class="enviar">Enviar</button>
-      </form>
+   <div class="container-fluid">
+	   	<div class="container">
+	   		<div class="row">
+	   			<div class="col-12 col-lg-6 m-auto">
+	   				<div class="contacto-container">
+				      <div class="contacto-header">
+				      	<p>Contacto - Tel: 388-4999999</p>
+				      </div>
+				      <a id="correo" href="https://www.gmail.com">elarriero@gmail.com</a>
+				      <ul class="mt-2">
+				         <li><a class="btn btn-primary" href="https://www.facebook.com">Facebook</a></li>
+				         <li><a class="btn btn-danger" href="https://www.instagram.com">Instagram</a></li>
+				         <li><a class="btn btn-info" href="https://www.twitter.com">Twitter</a></li>
+				      </ul>
+				      <form class="contacto-form" th:action="@{/contacto/enviar}" th:object="${contacto}" method="post">
+				         <label for="nombre">Nombre: <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Ingrese su nombre" required></label>
+				         <label for="email">Email: <input id="email" type="text" class="form-control" name="email" placeholder="Ingrese un email valido" required></label>
+				         <label for="ciudad">Ciudad: <input id="ciudad" type="text" class="form-control" name="ciudad" placeholder="Ingrese su ciudad" required></label>
+				         <label for="mensaje">Mensaje: <input id="mensaje" type="text" class="form-control" size=30 name="mensaje" required></label>
+				         <p class="text-white" th:if="${enviado}">Su mensaje ha sido enviado. </p>
+				         <button class="btn btn-light mt-3">Enviar</button>
+				      </form>
+				   </div>
+	   			</div>
+	   		</div>
+	   	</div>
    </div>
 
    <footer th:replace="~{layouts/footer :: footer}"></footer>
