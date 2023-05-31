@@ -11,357 +11,440 @@
 
 <body>
 
-	<header th:replace="~{layouts/header :: header}"></header>
-	
-	<div class="productos-container">
-		<section class="container">
-			<a th:href="@{productos/nuevo}" class="btn btn-dark mb-2 float-start">Nuevo producto</a>
-			<table class="table table-hover table-secondary">
-				<thead class="table-dark">
-					<tr> 
-						<th>Nombre</th>
-						<th>Categoria</th>
-						<th>Codigo</th>
-						<th>Precio</th>
-						<th>Descuento</th>
-						<th>Precio final</th>
-						<th>Acciones</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="prod: ${productos}">
-						<td th:text="${prod.nombre}"></td>
-	                    <td th:text="${prod.categoria}"></td>
-	                    <td th:text="${prod.codigo}"></td>
-	                    <td th:text="${prod.precio}"></td>
-	                    <td th:text="${prod.descuento}"></td>
-	                    <td th:text="${prod.precioFinal}"></td>
-	                    <td>
-	                        <a th:href="@{/productos/editar/}+${prod.codigo}" class="btn btn-secondary">Modificar</a>
-	                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal">
-		  						Eliminar
-							</button>
-							
-							<!-- Modal -->
-							<div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="eliminarModalLabel" aria-hidden="true">
-							  <div class="modal-dialog">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h1 class="modal-title fs-5" id="eliminarModalLabel">Eliminar producto</h1>
-							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							      </div>
-							      <div class="modal-body">
-							        <p>¿Seguro que desea eliminar el producto?</p>
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-							        <form th:action="@{/productos/eliminar/}+${prod.codigo}" method="GET">
-										<button type="submit" class="btn btn-danger">Eliminar</button>
-									</form>
-							      </div>
-							    </div>
-							  </div>
-							</div>
-							
-	                    </td>
-					</tr>
-				</tbody>
-			</table>
-		</section>
-		
-      <img id="imagenproductos" width="500 px" height="370 px" th:src="@{/productos-images/petshop.jpg}"
-         alt="Suministros para mascotas">
-      <section id="Alimentacion">
-         <h2>Productos de Alimentacion para la mascota</h2>
-         <div class="contenido">
-            <div class="bloque">
-               <div class="fila">
-                  <div class="producto">
-                     <h3>Alimento para Perro</h3>
-                     <img th:src="@{/productos-images/alimento_rosco.jpg}" alt="Alimento Rosco">
-                     <p>Lo que tenés que saber de este producto </p>
-                     <ul>
-                        <li>Recomendado para perro adulto</li>
-                        <li>Comida seca.</li>
-                        <li>Sabor: carne.</li>
-                        <li>Sabor y nutrición completa para tu mascota.</li>
-                        <li><strong>Precio: </strong>$4894</li>
-                     </ul>
-                  </div>
-                  <div class="producto">
-                     <img th:src="@{/productos-images/alimento_raza.jpg}" alt="Alimento Raza">
-                     <p>Lo que tenés que saber de este producto </p>
-                     <ul>
-                        <li>Un alimento ideal para perros adultos que llevan una vida sedentaria y conviven con su
-                           familia en espacios reducidos</li>
-                        <li>Comida seca.</li>
-                        <li>Sabor: carne.</li>
-                        <li>Menos grasa</li>
-                        <li><strong>Precio: </strong>$4500</li>
-                     </ul>
-                  </div>
-                  <div class="producto">
-                     <img th:src="@{/productos-images/alimento_dogui.jpg}" alt="Alimento Dogui">
-                     <p>Lo que tenés que saber de este producto </p>
-                     <ul>
-                        <li>Alimento para todas las razas y tamaños</li>
-                        <li>19% de proteínas</li>
-                        <li>Sabor: Carne, Cereales y Arroz</li>
-                        <li>Aroma extra que les encanta!!</li>
-                        <li><strong>Precio: </strong>$7200</li>
-                     </ul>
-                  </div>
-                  <div class="producto">
-                     <img th:src="@{/productos-images/alimento_pedigree.jpg}" alt="Alimento Pedigree">
-                     <p>Lo que tenés que saber de este producto </p>
-                     <ul>
-                        <li>24 vitaminas y minerales para una nutrición completa y balanceada</li>
-                        <li>Proteínas de alta calidad</li>
-                        <li>Vegetales y granos selectos</li>
-                        <li>Óptima digestión</li>
-                        <li><strong>Precio: </strong>$5200</li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <h3>Alimento para Gato</h3>
-         <div id="AlimentoGato">
-            <div class="contenido">
-               <div class="bloque">
-                  <div class="fila">
-                     <div class="producto">
-                        <img th:src="@{/productos-images/whiskas.jpg}" alt="Alimento Whiskas">
-                        <p>Lo que tenés que saber de este producto </p>
-                        <ul>
-                           <li>Recomendado para gato adulto.</li>
-                           <li>Comida seca.</li>
-                           <li>Sabor: pescado.</li>
-                           <li>Proteína para una nutrición completa</li>
-                           <li><strong>Precio: </strong>$9010</li>
-                        </ul>
-                     </div>
-                     <div class="producto">
-                        <img width="220 px" height="200 px" th:src="@{/productos-images/gati.jpg}"
-                           alt="Alimento Gati">
-                        <p>Lo que tenés que saber de este producto </p>
-                        <ul>
-                           <li>Etapa de vida de la mascota: Adulto</li>
-                           <li>Comida seca.</li>
-                           <li>Sabor: Pescado con vegetales</li>
-                           <li><strong>Precio: </strong>$1900</li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div id="alimentoc">
-            <h3>Alimento para Conejos y roedores</h3>
-            <div class="contenido">
-               <div class="bloque">
-                  <div class="fila">
-                     <div class="producto">
-                        <img width="220 px" height="200 px"
-                           th:src="@{/productos-images/alimento_conejosyroedores.jpg}"
-                           alt="Alimento para Conejos o roedores">
-                        <p>Lo que tenés que saber de este producto </p>
-                        <ul>
-                           <li>Alimento fresco diario para Conejos y Roedores</li>
-                           <li>Bajo en calorías.</li>
-                           <li>Ayuda al sistema digestivo además de ser un gran estimulante para tu mascota.</li>
-                           <li><strong>Precio: </strong>$1500</li>
-                        </ul>
-                     </div>
-                     <div class="producto">
-                        <img width="170 px" height="190 px" th:src="@{/productos-images/alimentoparahamster.jpg}"
-                           alt="Alimento para Hamster">
-                        <p>Lo que tenés que saber de este producto </p>
-                        <ul>
-                           <li>Alimento para hámster RedKite</li>
-                           <li>Aporta los nutrientes necesarios para el óptimo desarrollo del roedor.</li>
-                           <li><strong>Precio: </strong>$900</li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section>
-      <section id="Acsesorios">
-         <h2>Accesorios</h2>
-         <div class="contenido">
-            <div class="bloque">
-               <div class="fila">
-                  <div class="producto">
-                     <img width="220 px" height="200 px" th:src="@{/productos-images/accesorio1.jpg}" alt="Cepillo">
-                     <ul>
-                        <li>Cepillo Grande Plástico Punta Protegida </li>
-                        <li>Medida: 15 x 10cm</li>
-                        <li>Material de las cerdas: Acero inoxidable</li>
-                        <li>Cepillo para perros y gatos</li>
-                        <li><strong>Precio: </strong>$665</li>
-                     </ul>
-                  </div>
-                  <div class="producto">
-                     <img width="220 px" height="200 px" th:src="@{/productos-images/accesorio2.jpg}"
-                        alt="Plato para comida">
-                     <ul>
-                        <li>Comedero </li>
-                        <li>Medidas: 18cm x 12cm x 5cm</li>
-                        <li>Material: Acero inoxidable</li>
-                        <li><strong>Precio: </strong>$735</li>
-                     </ul>
-                  </div>
-                  <div class="producto">
-                     <img width="220 px" height="200 px" th:src="@{/productos-images/accesorio3.jpg}"
-                        alt="Cama para mascotas">
-                     <ul>
-                        <li>Camita estrellas para perros y gatos</li>
-                        <li>Modelo Compacto multifunción y liviano</li>
-                        <li>Funda con cierre: es lavable y vas a poder sacar y lavarla rápido y fácil la funda</li>
-                        <li>Medidas: 50x40x30</li>
-                        <li><strong>Precio: </strong>$8500</li>
-                     </ul>
-                  </div>
-                  <div class="producto">
-                     <img width="220 px" height="200 px" th:src="@{/productos-images/arnes.jpg}"
-                        alt="Arnes para conejos,gatos,roedores">
-                     <ul>
-                        <li>Arnes Pretal Roedores Bebé Cobayos Conejos Gatos</li>
-                        <li>Cuello 10cm a 15cm</li>
-                        <li>Panza 13cm a 20cm</li>
-                        <li>Es un arnés ajustable de nylon especialmente concebido para llevar a su mascota pequeña con
-                           usted</li>
-                        <li><strong>Precio: </strong>$4465</li>
-                     </ul>
-                  </div>
-                  <div class="producto">
-                     <img width="220 px" height="200 px" th:src="@{/productos-images/accesorio4.jpg}"
-                        alt="Trnsportador de mascota">
-                     <ul>
-                        <li>Transportador Atlas 10</li>
-                        <li>Caja de viaje para gatos y perros</li>
-                        <li>Dimensiones: Largo 48 cm x Ancho 32,5 cm x Alto 29 cm</li>
-                        <li>Tiene unas aberturas de ventilación en los costados para que el interior siempre tenga aire
-                           fresco</li>
-                        <li><strong>Precio: </strong>$13990</li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section>
-      <section id="Juguetes">
-         <h2>¡Juguetes!</h2>
-         <div class="contenido">
-            <div class="bloque">
-               <div class="fila">
-                  <div class="producto">
-                     <img width="240 px" height="200 px" th:src="@{/productos-images/juguete1.jpg}"
-                        alt="Juguete de goma">
-                     <p>Juguete de goma para perros, sirve para mascar y ayuda en la limpieza de dientes.Tiene
-                        elasticidad suave,Ideal para cachorros</p>
-                     <p><strong>Precio: </strong>$11900</p>
-                  </div>
-                  <div class="producto">
-                     <img width="240 px" height="200 px" th:src="@{/productos-images/juguetegato.jpg}"
-                        alt="Juguete para gato">
-                     <p>Juguete Interactivo Para Gatos: Son diseñados para despertar el instinto cazador de tu gato y
-                        son ideales para el vínculo entre el ser humano y su mascota.</p>
-                     <p><strong>Precio: </strong>$670</p>
-                  </div>
-                  <div class="producto">
-                     <img width="240 px" height="200 px" th:src="@{/productos-images/juguetehamster.jpg}"
-                        alt="Juguetes para conejos/hamster">
-                     <p>Juguetes Masticables De Conejo/Hámster: Paquete de 11 juguetes de madera: juguetes de madera
-                        para mascotas, conejo, hámster, juego de dientes, juego combinado de productos
-                        Natural y no tóxico.</p>
-                     <p><strong>Precio: </strong>$1050</p>
-                  </div>
-                  <div class="producto">
-                     <img width="240 px" height="200 px" th:src="@{/productos-images/juguetesoga.jpg}"
-                        alt="Nudos para perros">
-                     <p> Puro algodón, muy resistente y no daña a su perro. Favorece la limpieza e higiene de la
-                        dentadura de su mascota. Ningún juguete para perro/gato es indestructible. Se debe prestar
-                        atención a la forma de juego de su mascota, ya que si la intención es romperlo es posible que lo
-                        haga.</p>
-                     <p><strong>Precio: </strong>$780</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section>
+   <header th:replace="~{layouts/header :: header}"></header>
 
-      <section id="Mascota">
-         <h2>Productos de Cuidados para la mascota</h2>
-         <div class="contenido">
-            <div class="bloque">
-               <div class="fila">
-                  <div class="producto">
-                     <img width="270 px" height="200 px" th:src="@{/productos-images/vitaminas.jpg}"
-                        alt="Vitaminas para mascotas">
-                     <ul>
-                        <li>Vitaminas y minerales</li>
-                        <li>Proporciona multitud de micronutrientes esenciales</li>
-                        <li>Incrementa el apetito de tu mascota y también ayuda a mejorar el aspecto del pelo de tu
-                           perro</li>
-                        <li><strong>Precio: </strong>$4600</li>
-                     </ul>
-                  </div>
-                  <div class="producto">
-                     <img width="240 px" height="200 px" th:src="@{/productos-images/shampooparagatos.jpg}"
-                        alt="Shampoo para gatos">
-                     <ul>
-                        <li>Shampoo para gatos</li>
-                        <li>Control de pulgas, piojos y garrapatas</li>
-                        <li><strong>Precio: </strong>$1130</li>
-                     </ul>
-                  </div>
-                  <div class="producto">
-                     <img th:src="@{/productos-images/limpiador.jpg}" alt="Limpiador de orejas">
-                     <ul>
-                        <li>Bioline Cuidado de Orejas es para perros, gatos y otros animales pequeños</li>
-                        <li>Limpia suavemente las orejas, mejora el procedimiento de auto limpieza y desodoriza.</li>
-                        <li>Con cuenta gotas especiales para usar fácilmente.</li>
-                        <li><strong>Precio: </strong>$3390</li>
-                     </ul>
-                  </div>
-                  <div class="producto">
-                     <img th:src="@{/productos-images/pipeta.jpg}" alt="Pipetas">
-                     <ul>
-                        <li>SPOT MAX PERROS</li>
-                        <li>Pipeta pulguicida, garrapaticida y repelente de insectos</li>
-                        <li><strong>Precio: </strong>$550</li>
-                     </ul>
-                  </div>
-                  <div class="producto">
-                     <img th:src="@{/productos-images/collaresantipulgas.jpg}" alt="Collar antipulgas">
-                     <ul>
-                        <li>Collar pulguicida, garrapaticida y piojicida</li>
-                        <li>Prevención y control de infestaciones por pulgas, garrapatas y todo tipo de parásitos
-                           externos.</li>
-                        <li><strong>Precio: </strong>$1500</li>
-                     </ul>
-                  </div>
-                  <div class="producto">
-                     <img width="240 px" height="200 px" th:src="@{/productos-images/rasqueta.jpg}"
-                        alt="Cepillo para Mascotas">
-                     <ul>
-                        <li>Con el cepillado habitual logramos eliminar los pelos muertos y partículas de suciedad
-                           grandes que son los causantes de malos olores y picazón.</li>
-                        <li>La manopla proporciona un agradable masaje.</li>
-                        <li><strong>Precio: </strong>$439</li>
-                     </ul>
-                  </div>
+   <div class="container-fluid">
+      <div class="container">
+         <div class="productos-container">
+            <div class="row">
+               <div class="col-12">
+                  <section class="section-productos">
+                     <div class="row">
+                        <article class="article-productos">
+                           <div class="col-12 tabla-productos-container">
+                              <a th:href="@{productos/nuevo}" class="btn btn-dark mb-3">Nuevo producto</a>
+                              <div class="table-responsive">
+                                 <table class="table table-striped">
+                                    <thead class="table-dark">
+                                       <tr>
+                                          <th>Nombre</th>
+                                          <th>Categoria</th>
+                                          <th>Codigo</th>
+                                          <th>Precio</th>
+                                          <th>Descuento</th>
+                                          <th>Precio final</th>
+                                          <th>Acciones</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr th:each="prod: ${productos}">
+                                          <td th:text="${prod.nombre}"></td>
+                                          <td th:text="${prod.categoria}"></td>
+                                          <td th:text="${prod.codigo}"></td>
+                                          <td th:text="${prod.precio}"></td>
+                                          <td th:text="${prod.descuento}"></td>
+                                          <td th:text="${prod.precioFinal}"></td>
+                                          <td>
+                                             <a th:href="@{/productos/editar/}+${prod.codigo}"
+                                                class="btn btn-secondary">Modificar</a>
+                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#eliminarModal">
+                                                Eliminar
+                                             </button>
+
+                                             <!-- Modal -->
+                                             <div class="modal fade" id="eliminarModal" tabindex="-1"
+                                                aria-labelledby="eliminarModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                   <div class="modal-content">
+                                                      <div class="modal-header">
+                                                         <h1 class="modal-title fs-5" id="eliminarModalLabel">Eliminar
+                                                            producto</h1>
+                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                      </div>
+                                                      <div class="modal-body">
+                                                         <p>¿Seguro que desea eliminar el producto?</p>
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                         <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                         <form th:action="@{/productos/eliminar/}+${prod.codigo}"
+                                                            method="GET">
+                                                            <button type="submit"
+                                                               class="btn btn-danger">Eliminar</button>
+                                                         </form>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </article>
+                     </div>
+
+                     <div class="row">
+                        <article class="article-productos">
+                           <div class="col-12">
+                              <img class="imagen-productos" th:src="@{/productos-images/petshop.jpg}"
+                                 alt="Suministros para mascotas">
+                           </div>
+                        </article>
+                     </div>
+
+                     <div class="row">
+                        <article class="article-productos">
+                           <div class="row">
+                              <div class="producto-info col-12">
+                                 <h3>Alimento para Perro</h3>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-4">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/alimento_rosco.jpg}" alt="Alimento Rosco">
+                                    <p>
+                                       Lo que tenés que saber de este producto: <br>
+                                       Recomendado para perro adulto <br>
+                                       Comida seca <br>
+                                       Sabor: carne <br>
+                                       Sabor y nutrición completa para tu mascota <br>
+                                       <span class="producto-precio">Precio: $4894</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-4">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/alimento_raza.jpg}" alt="Alimento Raza">
+                                    <p>
+                                       Lo que tenés que saber de este producto: <br>
+                                       Recomendado para perro adulto <br>
+                                       Comida seca <br>
+                                       Sabor: carne <br>
+                                       Menis grasa <br>
+                                       <span class="producto-precio">Precio: $4500</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-4">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/alimento_dogui.jpg}" alt="Alimento Dogui">
+                                    <p>
+                                       Lo que tenés que saber de este producto: <br>
+                                       Alimento para todas las razas y tamaños <br>
+                                       19% de proteínas <br>
+                                       Sabor: Carne, Cereales y Arroz <br>
+                                       <span class="producto-precio">Precio: $6200</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-4">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/alimento_dogui.jpg}" alt="Alimento Dogui">
+                                    <p>
+                                       Lo que tenés que saber de este producto: <br>
+                                       Alimento para todas las razas y tamaños <br>
+                                       19% de proteínas <br>
+                                       Sabor: Carne, Cereales y Arroz <br>
+                                       Aroma extra que les encanta!! <br>
+                                       <span class="producto-precio">Precio: $7200</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-4">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/alimento_pedigree.jpg}" alt="Alimento Pedigree">
+                                    <p>
+                                       Lo que tenés que saber de este producto: <br>
+                                       24 vitaminas y minerales para una nutrición completa y balanceada <br>
+                                       Proteínas de alta calidad <br>
+                                       Vegetales y granos selectos <br>
+                                       Óptima digestión <br>
+                                       <span class="producto-precio">Precio: $5200</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-4">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/alimento_pedigree.jpg}" alt="Alimento Pedigree">
+                                    <p>
+                                       Lo que tenés que saber de este producto: <br>
+                                       16 vitaminas y minerales para una nutrición completa y balanceada <br>
+                                       Proteínas de alta calidad <br>
+                                       Óptima digestión <br>
+                                       <span class="producto-precio">Precio: $4600</span>
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </div>
+
+                     <div class="row">
+                        <article class="article-productos">
+                           <div class="row">
+                              <div class="producto-info col-12">
+                                 <h3>Alimento para Conejos y roedores</h3>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/alimento_conejosyroedores.jpg}"
+                                       alt="Alimento para Conejos o roedores">
+                                    <p>
+                                       Lo que tenés que saber de este producto: <br>
+                                       Alimento fresco diario para Conejos y Roedores <br>
+                                       Bajo en calorías <br>
+                                       Ayuda al sistema digestivo además de ser un gran estimulante para tu mascota <br>
+                                       Óptima digestión <br>
+                                       <span class="producto-precio">Precio: $1500</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/alimentoparahamster.jpg}"
+                                       alt="Alimento para Hamster">
+                                    <p>
+                                       Lo que tenés que saber de este producto: <br>
+                                       Alimento para hámster RedKite <br>
+                                       Aporta los nutrientes necesarios para el óptimo desarrollo del roedor <br>
+                                       <span class="producto-precio">Precio: $900</span>
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </div>
+
+                     <div class="row">
+                        <article class="article-productos">
+                           <div class="row">
+                              <div class="producto-info col-12">
+                                 <h3>Accesorios</h3>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-4">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/accesorio1.jpg}" alt="Cepillo">
+                                    <p>
+                                       Cepillo Grande Plástico Punta Protegida <br>
+                                       Medida: 15 x 10cm <br>
+                                       Material de las cerdas: Acero inoxidable <br>
+                                       Cepillo para perros y gatos <br>
+                                       <span class="producto-precio">Precio: $660</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-4">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/accesorio2.jpg}" alt="Plato para comida">
+                                    <p>
+                                       Comedero <br>
+                                       Medidas: 18cm x 12cm x 5cm <br>
+                                       Material: Acero inoxidable <br>
+                                       <span class="producto-precio">Precio: $750</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-4">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/accesorio3.jpg}" alt="Cama para mascotas">
+                                    <p>
+                                       Camita estrellas para perros y gatos <br>
+                                       Modelo Compacto multifunción y liviano <br>
+                                       Funda con cierre: es lavable y vas a poder sacar y lavarla rápido y fácil la
+                                       funda
+                                       <br>
+                                       Medidas: 50x40x30 <br>
+                                       <span class="producto-precio">Precio: $8500</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/arnes.jpg}"
+                                       alt="Arnes para conejos,gatos,roedores">
+                                    <p>
+                                       Arnes Pretal Roedores Bebé Cobayos Conejos Gatos <br>
+                                       Cuello 10cm a 15cm <br>
+                                       Panza 13cm a 20cm <br>
+                                       Es un arnés ajustable de nylon especialmente concebido para llevar a su mascota
+                                       pequeño con usted <br>
+                                       <span class="producto-precio">Precio: $8500</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-12 col-lg-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/accesorio4.jpg}" alt="Trnsportador de mascota">
+                                    <p>
+                                       Transportador Atlas 10 <br>
+                                       Caja de viaje para gatos y perros <br>
+                                       Dimensiones: Largo 48 cm x Ancho 32,5 cm x Alto 29 cm <br>
+                                       Tiene unas aberturas de ventilación en los costados para que el interior siempre
+                                       tenga aire fresco <br>
+                                       <span class="producto-precio">Precio: $13900</span>
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </div>
+
+                     <div class="row">
+                        <article class="article-productos">
+                           <div class="row">
+                              <div class="producto-info col-12 columna">
+                                 <h3>Juguetes!</h3>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/juguete1.jpg}" alt="Juguete de goma">
+                                    <p>
+                                       Juguete de goma para perros, sirve para mascar y ayuda en la limpieza de
+                                       dientes. Tiene elasticidad suave,Ideal para cachorros <br>
+                                       Caja de viaje para gatos y perros <br>
+                                       <span class="producto-precio">Precio: $11900</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/juguetegato.jpg}" alt="Juguete para gato">
+                                    <p>
+                                       Juguete Interactivo Para Gatos: Son diseñados para despertar el instinto cazador
+                                       de
+                                       tu gato y
+                                       son ideales para el vínculo entre el ser humano y su mascota. <br>
+                                       <span class="producto-precio">Precio: $670</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/juguetehamster.jpg}"
+                                       alt="Juguetes para conejos/hamster">
+                                    <p>
+                                       Juguetes Masticables De Conejo/Hámster: Paquete de 11 juguetes de madera:
+                                       juguetes
+                                       de madera
+                                       para mascotas, conejo, hámster, juego de dientes, juego combinado de productos
+                                       Natural y no tóxico <br>
+                                       <span class="producto-precio">Precio: $1050</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/juguetesoga.jpg}" alt="Nudos para perros">
+                                    <p>
+                                       Puro algodón, muy resistente y no daña a su perro. Favorece la limpieza e higiene
+                                       de
+                                       la
+                                       dentadura de su mascota. Ningún juguete para perro/gato es indestructible. Se
+                                       debe
+                                       prestar
+                                       atención a la forma de juego de su mascota, ya que si la intención es romperlo es
+                                       posible que
+                                       lo haga. <br>
+                                       <span class="producto-precio">Precio: $1050</span>
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </div>
+
+                     <div class="row">
+                        <article class="article-productos">
+                           <div class="row">
+                              <div class="producto-info col-12">
+                                 <h3>Productos de Cuidados para la mascota</h3>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/vitaminas.jpg}" alt="Vitaminas para mascotas">
+                                    <p>
+                                       Vitaminas y minerales <br>
+                                       Proporciona multitud de micronutrientes esenciales <br>
+                                       Incrementa el apetito de tu mascota y también ayuda a mejorar el aspecto del pelo
+                                       de
+                                       tu perro <br>
+                                       <span class="producto-precio">Precio: $4600</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/shampooparagatos.jpg}" alt="Shampoo para gatos">
+                                    <p>
+                                       Shampoo para gatos <br>
+                                       Control de pulgas, piojos y garrapatas <br>
+                                       <span class="producto-precio">Precio: $1130</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/limpiador.jpg}" alt="Limpiador de orejas">
+                                    <p>
+                                       Bioline Cuidado de Orejas es para perros, gatos y otros animales pequeños <br>
+                                       Limpia suavemente las orejas, mejora el procedimiento de auto limpieza y
+                                       desodoriza
+                                       <br>
+                                       cuenta gotas especiales para usar fácilmente <br>
+                                       <span class="producto-precio">Precio: $3400</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/pipeta.jpg}" alt="Pipetas">
+                                    <p>
+                                       Spot Max Perros <br>
+                                       Pipeta pulguicida, garrapaticida y repelente de insectos <br>
+                                       <span class="producto-precio">Precio: $550</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/collaresantipulgas.jpg}" alt="Collar antipulgas">
+                                    <p>
+                                       Collar pulguicida, garrapaticida y piojicida <br>
+                                       Prevención y control de infestaciones por pulgas, garrapatas y todo tipo de
+                                       parásitos externos <br>
+                                       <span class="producto-precio">Precio: $1500</span>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="producto-contenido col-12 col-md-6 col-lg-6">
+                                 <div class="producto">
+                                    <img th:src="@{/productos-images/rasqueta.jpg}" alt="Cepillo para Mascotas">
+                                    <p>
+                                       Con el cepillado habitual logramos eliminar los pelos muertos y partículas de
+                                       suciedad grandes que son los causantes de malos olores y picazón. <br>
+                                       La manopla proporciona un agradable masaje <br>
+                                       <span class="producto-precio">Precio: $450</span>
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </div>
+
+                  </section>
                </div>
             </div>
          </div>
-      </section>
+      </div>
    </div>
 
    <footer th:replace="~{layouts/footer :: footer}"></footer>
 
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+   <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
+
 </html>

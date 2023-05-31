@@ -13,34 +13,60 @@
 
    <header th:replace="~{layouts/header :: header}"></header>
 
-   <div class="nueva-sucursal container">
-      <div class="form-sucursal-container">
-         <h2 class="label-header" th:text="${edicion} ? 'Modificacion de sucursal' : 'Registrar nueva sucursal'"></h2>
-         <form th:action="${edicion} ? @{/sucursales/modificar} : @{/sucursales/guardar}" th:object="${sucursal}" method="post">
-            <label for="nombre">Nombre del la sucursal: </label>
-            <input type="text" class="input-sucursal" name="nombre" id="nombre" th:disabled="${edicion ? 'disabled' : null}" required th:field="*{nombre}">
-            <label for="direccion">Dirección: </label>
-            <input type="text" class="input-sucursal" name="direccion" id="direccion" required th:field="*{direccion}">
-            <label for="barrio">Barrio: </label>
-            <input type="text" class="input-sucursal" id="barrio" required th:field="*{barrio}">
-            <label for="ciudad">Ciudad: </label>
-            <select name="ciudad" class="input-sucursal" id="ciudad" required th:field="*{ciudad}">
-               <option value="San Salvador de Jujuy" selected>San Salvador de Jujuy</option>
-               <option value="Palpala">Palpalá</option>
-               <option value="El Carmen">El Cármen</option>
-               <option value="Perico">Perico</option>
-            </select>
-            <label for="fechaInauguracion">Fecha de Inauguracion</label>
-            <input type="date" name="fechaInauguracion" th:value="${sucursal.fechaInauguracion}" class="input-sucursal" id="fechaInauguracion" required >
-            <label for="telefono">Teléfono: </label>
-            <input type="text" name="telefono" class="input-sucursal" id="telefono" required th:field="*{telefono}">
-            <input type="submit" id="boton-registrar" th:value="${edicion} ? 'Guardar Cambios' : 'Registrar nueva sucursal'">
-         </form>
+   <div class="container-fluid">
+      <div class="nueva-sucursal container m-auto">
+         <div class="row">
+            <div class="col-12 col-lg-5 m-auto">
+               <div class="form-sucursal-container">
+                  <h2 th:text="${edicion} ? 'Modificacion de sucursal' : 'Registrar nueva sucursal'"></h2>
+                  <form class="form-sucursal" th:action="${edicion} ? @{/sucursales/modificar} : @{/sucursales/guardar}"
+                     th:object="${sucursal}" method="post">
+                     <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre del la sucursal: </label>
+                        <input type="text" class="form-control" name="nombre" id="nombre"
+                           th:disabled="${edicion ? 'disabled' : null}" required th:field="*{nombre}">
+                     </div>
+                     <div class="mb-3">
+                        <label for="direccion" class="form-label">Dirección: </label>
+                        <input type="text" class="form-control" name="direccion" id="direccion" required
+                           th:field="*{direccion}">
+                     </div>
+                     <div class="mb-3">
+                        <label for="barrio" class="form-label">Barrio: </label>
+                        <input type="text" class="form-control" id="barrio" required th:field="*{barrio}">
+                     </div>
+                     <div class="mb-3">
+                        <label for="ciudad" class="form-label">Ciudad: </label>
+                        <select name="ciudad" class="form-select" id="ciudad" required th:field="*{ciudad}">
+                           <option value="" selected>Seleccione una opción</option>
+                           <option value="San Salvador de Jujuy">San Salvador de Jujuy</option>
+                           <option value="Palpala">Palpalá</option>
+                           <option value="El Carmen">El Cármen</option>
+                           <option value="Perico">Perico</option>
+                        </select>
+                     </div>
+                     <div class="mb-3">
+                        <label for="fechaInauguracion" class="form-label">Fecha de Inauguracion</label>
+                        <input type="date" class="form-control" name="fechaInauguracion"
+                           th:value="${sucursal.fechaInauguracion}" id="fechaInauguracion" required>
+                     </div>
+                     <div class="mb-3">
+                        <label for="telefono" class="form-label">Teléfono: </label>
+                        <input type="text" name="telefono" class="form-control" id="telefono" required
+                           th:field="*{telefono}">
+                     </div>
+                     <input type="submit" class="btn btn-light mt-3" id="bth-nuevaSucursal"
+                        th:value="${edicion} ? 'Guardar Cambios' : 'Registrar nueva sucursal'">
+                  </form>
+               </div>
+            </div>
+         </div>
       </div>
    </div>
 
    <footer th:replace="~{layouts/footer :: footer}"></footer>
 
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+   <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
+
 </html>

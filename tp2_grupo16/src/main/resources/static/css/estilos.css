@@ -2,6 +2,9 @@
 	padding: 0px;
 	margin: 0px;
 	box-sizing: border-box;
+	font-size: 16px;
+	font-family: 'Lobster', cursive;
+	font-style: oblique;
 }
 
 body {
@@ -16,12 +19,15 @@ a:link, a:visited {
 	color: white;
 	text-decoration: none;
 }
-
+/*
+.col-12 {
+	padding: 0 !important;
+}
+*/
 header {
     background-color: lightblue;
     font-size: 25px;
     font-family: 'Lobster', cursive;
-/*   	font-family: sans-serif, Times New Roman, Arial, Helvetica; */
  	font-style: oblique;
 }
 
@@ -31,43 +37,25 @@ header .titulo {
 	color: #444;
 }
 
-nav {
-	background-color: darkslategray;
-	text-align:center;
-}
-
-header nav ul {
-	padding-left: 50px;
-}
-
-header nav ul li {
-	display: inline-block;
-	list-style: none;
-	padding: 10px 20px;
-	border: none;
-	outline: none;
-}
-
-header nav ul li a {
-	color: #fff;
-	font-size: 16px;
-	text-decoration: none;
-}
-
-header nav ul li:hover {
-	background-color: #eee;
-	border: none;
-	outline: none;
-}
-
-header nav ul li:hover a {
-	color: darkslategray;
-	border: none;
-	outline: none;
+.container-fluid {
+	min-height: 70vh;
+	height: fit-content;
+	padding: 0;
+	margin: 10px 0px 80px 0px;
+	box-sizing: border-box;
 }
 
 .container {
-	padding: 20px 50px;
+	padding: 0;
+	margin: 0px auto;
+	box-sizing: border-box;
+	min-height: fit-content;
+}
+
+.columna {
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid black;
 }
 
 footer {
@@ -77,199 +65,338 @@ footer {
     text-align: center;
 }
 
-/* Pagina de inicio */
-.pagina-inicio img {
-	border-radius: 15px;
-	box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
-	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
-	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
+section,
+article {
+	padding: 0;
+	margin: 0;
 }
+
+@media (max-width: 992px) {
+	* {
+		font-size: 14px;
+	}
+	h1 {
+		font-size: 16px;
+	}
+}
+
+
+/* ------------------------------- navbar ------------------------------- */
+
+#navbar-container {
+	padding: 0px;
+	background-color: darkslategray;
+	min-height: 45px;
+	justify-content: center;
+}
+.nav-item {
+	text-align: left;
+	padding: 10px 15px;
+}
+.nav-item:hover {
+	background-color: #fff;	
+}
+
+.nav-item:hover a {
+	color: darkslategray;
+}
+
+#navbarSupportedContent ul {
+	width: 100%;
+	text-align: center;
+}
+
+@media (max-width: 992px) {
+	#navbarSupportedContent {
+		margin-top: 10px;
+	}
+	.navbar {
+		justify-content: left !important;
+	}
+	.nav-item {
+		margin: 4px 0px;
+		padding: 10px 15px;
+	}
+	.titulo h1 {
+		font-size: 28px;
+	}
+}
+
+/* ---------------------------------- end navbar -------------------------- */
+
+
+/* ----------------------------- Pagina de inicio ------------------------ */
+
 .imagen-banner {
 	width: 100%;
-	height: 400px;
+	max-height: 400px;
 }
 
-.pagina-inicio {
-	height: 600px;
-	margin-bottom: 10px
-}
-.pagina-inicio section {
-	width: 68%;
-	float: left;
-	padding: 40px 50px;
+.section-inicio {
 	background-color: lightblue;
-	margin-right: 20px
-}
-
-.pagina-inicio section article {
-	margin-bottom: 50px;
-	font-size: 20px;
-	color: #fff;
-	padding: 20px 30px;
-	background-color: darkslategray;
-	border: 5px solid #fff;
-	box-shadow: -3px 5px 3px 0px #555;
-}
-.pagina-inicio aside {
-	width: 30%;
-	height: 547px;
-	float: right;
 	padding: 20px;
-	background-color: lightblue;
-}
-.pagina-inicio aside img {
-	width: 100%;
-	height: 400px;
-	box-shadow: none;
-	padding: 0;
-	border-radius: 0px;
-}
-.pagina-inicio aside h2 {
-	color: #fff;
-	padding: 10px 10px;
-	text-align: center;
-	background-color: darkslategray;
-	margin-bottom: 15px;
-	border: 3px solid #fff;
-}
-
-
-/* Fin */
-
-
-
-/* Pagina de productos */
-.productos img {
-	border-radius: 15px;
-	box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
-	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
-	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
-}
-.producto li{
-	list-style: none;
-}
-#imagenproductos{ 
-	display:block;
-	width:60%;
-	margin-left: auto;
-	margin-right: auto;
-	padding:30px;
-}
-.productos-container{
-	background: lightblue;
-	text-align:center;
-}
-#Alimentacion{
-	background:lightblue;
-	border: solid 2px #000;
-	width:100%;
-	height:1700px;
-}
-#AlimentoGato{
-	background:lightblue;
-	margin-left: 250px;
-	margin-right: 250px;
-}
-#alimentoc{
-	background:lightblue ;
-	margin-left: 250px;
-	margin-right: 250px;
-}
-
-#Juguetes{
-	background:lightblue;
-	border: solid 2px #000;
-	width:100%;
-	height:560px;
-}
-#Acsesorios{
-	background:lightblue;
-	border: solid 2px #000;
-	width:100%;
-	height:560px;
-}
-#Mascota{
-	background:lightblue;
-	border: solid 1px #000;
-	width:100%;
-	height:560px;
-}
-.contenido{
-	width: 100%;
-	margin: auto;
 	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: 100%;
+	width: 100%;
 }
-.bloque{
-	width:100%;
-}
-.bloque .fila {
-	display:flex;
-	justify-content: space-between;
-	margin-bottom:20px;
-}
-.bloque .fila .producto{
-	width:20 px;
-	height:20px;
-	margin:5px 10px;
-}
-.bloque .fila .producto img{
-	height: 200px;
-    width: 200px;
-}
-.bloque .fila .producto{
-	height: 500px;
-    width: 300px;
-    border: solid 1px #000;
-    background:#e6ffff;
-}
-/* Fin productos*/
 
-/* Consejos de salud */
+.article-inicio {
+	background-color: darkslategray;
+	padding: 20px 20px;
+	border: 10px solid white;
+	color: #fff;
+	font-size: 20px;
+	font-style: oblique;
+	font-weight: bolder;
+	margin-bottom: 10px;
+}
+
+.aside-inicio {
+	background-color: lightblue;
+	padding: 20px;
+	height: 100%;
+	text-align: center;
+}
+
+.aside-inicio h2 {
+	border: 15px solid white;
+	padding: 20px 10px;
+	background-color: darkslategray;
+	color: white;
+	font-size: 22px;
+	text-align: center;
+	font-style: oblique;
+	margin-bottom: 10px;
+}
+
+.aside-inicio img {
+	width: 100%;
+	max-width: 400px;
+}
+
+@media (max-width: 992px) {
+	.aside-inicio {
+		margin-top: 20px;
+	}
+}
+
+/* ------------------------------ Fin Inicio -------------------------------- */
+
+
+
+/* ------------------------ Pagina de productos ----------------------------- */
+
+.tabla-productos-container {
+	margin: 70px 0px 50px 0px;
+}
+
+.tabla-productos-container .table-responsive .table thead tr th {
+	white-space: nowrap;
+}
+
+.article-productos {
+	margin: 50px 0px;
+	padding: 0px;
+}
+
+.imagen-productos {
+	width: 100%;
+	height: 450px;
+	padding: 35px;
+	background-color: darkslategray;
+	border-radius: 7px;
+}
+
+.producto-contenido {
+	padding: 10px !important;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+}
+
+.producto-info {
+	background: darkslategray;
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+	border-radius: 7px;
+}
+
+.producto-info h2 {
+	font-weight: bold;
+	color: #fff;
+	font-size: 32px;
+}
+
+.producto-info h3 {
+	font-weight: bold;
+	color: #fff;
+}
+
+.producto {
+	background-color: lightblue;
+	padding: 20px;
+	height: 100%;
+	max-width: 450px;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.producto img {
+	width: 100%;
+	max-width: 420px;
+	height: 250px;
+	margin-bottom: 20px;
+	object-fit: fill;
+}
+
+.producto p {
+	padding: 0px 0px;
+	max-width: 350px;
+	font-size: 18px;
+}
+
+.producto-precio {
+	font-weight: bold;
+}
+
+@media (max-width: 992px) {
+	.producto p {
+		font-size: 18px;
+	}
+	.producto-precio {
+		font-size: 18px;
+	}
+	.producto-info h2 {
+		font-size: 26px;
+	}
+	.producto-info h3 {
+		font-size: 22px;
+	}
+}
+
+.form-nuevoProducto {
+	background-color: lightblue;
+	border: 1px solid #aaa;
+	padding: 40px 30px;
+	height: fit-content;
+	border-radius: 8px;
+}
+
+
+/* --------------------------------- Fin productos ---------------------------- */
+
+
+
+
+/* ------------------------------- Consejos de salud ------------------------ */
+
+.consejos-de-salud h1 {
+	font-size: 36px;
+	text-align: center;
+	font-weight: bold;
+	padding: 30px;
+	font-style: oblique;
+}
+
+.salud-info {
+	background-color: darkslategray;
+	margin: 40px 0px 40px 0px;
+	padding: 30px;
+	border-radius: 8px;
+}
+
+.salud-info h2 {
+	color: #fff;
+	font-size: 28px;
+	font-weight: bold;
+	margin-bottom: 12px;
+}
+
+.salud-info p {
+	color: #dedede;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+
 .consejos-de-salud .producto {
-    border-radius: 5px;
-    display: inline-block;
-    margin: 0px 5px;
-    width: 200px;
-    border: solid 1px #000;
+    border-radius: 12px;
+    margin: auto;
+    width: 350px;
+    border: solid 1px #aaa;
+    padding: 20px;
+    background-color: lightblue;
+    text-align: center;
+    margin-bottom: 50px;
 }
 
 .consejos-de-salud .imagen-producto {
+	border-radius: 12px;
 	height: 200px;
-    width: 200px;
-    margin: 0;
+    width: 100%;
+    object-fit: fill;
+    margin-bottom: 10px;
 }
 
 .consejos-de-salud .producto h5 {
-    background-color: lightblue;
-    padding: 5px;
-    margin-top: 0;
+  	font-size: 20px;
+  	font-weight: bolder;
 }
 
 .consejos-de-salud .producto p {
     padding: 5px;
 }
-/* Fin consejos de salud */
 
-/* Pagina de paseos */
+
+@media (max-width: 992px) {
+	.consejos-de-salud h1 {
+		font-size: 26px;
+	}
+	.salud-info h2 {
+		font-size: 22px;
+	}
+	.salud-info p {
+		font-size: 16px;
+	}
+	.consejos-de-salud .producto h5 {
+	  	font-size: 18px;
+	}
+}
+
+/* ----------------------- Fin consejos de salud -------------------- */
+
+
+
+/* --------------------- Pagina de paseos ----------------- */
+
 .servicio-paseos section {
 	margin: 30px 0px;
+	min-height: fit-content;
+	padding: 0px 0px; 
 }
+
 .servicio-paseos {
-	height: 110vh;
-	max-height: fit-content;
+	min-height: fit-content;
 }
+
 .servicio-paseos img {
 	border-radius: 15px;
-	box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
-	-webkit-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
-	-moz-box-shadow: 14px 13px 11px -5px rgba(0,0,0,0.75);
 }
 
 .servicio-paseos section article table {
 	border: 1px solid #000;
 	background-color: #000;
-	width: 1300px;
+	width: 100%;
 }
+
 .servicio-paseos section article table tr th,
 .servicio-paseos section article table tr td {
 	font-size: 20px;
@@ -277,42 +404,57 @@ footer {
 	border: 1px solid #000;
 	background-color: #fff;
 }
+
 .servicio-paseos section article table tr th {
 	background-color: #545566;
 	color: #fff;
 	text-align: center;
 }
+
 .servicio-paseos section article table tr td {
 	background-color: #ccc;
 	color: #000;
 	text-align: center;
 	font-weight: bold;
 }
+
 .servicio-paseadores {
-	margin-top: 30px;
 	background-color: darkslategray;
 	padding: 20px;
-	height: 230px;
+	margin: 0;
 }
-.servicio-paseadores img {
-	width: 400px;
-	height: 100%;
-	box-shadow: none;
-	float: left;
+
+.servicio-imagen img {
+	width: 100%;
+	max-width: 450px;
 	border-radius: 0px;
-	padding-right: 30px;
 }
-.servicio-paseadores p {
-	font-size: 30px;
-	font-weight: bold;
-	float: rigth;
+
+.servicio-info {
+	padding: 20px;
+}
+
+.servicio-info p {	
+	font-size: 24px;
 	color: #fff;
 }
-/* -------------- */
+
+@media (max-width: 992px) {
+	.servicio-paseos section article table tr th,
+	.servicio-paseos section article table tr td {
+		font-size: 14px;
+		white-space: nowrap;
+	}
+	.servicio-info p {
+		font-size: 18px;
+	}
+}
+
 #tabla-de-servicios table thead tr th {
-	background-color: #fa0e0e;
+	background-color: #545566;
 	color: white;
 }
+
 #anadir-turno {
 	padding: 5px 15px;
 	background-color: darkslategray;
@@ -322,8 +464,9 @@ footer {
 }
 
 .nuevo-servicio {
-	height: 100vh;
+	min-height: 75vh;
 }
+
 .form-container {
 	width: 300px;
 	height: fit-content;
@@ -333,9 +476,11 @@ footer {
 	padding: 20px 30px;
 	margin: 50px auto;
 }
+
 .form-container form label {
 	color: white;
 }
+
 .input-servicio {
 	width: 90%;
 	height: 35px;
@@ -344,149 +489,191 @@ footer {
 	margin: 10px 0px;
 	text-align: left;
 }
+
 .label-header {
 	color: white;
 	font-size: 20px;
 	font-weight: bold;
 	margin-bottom: 20px;
 }
+
 .boton-anotarse {
 	font-size: 18px;
 	color: black;
 	padding: 5px 15px;
 }
+
 .boton-anotarse:hover {
 	cursor: pointer;
 	background-color: #aaa;
 }
-#acciones1 {
-	color: blue;
-	margin-right: 15px;
-}
-#acciones2 {
-	color: red;
-}
-/* Fin paseos*/
 
-/* Pagina de sucursales */
-.sucursales {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	margin-top: 20px;
-} 
+/* -------------------------------- Fin Servicios ------------------------- */
 
-.sucursal {
-	width: 500px;
-	display: inline-block;
-	padding: 20px;
-	margin: 5px;
-	border: solid 1px #898989;
-	border-radius: 10px;
+
+
+/* ---------------------------- Pagina de sucursales --------------------- */
+
+.btn-agregarSucursal {
+	margin-bottom: 20px;
 }
-.sucursal h1 {
-	font-size: 24px;
-	font-family: sans-serif;
-	padding: 10px 0px;
+
+.article-sucursales {
+	padding: 0px !important;
 }
-.sucursales p {
-	font-size: 18px;
-	color: #777;
-}
-.sucursales img {
-	border-radius: 5px;
+
+.table {
+	border: 1px solid #000;
 	width: 100%;
-	height: 200px;
 }
-/*--------------------*/
-.sucursal {
-	margin: auto;
-	margin: 30px 20px;
-}
-#agregar-sucursal{
-	color: #000;
-	font-weight: bold;
-	padding: 10px 20px;
-	border-radius: 12px;
-	background-color: #dedede;
-	border: 2px solid #000;
-	text-align: left;
-}
-#agregar-sucursal:hover {
-	background-color: #aaa;
-}
-.sucursales section article {
+
+.table tbody,
+.table thead {
 	text-align: center;
+	border: 1px solid #aaa;
 }
-.tabla-sucursales {
-	padding: 0px;
-	border-spacing: 0px;
-	border: 2px solid #000;
-	margin: 40px auto;
+
+.table tbody tr td {
+	border: 1px solid #ddd;
 }
-.tabla-sucursales thead tr th {
-	background-color: #b9b9b9;
-	color: #000;
-	width: fit-content;
-	border: 1px solid black;
-	padding: 10px 20px;
-	font-weight: bold;
+
+.table thead tr th {
+	font-weight: bolder;
+	color: #fff;
+	background-color: #000;
+	padding: 10px 10px;
 }
-.tabla-sucursales tbody tr td {
-	text-align: center;
-	border: 1px solid black;
-	padding: 5px 20px;
-	color: #000;
-}
-.tabla-sucursales tbody {
-	background-color: #dddddd;
-}
-.form-sucursal-container {
-	width: 450px;
-	height: fit-content;
-	background-color: #ff8306;
-	text-align: center;
+
+.sucursales-container {
+	margin: 0;
+	padding: 0;
 	box-sizing: border-box;
-	padding: 20px 30px;
-	margin: 50px auto;
 }
-.form-sucursal-container form label {
-	color: white;
-}
-.input-sucursal {
-	width: 90%;
-	height: 35px;
-	padding: 5px 10px;
-	border-radius: 6px;
-	margin: 10px 0px;
-	text-align: left;
-}
-#boton-registrar {
-	background-color: #fff;
-	margin-top: 20px;
-	width: auto;
-}
-#boton-registrar:hover {
-	background-color: #aaa;
-	cursor: pointer;
-}
-/* Fin sucursales*/
 
-/* Contacto */
-.contacto {
+.sucursal {
+	/*border: 1px solid #aaa;*/
+	padding: 10px;
+	height: 600px;
+	max-height: min-content;
+}
+
+.sucursal-body {
+	border: 1px solid #ccc;
+	padding: 20px;
+	border-radius: 12px;
+	height: 100%;
+	overflow: hidden;
+}
+
+.sucursal-body h2 {
+	font-size: 24px;
+	color: #000;
+	font-weight: bolder;
+}
+
+.sucursal-body p {
+	font-size: 18px;
+	color: #888;
+}
+
+.sucursal-body img {
+	width: 100%;
+	height: 300px;
+	margin-bottom: 20px;
+	border-radius: 12px;
+	object-fit: cover;
+}
+
+@media (max-width: 992px) {
+	.sucursal-body h2 {
+		font-size: 20px;
+	}
+	.sucursal-body p {
+		font-size: 16px;
+	}
+}
+@media (max-width: 1200px) {
+	.btn {
+		margin-top: 5px;
+		width: 95px; 
+	}
+}
+
+.form-sucursal-container {
+	background-color: darkslategray;
+	border: 1px solid #aaa;
+	border-radius: 12px;
+	padding: 30px;
+	width: 100%;
+	margin: 30px 0px;
+}
+
+.form-sucursal-container h2 {
+	color: #fff;
+	font-weight: bolder;
+	margin-bottom: 30px;
 	text-align: center;
-	font-size: 20px;
-	margin: 20px auto;
-	width: 700px;
-	border: solid 2px #000;
-	border-radius: 30px 25px;
-	background: #b3d9ff;
 }
 
-.contacto ul li {
+.form-sucursal {
+	padding: 0px 20px;
+}
+
+.form-sucursal label {
+	color: #fff;
+}
+
+.form-sucursal input {
+	max-width: 450px;
+}
+
+.form-sucursal #ciudad,
+.form-sucursal #fechaInauguracion,
+.form-sucursal #telefono {
+	max-width: 350px;
+}
+
+#bth-nuevaSucursal {
+	width: fit-content;
+}
+
+
+/* ------------------------- Fin sucursales ----------------------- */
+
+
+
+/* ------------------------------- Contacto -------------------- */
+
+.contacto-container {
+	text-align: center;
+	margin: 30px auto;
+	padding: 50px;
+	width: 100%;
+	border: solid 1px #000;
+	border-radius: 8px;
+	background-color: #396262;
+}
+
+.contacto-header p {
+	font-family: sans-serif;
+	font-weight: bolder;
+	font-size: 28px;
+	color: #fff;
+	letter-spacing: 1px;
+}
+
+.contacto-container a {
+	color: #fff;
+	font-size: 22px;
+	padding: 5px 10px;
+	margin: 10px;
+}
+
+.contacto-container ul li {
 	list-style: none;
 	display: inline-block;
 }
+
 input {
 	background: #fff;
 	border-radius: 10px;
@@ -495,9 +682,19 @@ input {
 	text-align: center;
 	padding: 5px 10px; 
 }
+
 #correo {
-	color:#0066cc;
+	font-weight: bolder;
+	margin-bottom: 10px;
+	color: #fff;
+	white-space: pre-line;
 }
+
+#mensaje {
+	width: 350px;
+	height: 75px;	
+}
+
 button{
 	background: blue;
 	color:#fff;
@@ -507,10 +704,16 @@ button{
     margin:15px 13px;
     padding: 5px 15px;
 }
+
 .enviar:hover {
 	background-color: darkblue;
 	cursor: pointer;
 }
+
+.contacto-container ul li a {
+	width: auto;
+}
+
 .contacto ul li {
 	background-color: blue;
 	display: inline-block;
@@ -519,12 +722,54 @@ button{
 	border-radius: 12px;
 	margin: 10px 3px;
 }
+
 .contacto ul li a {
 	color: #fff;
 	font-size: 16px;
 	text-decoration: none;
 }
+
 .contacto ul li:hover {
 	background-color: darkblue;
 }
-/* Fin contacto */
+
+.contacto-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.contacto-form label {
+	color: #fff;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.contacto-form input {
+	width: 200px;
+	margin: 10px 0px 5px 0px;
+}
+
+@media (max-width: 992px) {
+	.contacto-container {
+		padding: 15px
+	}
+	.contacto-header p {
+		font-size: 22px; 
+	}
+	.contacto-container a {
+		font-size: 20px
+	}
+	.contacto-form label {
+		font-size: 16px;
+	}
+	#mensaje {
+	width: 100%;
+	height: 75px;	
+	}
+}
+
+/* ------------------------------- Fin contacto ------------------------- */
+
+
+

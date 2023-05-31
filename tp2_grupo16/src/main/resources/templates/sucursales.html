@@ -13,76 +13,92 @@
 
    <header th:replace="~{layouts/header :: header}"></header>
 
-   <div class="sucursales container">
-      <section>
-         <article>
-         	<a th:href="@{/sucursales/nueva}" id="agregar-sucursal">Agregar Sucursal</a>
-            <table class="tabla-sucursales">
-               <thead>
-                  <tr>
-                     <th>Nombre</th>
-                     <th>Dirección</th>
-                     <th>Barrio</th>
-                     <th>Ciudad</th>
-                     <th>Fecha de inauguración</th>
-                     <th>Teléfono</th>
-                     <th>Acciones</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr th:each="sucu: ${sucursales}">
-                     <td th:text="${sucu.nombre}"></td>
-                     <td th:text="${sucu.direccion}"></td>
-                     <td th:text="${sucu.barrio}"></td>
-                     <td th:text="${sucu.ciudad}"></td>
-                     <td th:text="${#temporals.format(sucu.fechaInauguracion, 'dd/MM/yyyy')}"></td>
-                     <td th:text="${sucu.telefono}"></td>
-                     <td>
-                        <a th:href="@{/sucursales/modificar/}+${sucu.nombre}" id="acciones1">Modificar</a>
-                        <a th:href="@{/sucursales/eliminar/}+${sucu.nombre}" id="acciones2">Eliminar</a>
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-         </article>
-         <article>
-            <div class="sucursal">
-               <img class="imagen-producto" th:src="@{/sucursales-images/sucursal-patitas.jpg}"
-                  alt="antipulgas y garrapatas" />
-               <h1> VETERINARIA "PATITAS"</h1>
-               <p>Ubicada en calle Fasio esquina Lavalle.Horario de atención de 9hs a 13hs y 17 hs a 20:30.Se reciben
-                  transferencias y todas las tarjetas de crédito.Teléfono de contacto: 3884767676 </p>
+   <div class="container-fluid">
+      <div class="sucursales-container container m-auto">
+         <section class="section-sucursales row">
+            <article class="article-sucursales col-12">
+               <a class="btn btn-dark btn-agregarSucursal" th:href="@{/sucursales/nueva}">Agregar
+                  Sucursal</a>
+               <div class="table-responsive">
+                  <table class="table table-striped">
+                     <thead>
+                        <tr>
+                           <th scope="col">Nombre</th>
+                           <th scope="col">Dirección</th>
+                           <th scope="col">Barrio</th>
+                           <th scope="col">Ciudad</th>
+                           <th scope="col">Fecha de inauguración</th>
+                           <th scope="col">Teléfono</th>
+                           <th scope="col">Acciones</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr th:each="sucu: ${sucursales}">
+                           <td scope="row" th:text="${sucu.nombre}"></td>
+                           <td th:text="${sucu.direccion}"></td>
+                           <td th:text="${sucu.barrio}"></td>
+                           <td th:text="${sucu.ciudad}"></td>
+                           <td th:text="${#temporals.format(sucu.fechaInauguracion, 'dd/MM/yyyy')}"></td>
+                           <td th:text="${sucu.telefono}"></td>
+                           <td>
+                              <a class="btn btn-secondary" th:href="@{/sucursales/modificar/}+${sucu.nombre}">Modificar</a>
+                              <a class="btn btn-danger" th:href="@{/sucursales/eliminar/}+${sucu.nombre}">Eliminar</a>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </article>
+         </section>
+
+         <div class="row">
+            <div class="col-12">
+               <article class="article-sucursales row">
+                  <div class="sucursal col-12 col-md-6">
+                  	  <div class="sucursal-body">
+	                     <img class="imagen-producto" th:src="@{/sucursales-images/sucursal-patitas.jpg}"
+	                        alt="antipulgas y garrapatas" />
+	                     <h2> VETERINARIA "PATITAS"</h2>
+	                     <p>Ubicada en calle Fasio esquina Lavalle.Horario de atención de 9hs a 13hs y 17 hs a 20:30.Se
+	                        reciben
+	                        transferencias y todas las tarjetas de crédito.Teléfono de contacto: 3884767676 </p>
+	                  </div>
+                  </div>
+                  <div class="sucursal col-12 col-md-6">
+                     <div class="sucursal-body">
+                     	<img class="imagen-producto" th:src="@{/sucursales-images/el-arriero.jpg}" alt="antipulgas y garrapatas" />
+	                    <h2> VETERINARIA "El Arriero"</h2>
+	                    <p>Ubicada en calle Urdininea N°320. Horario de atención de 8:30hs a 13:30 y 17:30 a 20:30. Se reciben tarjetas de crédito y débito .Teléfono de contacto: 3884565565 </p>
+                     </div>
+                  </div>
+                  <div class="sucursal col-12 col-md-6">
+                  	<div class="sucursal-body">
+                  		<img class="imagen-producto" th:src="@{/sucursales-images/sucursal2.jpg}" alt="antipulgas y garrapatas" />
+	                    <h2> VETERINARIA "SAN ROQUE"</h2>
+	                    <p>Ubicada en calle Independencia N°567. Horario de tención de 9hs a 13 y 17hs a 20 hs.Se reciben tarjetas de crédito y débito.Urgencias las 24 hs Teléfono de contacto: 388487887 </p>
+                  	</div>
+                  </div>
+                  <div class="sucursal col-12 col-md-6">
+    				 <div class="sucursal-body">              
+	                     <img class="imagen-producto" th:src="@{/sucursales-images/sucursal3.jpg}"
+	                        alt="antipulgas y garrapatas" />
+	                     <h2> VETERINARIA "PET CENTER"</h2>
+	                     <p>Ubicada en calle Juana Manuela Gorriti N°456. Horario de tención de 8:30 hs a 12:30 y 17hs a
+	                        20
+	                        hs.Se
+	                        reciben tarjetas
+	                        de débito y transferencias.Teléfono de contacto: 388478952 </p>
+	                 </div>
+                  </div>
+               </article>
             </div>
-            <div class="sucursal">
-               <img class="imagen-producto" th:src="@{/sucursales-images/el-arriero.jpg}"
-                  alt="antipulgas y garrapatas" />
-               <h1> VETERINARIA "El Arriero"</h1>
-               <p>Ubicada en calle Urdininea N°320. Horario de atención de 8:30hs a 13:30 y 17:30 a 20:30. Se reciben
-                  tarjetas de
-                  crédito y débito .Teléfono de contacto: 3884565565 </p>
-            </div>
-            <div class="sucursal">
-               <img class="imagen-producto" th:src="@{/sucursales-images/sucursal2.jpg}"
-                  alt="antipulgas y garrapatas" />
-               <h1> VETERINARIA "SAN ROQUE"</h1>
-               <p>Ubicada en calle Independencia N°567. Horario de tención de 9hs a 13 y 17hs a 20 hs.Se reciben
-                  tarjetas de
-                  crédito y débito.Urgencias las 24 hs Teléfono de contacto: 388487887 </p>
-            </div>
-            <div class="sucursal">
-               <img class="imagen-producto" th:src="@{/sucursales-images/sucursal3.jpg}"
-                  alt="antipulgas y garrapatas" />
-               <h1> VETERINARIA "PET CENTER"</h1>
-               <p>Ubicada en calle Juana Manuela Gorriti N°456. Horario de tención de 8:30 hs a 12:30 y 17hs a 20 hs.Se
-                  reciben tarjetas
-                  de débito y transferencias.Teléfono de contacto: 388478952 </p>
-            </div>
-         </article>
-      </section>
+         </div>
+      </div>
    </div>
 
    <footer th:replace="~{layouts/footer :: footer}"></footer>
-	
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+   <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
+
 </html>

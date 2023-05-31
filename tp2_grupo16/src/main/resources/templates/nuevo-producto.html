@@ -10,44 +10,63 @@
 </head>
 
 <body>
-	<header th:replace="~{layouts/header :: header}"></header>
+   <header th:replace="~{layouts/header :: header}"></header>
 
-	<section class="container">
-		<form th:action="${codigo} ? @{/productos/}+${codigo} : @{/productos}" th:object="${formProducto}" method="POST" class="w-50 m-auto">
-			<div class="mb-3">
-				<label for="nombre-producto" class="form-label">Producto</label>
-				<input th:field="*{nombre}" type="text" class="form-control" id="nombre-producto" placeholder="Nombre de producto" required>
-			</div>
-			<div class="row mb-3">
-				<div class="col">
-					<label for="codigo-producto" class="form-label">Codigo</label>
-					<input th:field="*{codigo}" th:disabled="${codigo} ? disabled : null" type="number" class="form-control" id="codigo-producto" placeholder="Codigo" required>
-				</div>
-				<div class="col">
-					<label for="categorias" class="form-label">Categoria</label>
-					<select th:field="*{categoria}" class="form-select" aria-label="categorias" required>
-						<option value="" selected>Seleccione una opcion</option>
-						<option value="alimentos">Alimentos</option>
-						<option value="juguetes">Juguetes</option>
-						<option value="correas">Correas</option>
-					</select>
-				</div>
-			</div>
-			<div class="row mb-3">
-				<div class="col">
-					<label for="precio-producto" class="form-label">Precio</label>
-					<input th:field="*{precio}" type="number" class="form-control" id="precio-producto" placeholder="Precio" required>
-				</div>
-				<div class="col">
-					<label for="descuento-producto" class="form-label">Descuento</label>
-					<input th:field="*{descuento}" type="number" class="form-control" id="descuento-producto" placeholder="Descuento" required>
-				</div>
-			</div>
-			<button class="btn btn-primary" type="submit">Guardar</button>
-         </form>
-	</section>
-	<footer th:replace="~{layouts/footer :: footer}"></footer>
-	
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+   <div class="container-fluid">
+      <div class="container m-auto">
+         <section>
+            <div class="row">
+               <div class="col-12 col-md-9 col-lg-5 m-auto mt-4 columna">
+                  <form th:action="${codigo} ? @{/productos/}+${codigo} : @{/productos}" th:object="${formProducto}"
+                     method="POST" class="form-nuevoProducto">
+                     <div class="mb-3">
+                        <label for="nombre-producto" class="form-label">Producto</label>
+                        <input th:field="*{nombre}" type="text" class="form-control" id="nombre-producto"
+                           placeholder="Nombre de producto" required>
+                     </div>
+                     <div class="mb-3">
+                        <div class="col">
+                           <label for="codigo-producto" class="form-label">Codigo</label>
+                           <input th:field="*{codigo}" th:disabled="${codigo} ? disabled : null" type="number"
+                              class="form-control" id="codigo-producto" placeholder="Codigo" required>
+                        </div>
+                     </div>
+                     <div class="mb-3">
+                     	<div class="col">
+                           <label for="categorias" class="form-label">Categoria</label>
+                           <select th:field="*{categoria}" class="form-select" aria-label="categorias" required>
+                              <option value="" selected>Seleccione una opcion</option>
+                              <option value="alimentos">Alimentos</option>
+                              <option value="juguetes">Juguetes</option>
+                              <option value="correas">Correas</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="mb-3">
+                        <div class="col">
+                           <label for="precio-producto" class="form-label">Precio</label>
+                           <input th:field="*{precio}" type="number" class="form-control" id="precio-producto"
+                              placeholder="Precio" required>
+                        </div>
+                     </div>
+                     <div class="mb-3">
+                     	<div class="col">
+                           <label for="descuento-producto" class="form-label">Descuento</label>
+                           <input th:field="*{descuento}" type="number" class="form-control" id="descuento-producto"
+                              placeholder="Descuento" required>
+                        </div>
+                     </div>
+                     <button class="btn btn-light mt-3" type="submit">Guardar</button>
+                  </form>
+               </div>
+            </div>
+         </section>
+      </div>
+   </div>
+
+   <footer th:replace="~{layouts/footer :: footer}"></footer>
+
+   <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
+
 </html>
