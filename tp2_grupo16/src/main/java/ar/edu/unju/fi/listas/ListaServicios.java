@@ -13,9 +13,9 @@ public class ListaServicios {
 	
 	public ListaServicios() {
 		servicios = new ArrayList<Servicio>();
-		servicios.add(new Servicio("María", "Tutú", "Peluqueria", "Jueves"));
-		servicios.add(new Servicio("Diego", "Salchicha", "Paseo", "Martes"));
-		servicios.add(new Servicio("Juan", "Napoleon", "Baño", "Lunes"));
+		servicios.add(new Servicio("María", "Tutú", "Peluqueria", "Jueves", "9:00"));
+		servicios.add(new Servicio("Diego", "Salchicha", "Paseo", "Martes", "18:00"));
+		servicios.add(new Servicio("Juan", "Napoleon", "Baño", "Lunes", "11:00"));
 	}
 
 	public List<Servicio> getServicios() {

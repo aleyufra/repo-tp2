@@ -106,6 +106,7 @@ public class ServicioDePaseosController {
 				servi.setNombreMascota(nombreFormat(servicio.getNombreMascota()));
 		        servi.setServicio(servicio.getServicio());
 		        servi.setDia(servicio.getDia());
+		        servi.setHora(servicio.getHora());
 		        break;
 			}
 		}

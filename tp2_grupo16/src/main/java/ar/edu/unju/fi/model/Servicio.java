@@ -14,6 +14,7 @@ public class Servicio {
 	private String nombreMascota;
 	private String servicio;
 	private String dia;
+	private String hora;
 	
 	public Servicio() {}
 
@@ -26,11 +27,12 @@ public class Servicio {
 	 * @param dia El dia a realizar el servicio
 	 */
 	
-	public Servicio(String nombre, String nombreMascota, String servicio, String dia) {
+	public Servicio(String nombre, String nombreMascota, String servicio, String dia, String hora) {
 		this.nombre = nombre;
 		this.nombreMascota = nombreMascota;
 		this.servicio = servicio;
 		this.dia = dia;
+		this.hora = hora;
 	}
 
 	public String getNombre() {
@@ -63,6 +65,14 @@ public class Servicio {
 
 	public void setServicio(String servicio) {
 		this.servicio = servicio;
+	}
+	
+	public String getHora() {
+		return hora;
+	}
+	
+	public void setHora(String hora) {
+		this.hora = hora;
 	}
 	
 	
