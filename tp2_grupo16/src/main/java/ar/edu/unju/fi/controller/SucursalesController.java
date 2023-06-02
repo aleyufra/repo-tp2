@@ -74,7 +74,6 @@ public class SucursalesController {
         listaSucursales.getSucursales().add(sucursal);
         model.addAttribute("sucursales", listaSucursales.getSucursales());
         return "redirect:/sucursales/listado";
-        //listaSucursales.getSucursales().isEmpty()
     }
     
     /** Modifica una Sucursal de la lista
@@ -85,7 +84,7 @@ public class SucursalesController {
      */
     @GetMapping("/modificar/{nombre}")
     public String modificarSucursal(@PathVariable("nombre")String nombre, Model model) {
-    	sucursalEncontrada = new Sucursal();
+    	sucursalEncontrada = new Sucursal(); //necesario para borrar los datos de una sucursal anterior
     	boolean edicion = true;
     	boolean disabled = true;
     	model.addAttribute("edicion", edicion);
@@ -129,8 +128,6 @@ public class SucursalesController {
     			} else if (sucu.getEstadoStr().equals("Cerrado")) {
     				sucu.setEstado(false);
     			}
-    			System.out.println(sucu.getEstadoStr());
-    			System.out.println(sucu.getEstado());
     			break;
     		}
     	}
