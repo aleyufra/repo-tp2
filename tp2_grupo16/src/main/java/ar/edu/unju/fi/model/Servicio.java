@@ -1,10 +1,13 @@
 package ar.edu.unju.fi.model;
 
+import org.springframework.stereotype.Component;
+
 /**
  * 
  * @author Grupo16
  *
  */
+@Component
 public class Servicio {
 	
 	private String nombre;
@@ -24,7 +27,6 @@ public class Servicio {
 	 */
 	
 	public Servicio(String nombre, String nombreMascota, String servicio, String dia) {
-		super();
 		this.nombre = nombre;
 		this.nombreMascota = nombreMascota;
 		this.servicio = servicio;

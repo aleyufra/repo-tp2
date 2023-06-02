@@ -19,8 +19,9 @@
             <div class="col-12 col-lg-5 m-auto">
                <div class="form-sucursal-container">
                   <h2 th:text="${edicion} ? 'Modificacion de sucursal' : 'Registrar nueva sucursal'"></h2>
+                  
                   <form class="form-sucursal" th:action="${edicion} ? @{/sucursales/modificar} : @{/sucursales/guardar}"
-                     th:object="${sucursal}" method="post">
+                        th:object="${sucursal}" method="post">
                      <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre del la sucursal: </label>
                         <input type="text" class="form-control" name="nombre" id="nombre"
@@ -38,15 +39,15 @@
                      <div class="mb-3">
                         <label for="ciudad" class="form-label">Ciudad: </label>
                         <select name="ciudad" class="form-select" id="ciudad" required th:field="*{ciudad}">
-                           <option value="" selected>Seleccione una opción</option>
-                           <option value="San Salvador de Jujuy">San Salvador de Jujuy</option>
-                           <option value="Palpala">Palpalá</option>
+                           <option value="">Seleccione una opción</option>
+                           <option value="San Salvador De Jujuy">San Salvador de Jujuy</option>
+                           <option value="Palpalá">Palpalá</option>
                            <option value="El Carmen">El Cármen</option>
                            <option value="Perico">Perico</option>
                         </select>
                      </div>
                      <div class="mb-3">
-                        <label for="fechaInauguracion" class="form-label">Fecha de Inauguracion</label>
+                        <label for="fechaInauguracion" class="form-label text-start">Fecha de Inauguracion</label>
                         <input type="date" class="form-control" name="fechaInauguracion"
                            th:value="${sucursal.fechaInauguracion}" id="fechaInauguracion" required>
                      </div>

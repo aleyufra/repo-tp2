@@ -16,7 +16,7 @@
       <div class="container m-auto">
          <section>
             <div class="row">
-               <div class="col-12 col-md-9 col-lg-5 m-auto mt-4 columna">
+               <div class="col-12 col-md-9 col-lg-5 m-auto mt-4">
                   <form th:action="${codigo} ? @{/productos/}+${codigo} : @{/productos}" th:object="${formProducto}"
                      method="POST" class="form-nuevoProducto">
                      <div class="mb-3">
