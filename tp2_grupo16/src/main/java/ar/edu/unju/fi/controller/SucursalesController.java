@@ -65,9 +65,16 @@ public class SucursalesController {
         sucursal.setNombre(nombreFormat(sucursal.getNombre()));
         sucursal.setDireccion(nombreFormat(sucursal.getDireccion()));
         sucursal.setBarrio(nombreFormat(sucursal.getBarrio()));
-    	listaSucursales.getSucursales().add(sucursal);
+        
+        if (sucursal.getEstadoStr().equals("Abierto")) {
+        	sucursal.setEstado(true);
+        } else if (sucursal.getEstadoStr().equals("Cerrado")) {
+        	sucursal.setEstado(false);
+        }                
+        listaSucursales.getSucursales().add(sucursal);
         model.addAttribute("sucursales", listaSucursales.getSucursales());
         return "redirect:/sucursales/listado";
+        //listaSucursales.getSucursales().isEmpty()
     }
     
     /** Modifica una Sucursal de la lista
@@ -91,6 +98,9 @@ public class SucursalesController {
     			sucursalEncontrada.setCiudad(sucu.getCiudad());
     			sucursalEncontrada.setFechaInauguracion(sucu.getFechaInauguracion());
     			sucursalEncontrada.setTelefono(sucu.getTelefono());
+    			sucursalEncontrada.setImagen(sucu.getImagen());
+    			sucursalEncontrada.setEstadoStr(sucu.getEstadoStr());
+    			sucursalEncontrada.setEstado(sucu.getEstado());
     		}
     	}
     	model.addAttribute("sucursal", sucursalEncontrada);
@@ -103,7 +113,7 @@ public class SucursalesController {
      * @return renderiza la pag sucursales y vuelve a cargar la lista de las sucursales
      */
     @PostMapping("/modificar")
-    public String modificarSucursal(@ModelAttribute("sucursal")Sucursal sucursal) {
+    public String modificarSucursal(@ModelAttribute("sucursal")Sucursal sucursal, Model model) {
     	for (Sucursal sucu : listaSucursales.getSucursales()) {
     		if (sucu.getNombre().equals(sucursalEncontrada.getNombre())) {
     			sucu.setDireccion( nombreFormat(sucursal.getDireccion()));
@@ -111,6 +121,16 @@ public class SucursalesController {
     			sucu.setCiudad(sucursal.getCiudad());
     			sucu.setFechaInauguracion(sucursal.getFechaInauguracion());
     			sucu.setTelefono(sucursal.getTelefono());
+    			sucu.setImagen(sucursal.getImagen());
+    			
+    			sucu.setEstadoStr(sucursal.getEstadoStr());
+    			if (sucu.getEstadoStr().equals("Abierto")) {
+    				sucu.setEstado(true);
+    			} else if (sucu.getEstadoStr().equals("Cerrado")) {
+    				sucu.setEstado(false);
+    			}
+    			System.out.println(sucu.getEstadoStr());
+    			System.out.println(sucu.getEstado());
     			break;
     		}
     	}

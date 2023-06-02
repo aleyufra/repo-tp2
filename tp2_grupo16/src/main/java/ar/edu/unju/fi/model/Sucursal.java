@@ -19,7 +19,12 @@ public class Sucursal {
 	private String telefono;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate fechaInauguracion;
+	private String imagen;
+	private String estadoStr;
+	private boolean estado;
 	
+	
+
 	public Sucursal() {}
 	
 	/**
@@ -33,14 +38,16 @@ public class Sucursal {
 	 * @param telefono El telefono de la sucursal
 	 */
 	
-	public Sucursal(String nombre, String direccion, String barrio, String ciudad, LocalDate fechaInauguracion, String telefono) {
-		super();
+	public Sucursal(String nombre, String direccion, String barrio, String ciudad, LocalDate fechaInauguracion, String telefono, String imagen, String estadoStr, boolean estado) {
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.barrio = barrio;
 		this.ciudad = ciudad;
 		this.telefono = telefono;
 		this.fechaInauguracion = fechaInauguracion;
+		this.imagen = imagen;
+		this.estadoStr = estadoStr;
+		this.estado = estado;
 	}
 
 	public String getNombre() {
@@ -97,5 +104,27 @@ public class Sucursal {
 		this.fechaInauguracion = fechaInauguracion;
 	}
 	
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 	
+	public String getEstadoStr() {
+		return estadoStr;
+	}
+
+	public void setEstadoStr(String estadoStr) {
+		this.estadoStr = estadoStr;
+	}
+	
+	public boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
 }
