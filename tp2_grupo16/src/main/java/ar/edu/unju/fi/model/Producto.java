@@ -7,10 +7,11 @@ package ar.edu.unju.fi.model;
  */
 
 public class Producto {
-
-	private String nombre, categoria;
+	private String nombre;
+	private String categoria;
 	private int codigo;
-	private double precio, precioFinal;
+	private double precio;
+	private double precioFinal;
 	private byte descuento;
 	
 	public String getNombre() {

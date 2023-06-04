@@ -1,8 +1,18 @@
 package ar.edu.unju.fi.controller.form;
 
+import org.springframework.stereotype.Component;
+
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+
+@Component
 public class FormProducto {
+	@NotBlank(message="El nombre no puede estar vacio")
 	private String nombre;
 	private String categoria;
+	@Min(value=1000, message="El codigo tiene que ser minimo 1000")
+	@Max(value=9999, message="El codigo tiene que ser maximo 9999")
 	private int codigo;
 	private double precio;
 	private byte descuento;

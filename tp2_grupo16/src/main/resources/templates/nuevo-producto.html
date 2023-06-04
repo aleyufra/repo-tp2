@@ -22,13 +22,15 @@
                      <div class="mb-3">
                         <label for="nombre-producto" class="form-label">Producto</label>
                         <input th:field="*{nombre}" type="text" class="form-control" id="nombre-producto"
-                           placeholder="Nombre de producto" required>
+                           placeholder="Nombre de producto">
+                        <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                      </div>
                      <div class="mb-3">
                         <div class="col">
                            <label for="codigo-producto" class="form-label">Codigo</label>
                            <input th:field="*{codigo}" th:disabled="${codigo} ? disabled : null" type="number"
                               class="form-control" id="codigo-producto" placeholder="Codigo" required>
+                           <div class="text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div>
                         </div>
                      </div>
                      <div class="mb-3">
