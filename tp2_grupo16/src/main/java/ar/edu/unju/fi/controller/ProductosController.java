@@ -16,7 +16,9 @@ import jakarta.validation.Valid;
 
 @Controller
 public class ProductosController {
-	private ListaProductos listaProductos = new ListaProductos();
+	
+	@Autowired
+	private ListaProductos listaProductos;
 	
 	@Autowired
 	private FormProducto miFormulario;
