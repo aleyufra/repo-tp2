@@ -23,10 +23,12 @@
 	         <label for="nombre">Nombre del Dueño: </label>
 	         <input type="text" class="input-servicio" name="nombre" id="nombre" 
 	                th:disabled="${disabled ? 'disabled' : null}" required th:field="*{nombre}">
+	         <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 	                
 	         <label for="nombreMascota">Nombre de la mascota: </label>
 	         <input type="text" class="input-servicio" name="nombreMascota" 
 	                id="nombreMascota" required th:field="*{nombreMascota}">
+	         <div class="text-danger" th:if="${#fields.hasErrors('nombreMascota')}" th:errors="*{nombreMascota}"></div>
 	         
 	         <label for="servicio">Servicio: </label>
 	         <select name="servicio" class="input-servicio" id="servicio" required th:field="*{servicio}">
@@ -35,6 +37,7 @@
 	            <option value="Peluqueria">Peluqueria</option>
 	            <option value="Baño">Baño</option>
 	         </select>
+	         <div class="text-danger" th:if="${#fields.hasErrors('servicio')}" th:errors="*{servicio}"></div>
 	         
 	         <label for="dia">Seleccione el día: </label>
 	         <select name="dia" class="input-servicio" id="dia" required th:field="*{dia}">
@@ -45,6 +48,7 @@
 	            <option value="Jueves">Jueves</option>
 	            <option value="Viernes">Viernes</option>
 	         </select>
+	         <div class="text-danger" th:if="${#fields.hasErrors('dia')}" th:errors="*{dia}"></div>
 	         
 	         <label for="hora">Seleccione el horario: </label>
 	         <select name="hora" class="input-servicio" id="hora" required th:field="*{hora}">
@@ -60,6 +64,7 @@
 	            <option value="20:00">20:00</option>
 	            <option value="21:00">21:00</option>
 	         </select>
+	         <div class="text-danger" th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}"></div>
 	         
 	         <input type="submit" class="boton-anotarse" 
 	                th:value="${edicion} ? 'Guardar Cambios' : 'Anotarse'">

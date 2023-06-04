@@ -3,13 +3,17 @@ package ar.edu.unju.fi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 import ar.edu.unju.fi.listas.ListaServicios;
 import ar.edu.unju.fi.model.Servicio;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/servicios")
@@ -57,19 +61,23 @@ public class ServicioDePaseosController {
 		return "nuevo_servicio";
 	}
 	
-	/** Controlador para procesar el formulario de nuevo servicio y guardarlo en la lista de servicios.
-	 * @author Yufra Alejandro
+	/** Controlador para procesar el formulario de nuevo servicio y guardarlo en la lista de servicios. ACTUALIZACIÓN: Se realizo la modificación para utilizar ModelAndView
+	 * @author Yufra Alejandro , Karen Gutierrez
 	 * @param servicio
 	 * @return renderia la pag sdpaseos
 	 */
 	@PostMapping("/guardar")
-	public String getGuardarServiciopage(@ModelAttribute("servicio")Servicio servicio, Model model) {
-		servicio.setNombre(nombreFormat(servicio.getNombre()));
-		servicio.setNombreMascota(nombreFormat(servicio.getNombreMascota()));
+	public ModelAndView getGuardarServicioPage(@Valid @ModelAttribute("servicio")Servicio servicio, BindingResult result) {
+    	ModelAndView modelView = new ModelAndView("servicio");
+		if(result.hasErrors()) {
+			modelView.setViewName("nuevo_servicio");
+			modelView.addObject("servicio",servicio);
+			return modelView;
+		}
 		listaServicios.getServicios().add(servicio);
-		model.addAttribute("servicios", listaServicios.getServicios());
-		return "sdpaseos";
-	}
+        modelView.addObject("servicio", listaServicios.getServicios());
+        return modelView;
+    }
 	
 	/** Controlador para mostrar la página de modificación de un servicio existente.
 	 * @author Yufra Alejandro
