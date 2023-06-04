@@ -68,7 +68,7 @@ public class ServicioDePaseosController {
 	 */
 	@PostMapping("/guardar")
 	public ModelAndView getGuardarServicioPage(@Valid @ModelAttribute("servicio")Servicio servicio, BindingResult result) {
-    	ModelAndView modelView = new ModelAndView("servicio");
+    	ModelAndView modelView = new ModelAndView("sdpaseos");
 		if(result.hasErrors()) {
 			modelView.setViewName("nuevo_servicio");
 			modelView.addObject("servicio",servicio);
