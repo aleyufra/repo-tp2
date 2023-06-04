@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.model;
 
 import org.springframework.stereotype.Component;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * 
@@ -10,10 +11,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class Servicio {
 	
+	@NotBlank(message="El nombre no puede estar vacio")
 	private String nombre;
+	
+	@NotBlank(message="El nombre no puede estar vacio")
 	private String nombreMascota;
+	
+	@NotBlank(message="Debe seleccionar un servicio")
 	private String servicio;
+	
+	@NotBlank(message="Debe seleccionar un día")
 	private String dia;
+	
+	@NotBlank(message="Debe seleccionar un horario")
 	private String hora;
 	
 	public Servicio() {}
