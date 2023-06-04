@@ -29,33 +29,35 @@
                         <div class="col">
                            <label for="codigo-producto" class="form-label">Codigo</label>
                            <input th:field="*{codigo}" th:disabled="${codigo} ? disabled : null" type="number"
-                              class="form-control" id="codigo-producto" placeholder="Codigo" required>
+                              class="form-control" id="codigo-producto" placeholder="Codigo">
                            <div class="text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div>
                         </div>
                      </div>
                      <div class="mb-3">
                      	<div class="col">
                            <label for="categorias" class="form-label">Categoria</label>
-                           <select th:field="*{categoria}" class="form-select" aria-label="categorias" required>
+                           <select th:field="*{categoria}" class="form-select" aria-label="categorias">
                               <option value="" selected>Seleccione una opcion</option>
                               <option value="alimentos">Alimentos</option>
                               <option value="juguetes">Juguetes</option>
                               <option value="correas">Correas</option>
                            </select>
+                           <div class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
                         </div>
                      </div>
                      <div class="mb-3">
                         <div class="col">
                            <label for="precio-producto" class="form-label">Precio</label>
                            <input th:field="*{precio}" type="number" class="form-control" id="precio-producto"
-                              placeholder="Precio" required>
+                              placeholder="Precio" >
+                           <div class="text-danger" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
                         </div>
                      </div>
                      <div class="mb-3">
                      	<div class="col">
                            <label for="descuento-producto" class="form-label">Descuento</label>
                            <input th:field="*{descuento}" type="number" class="form-control" id="descuento-producto"
-                              placeholder="Descuento" required>
+                              placeholder="Descuento">
                         </div>
                      </div>
                      <button class="btn btn-light mt-3" type="submit">Guardar</button>
