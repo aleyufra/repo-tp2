@@ -5,91 +5,144 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import ar.edu.unju.fi.controller.form.FormProducto;
 import ar.edu.unju.fi.listas.ListaProductos;
 import ar.edu.unju.fi.model.Producto;
 import jakarta.validation.Valid;
 
 @Controller
+@RequestMapping("/productos")
 public class ProductosController {
+	
+	//inyeccion de dependencias
 	
 	@Autowired
 	private ListaProductos listaProductos;
-	
 	@Autowired
-	private FormProducto miFormulario;
-
-	// Controlador para mostrar la página de productos
-	@GetMapping("/productos")
+	private Producto producto, productoEncontrado;
+	
+	/** Redireccionamiento a pagina de productos
+	 * 
+	 * @param model
+	 * @return renderiza la pagina productos recargando su lista
+	 */
+	@GetMapping("")
+	public String goToProductosPage(Model model) {
+		return "redirect:/productos/lista";
+	}
+	
+	
+	/** Controlador para mostrar la página de productos
+	 * 
+	 * @param model
+	 * @return la pagina productos
+	 */
+	@GetMapping("/lista")
 	public String getProductosPage(Model model) {
 		model.addAttribute("productos", listaProductos.getProductos());
 		return "productos";
 	}
 	
-	// Controlador para mostrar la página de nuevo producto
-	@GetMapping("/productos/nuevo")
+	/** Controlador para mostrar la página de nuevo producto
+	 * 
+	 * @param model
+	 * @return la pagina de nuevo-producto
+	 */
+	@GetMapping("/nuevo")
 	public String getNuevoProductoPage(Model model) {
-		miFormulario = new FormProducto();
-		model.addAttribute("formProducto", miFormulario);
+		producto = new Producto();
+		model.addAttribute("edicion", false);
+		model.addAttribute("producto", producto);
 		return "nuevo-producto";
 	}
 	
-	// Controlador para procesar el envío del formulario de nuevo producto
-	@PostMapping("/productos")
-	public ModelAndView postNuevoProductoPage(@Valid FormProducto formProducto, BindingResult result) {
-		ModelAndView modelView = new ModelAndView("productos");
-		if(result.hasErrors()) {
-			modelView.setViewName("nuevo-producto");
-			modelView.addObject("formProducto", formProducto);
-			return modelView;
+	/** Controlador para procesar el envío del formulario de nuevo producto
+	 * 
+	 * @param producto
+	 * @param result
+	 * @param model
+	 * @return retorn la pagina de nuevo-producto en caso de salir algun error de validacion
+	 * @return renderiza la pagina productos y carga su lista en caso de que se haya agregado datos validos
+	 */
+	@PostMapping("/guardar")
+	public String postNuevoProductoPage(@Valid @ModelAttribute("producto")Producto producto, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("producto", producto);
+			model.addAttribute("edicion", false);
+			return "nuevo-producto";
+		} else {
+			producto.setPrecioFinal(producto.getPrecio());
+			listaProductos.getProductos().add(producto);
+			model.addAttribute("productos", listaProductos.getProductos());
+			return "redirect:/productos/lista";
 		}
-			
-		Producto nuevoProducto = new Producto(formProducto.getNombre(),formProducto.getCategoria(), formProducto.getCodigo(), formProducto.getPrecio(), formProducto.getDescuento());
-		
-		listaProductos.getProductos().add(nuevoProducto);
-		modelView.addObject("productos", listaProductos.getProductos());
-		return modelView;
-	}
+	}	
 	
-	// Controlador para mostrar la página de modificación de un producto específico
-	@GetMapping("/productos/editar/{codigo}")
-	public String getEditarProductoPage(@PathVariable(value="codigo")String codigo, Model model) {
+	/** Controlador para mostrar la página de modificación de un producto específico
+	 * 
+	 * @param codigo
+	 * @param model
+	 * @return renderiza la pagina nuevo-producto
+	 */
+	@GetMapping("/modificar/{codigo}")
+	public String getEditarProductoPage(@PathVariable("codigo")String codigo, Model model) {
 		Producto prod = this.buscarProducto(codigo);
-		miFormulario.setNombre(prod.getNombre());
-		miFormulario.setCategoria(prod.getCategoria());
-		miFormulario.setCodigo(prod.getCodigo());
-		miFormulario.setPrecio(prod.getPrecio());
-		miFormulario.setDescuento(prod.getDescuento());
-		
-		model.addAttribute("formProducto", miFormulario);
+		productoEncontrado.setNombre(prod.getNombre());
+		productoEncontrado.setCategoria(prod.getCategoria());
+		productoEncontrado.setCodigo(prod.getCodigo());
+		productoEncontrado.setPrecio(prod.getPrecio());
+		productoEncontrado.setDescuento(prod.getDescuento());
+		model.addAttribute("producto", productoEncontrado);
+		model.addAttribute("edicion", true);
 		return "nuevo-producto";
 		
 	}
 	
-	// Controlador para procesar la modificación de un producto específico
-	@PostMapping("/productos/{codigo}")
-	public String postNuevoProductoPage(@PathVariable(value="codigo")String codigo, FormProducto formProducto) {
-		Producto producto = this.buscarProducto(codigo);
-		
-		producto.setNombre(formProducto.getNombre());
-		producto.setCategoria(formProducto.getCategoria());
-		producto.setPrecio(formProducto.getPrecio());
-		producto.setDescuento(formProducto.getDescuento());
-		producto.setPrecioFinal(producto.calcularDescuento());
-		return "redirect:/productos";
+	/** Controlador para procesar la modificación de un producto específico
+	 * 
+	 * @param producto
+	 * @param result
+	 * @param model
+	 * @return en caso de error de validacion, retorna a la pagina nuevo-producto
+	 * @return en caso de que los datos sean validos, redirecciona a la pagina productos y recarga su lista
+	 */
+	@PostMapping("/modificar")
+	public String modificarProducto(@Valid @ModelAttribute("producto")Producto producto, BindingResult result, Model model) {
+		producto.setCodigo(productoEncontrado.getCodigo());
+		if (result.hasFieldErrors("nombre") || result.hasFieldErrors("categoria") ||
+			result.hasFieldErrors("precio") || result.hasFieldErrors("descuento")) {
+			model.addAttribute("edicion", true);
+			model.addAttribute("producto", producto);
+			return "nuevo-producto";
+		} else {
+			for (Producto prod : listaProductos.getProductos()) {
+				if (prod.getCodigo() == productoEncontrado.getCodigo()) {
+					prod.setNombre(producto.getNombre());
+					prod.setCategoria(producto.getCategoria());
+					prod.setPrecio(producto.getPrecio());
+					prod.setDescuento(producto.getDescuento());
+					prod.setPrecioFinal(producto.getPrecioFinal());
+					break;
+				}
+			}
+			return "redirect:/productos/lista";
+		}
 	}
 	
-	// Controlador para eliminar un producto específico
-	@GetMapping("/productos/eliminar/{codigo}")
-	public String deleteProductoPage(@PathVariable(value="codigo")String codigo) {
-    	Producto producto = this.buscarProducto(codigo);
-    	listaProductos.getProductos().remove(producto);
-    	
-    	return "redirect:/productos";
+	/** Controlador para eliminar un producto específico
+	 * 
+	 * @param codigo
+	 * @return redirecciona a la pagina productos y recarga su lista
+	 */
+	@GetMapping("/eliminar/{codigo}")
+	public String deleteProductoPage(@PathVariable("codigo")String codigo) {
+    	Producto productoABorrar = this.buscarProducto(codigo);
+    	listaProductos.getProductos().remove(productoABorrar);
+    	return "redirect:/productos/lista";
 	}
 	
 	/**
@@ -103,6 +156,8 @@ public class ProductosController {
     	for (Producto prod : listaProductos.getProductos()) {
     		String codigoProducto = String.valueOf(prod.getCodigo()); 
     		if (codigoProducto.equals(codigo)) {
+    			//System.out.println(codigoProducto);
+    			//System.out.println(prod.getCodigo());
     			productoBuscado = prod;
     			break;
     		}

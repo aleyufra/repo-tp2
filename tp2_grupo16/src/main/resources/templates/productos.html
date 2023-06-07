@@ -19,10 +19,20 @@
             <div class="row">
                <div class="col-12">
                   <section class="section-productos">
+                     <div class="row text-center">
+                        <h3 class="title-productos ">Productos</h3>
+                        <article class="article-productos ">
+                           <div class="col-12">
+                              <img class="imagen-productos m-auto" th:src="@{/productos-images/productos-banner.jpg}"
+                                 alt="Suministros para mascotas">
+                           </div>
+                        </article>
+                     </div>
+                  
                      <div class="row">
                         <article class="article-productos">
-                           <div class="col-12 tabla-productos-container mt-lg-5">
-                              <a th:href="@{productos/nuevo}" class="btn btn-dark mb-3">Nuevo producto</a>
+                           <div class="col-12 tabla-productos-container">
+                              <a th:href="@{/productos/nuevo}" class="btn btn-dark mb-3">Nuevo producto</a>
                               <div class="table-responsive">
                                  <table class="table table-striped">
                                     <thead class="table-dark">
@@ -41,11 +51,11 @@
                                           <td th:text="${prod.nombre}"></td>
                                           <td th:text="${prod.categoria}"></td>
                                           <td th:text="${prod.codigo}"></td>
-                                          <td th:text="${prod.precio}"></td>
-                                          <td th:text="${prod.descuento}"></td>
-                                          <td th:text="${prod.precioFinal}"></td>
+                                          <td th:text="'$' + ${prod.precio}"></td>
+                                          <td th:text="${prod.descuento} + '%'"></td>
+                                          <td th:text="'$' + ${prod.precioFinal}"></td>
                                           <td>
-                                             <a th:href="@{/productos/editar/}+${prod.codigo}"
+                                             <a th:href="@{/productos/modificar/}+${prod.codigo}"
                                                 class="btn btn-secondary">Modificar</a>
                                              <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#eliminarModal">
@@ -84,15 +94,6 @@
                                     </tbody>
                                  </table>
                               </div>
-                           </div>
-                        </article>
-                     </div>
-
-                     <div class="row">
-                        <article class="article-productos">
-                           <div class="col-12">
-                              <img class="imagen-productos" th:src="@{/productos-images/petshop.jpg}"
-                                 alt="Suministros para mascotas">
                            </div>
                         </article>
                      </div>

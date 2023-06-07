@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unju.fi.listas.ListaServicios;
 import ar.edu.unju.fi.model.Servicio;
 import jakarta.validation.Valid;
@@ -52,31 +50,29 @@ public class ServicioDePaseosController {
 	 */
 	@GetMapping("/nuevo")
 	public String getListadoDeServiciosPage(Model model) {
-		boolean edicion = false;
-		boolean disabled = false;
-		model.addAttribute("edicion", edicion);
-		model.addAttribute("disabled", disabled);
+		servicio = new Servicio();
+		model.addAttribute("edicion", false);
+		model.addAttribute("disabled", false);
 		model.addAttribute("servicio", servicio);
-		
 		return "nuevo_servicio";
 	}
 	
 	/** Controlador para procesar el formulario de nuevo servicio y guardarlo en la lista de servicios. ACTUALIZACIÓN: Se realizo la modificación para utilizar ModelAndView
 	 * @author Yufra Alejandro , Karen Gutierrez
 	 * @param servicio
-	 * @return renderia la pag sdpaseos
+	 * @return renderiza la pagina nuevo_servicio en caso de algun error de validacion
+	 * @return renderia la pag sdpaseos en caso de que los datos sean validos
 	 */
 	@PostMapping("/guardar")
-	public ModelAndView getGuardarServicioPage(@Valid @ModelAttribute("servicio")Servicio servicio, BindingResult result) {
-    	ModelAndView modelView = new ModelAndView("servicio");
+	public String getGuardarServicioPage(@Valid @ModelAttribute("servicio")Servicio servicio, BindingResult result, Model model) {
+		model.addAttribute("edicion", false);
 		if(result.hasErrors()) {
-			modelView.setViewName("nuevo_servicio");
-			modelView.addObject("servicio",servicio);
-			return modelView;
+			model.addAttribute("servicio", servicio);
+			return "nuevo_servicio";
 		}
 		listaServicios.getServicios().add(servicio);
-        modelView.addObject("servicio", listaServicios.getServicios());
-        return modelView;
+        model.addAttribute("servicio", listaServicios.getServicios());
+        return "redirect:/servicios/listado";
     }
 	
 	/** Controlador para mostrar la página de modificación de un servicio existente.
@@ -87,17 +83,15 @@ public class ServicioDePaseosController {
 	 */
 	@GetMapping("/modificar/{nombre}")
 	public String getModificarServicioPage(@PathVariable("nombre")String nombre, Model model) {
+    	servicioEncontrado = new Servicio();
 		boolean edicion = true;
-		boolean disabled = true;
-		model.addAttribute("edicion", edicion);
-		model.addAttribute("disabled", disabled);
+    	model.addAttribute("edicion", edicion);
 		for (Servicio servi: listaServicios.getServicios()) {
 			if (servi.getNombre().equals(nombre)) {
 				servicioEncontrado = servi;
 				break;
 			}
 		}
-
 		model.addAttribute("servicio", servicioEncontrado);
 		return "nuevo_servicio";
 	}
@@ -108,17 +102,25 @@ public class ServicioDePaseosController {
 	 * @return renderiza la pag servicios y recarga su listado de servicios
 	 */
 	@PostMapping("/modificar")
-	public String modificarServicio(@ModelAttribute("servicio")Servicio servicio) {
-		for (Servicio servi : listaServicios.getServicios()) {
-			if (servi.getNombre().equals(servicioEncontrado.getNombre())) {
-				servi.setNombreMascota(nombreFormat(servicio.getNombreMascota()));
-		        servi.setServicio(servicio.getServicio());
-		        servi.setDia(servicio.getDia());
-		        servi.setHora(servicio.getHora());
-		        break;
+	public String modificarServicio(@Valid @ModelAttribute("servicio")Servicio servicio, BindingResult result, Model model) {
+		servicio.setNombre(servicioEncontrado.getNombre());
+		if (result.hasErrors()) {
+			servicio.setNombre(servicioEncontrado.getNombre());
+			model.addAttribute("servicio", servicio);
+			model.addAttribute("edicion", true);
+			return "nuevo_servicio";
+		} else {
+			for (Servicio servi : listaServicios.getServicios()) {
+				if (servi.getNombre().equals(servicioEncontrado.getNombre())) {
+					servi.setNombreMascota(nombreFormat(servicio.getNombreMascota()));
+			        servi.setServicio(servicio.getServicio());
+			        servi.setDia(servicio.getDia());
+			        servi.setHora(servicio.getHora());
+			        break;
+				}
 			}
+			return "redirect:/servicios/listado";
 		}
-		return "redirect:/servicios/listado";
 	}
 	
 	/** Controlador para eliminar un servicio

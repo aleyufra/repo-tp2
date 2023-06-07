@@ -25,53 +25,61 @@
                      <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre del la sucursal: </label>
                         <input type="text" class="form-control" name="nombre" id="nombre"
-                           th:disabled="${edicion ? 'disabled' : null}" required th:field="*{nombre}">
+                           th:disabled="${edicion} ? 'disabled' : null" th:field="*{nombre}">
+                        <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                      </div>
                      <div class="mb-3">
                         <label for="direccion" class="form-label">Dirección: </label>
-                        <input type="text" class="form-control" name="direccion" id="direccion" required
+                        <input type="text" class="form-control" name="direccion" id="direccion"
                            th:field="*{direccion}">
+                        <div class="text-danger" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></div>
                      </div>
                      <div class="mb-3">
                         <label for="barrio" class="form-label">Barrio: </label>
-                        <input type="text" class="form-control" id="barrio" required th:field="*{barrio}">
+                        <input type="text" class="form-control" id="barrio" th:field="*{barrio}">
+                        <div class="text-danger" th:if="${#fields.hasErrors('barrio')}" th:errors="*{barrio}"></div>
                      </div>
                      <div class="mb-3">
                         <label for="imagen" class="form-label">URL de imagen: </label>
-                        <input type="text" class="form-control" name="imagen" id="imagen" required
+                        <input type="text" class="form-control" name="imagen" id="imagen"
                            th:field="*{imagen}">
+                        <div class="text-danger" th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></div>
                      </div>
                      <div class="mb-3">
                         <label for="ciudad" class="form-label">Ciudad: </label>
-                        <select name="ciudad" class="form-select" id="ciudad" required th:field="*{ciudad}">
+                        <select name="ciudad" class="form-select" id="ciudad" th:field="*{ciudad}">
                            <option value="">Seleccione una opción</option>
                            <option value="San Salvador De Jujuy">San Salvador de Jujuy</option>
                            <option value="Palpalá">Palpalá</option>
                            <option value="El Carmen">El Cármen</option>
                            <option value="Perico">Perico</option>
                         </select>
+                        <div class="text-danger" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></div>
                      </div>
                      <div class="mb-3">
                         <label for="fechaInauguracion" class="form-label text-start">Fecha de Inauguracion</label>
                         <input type="date" class="form-control" name="fechaInauguracion"
-                           th:value="${sucursal.fechaInauguracion}" id="fechaInauguracion" required>
+                           th:value="${sucursal.fechaInauguracion}" id="fechaInauguracion">
+                        <div class="text-danger" th:if="${#fields.hasErrors('fechaInauguracion')}" th:errors="*{fechaInauguracion}"></div>
                      </div>
                      <div class="mb-3">
-                        <input type="hidden" class="form-control" name="estado" id="estado" required
+                        <input type="hidden" class="form-control" name="estado" id="estado"
                            th:field="*{estado}">
                      </div>
                      <div class="mb-3">
                         <label for="estadoStr" class="form-label">Estado: </label>
-                        <select name="estadoStr" class="form-select" id="estadoStr" required th:field="*{estadoStr}">
+                        <select name="estadoStr" class="form-select" id="estadoStr" th:field="*{estadoStr}">
                            <option value="">Seleccione una opción</option>
                            <option value="Abierto">Abierto</option>
                            <option value="Cerrado">Cerrado</option>
                         </select>
+                        <div class="text-danger" th:if="${#fields.hasErrors('estadoStr')}" th:errors="*{estadoStr}"></div>
                      </div>
                      <div class="mb-3">
                         <label for="telefono" class="form-label">Teléfono: </label>
-                        <input type="text" name="telefono" class="form-control" id="telefono" required
+                        <input type="text" name="telefono" class="form-control" id="telefono"
                            th:field="*{telefono}">
+                        <div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
                      </div>
                      <input type="submit" class="btn btn-light mt-3" id="bth-nuevaSucursal"
                         th:value="${edicion} ? 'Guardar Cambios' : 'Registrar nueva sucursal'">

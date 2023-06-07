@@ -14,11 +14,15 @@ public class ListaProductos {
 
 	public ListaProductos() {
 		productos = new ArrayList<Producto>();
-		Producto unProducto = new Producto("alimento para gato", "alimentos", 111, 500, (byte)50);
-		productos.add(unProducto);
+		productos.add(new Producto("Whiscas adulto", "Alimentos", 4536, 800.00, (byte)50));
+		productos.add(new Producto("Pedigree cachorros", "Alimentos", 6328, 600.00, (byte)10));
 	}
-
+	
 	public List<Producto> getProductos() {
 		return productos;
+	}
+
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
 	}
 }

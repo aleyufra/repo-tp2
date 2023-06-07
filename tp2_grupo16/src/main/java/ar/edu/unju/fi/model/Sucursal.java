@@ -4,6 +4,13 @@ import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 /**
  * 
  * @author Grupo16
@@ -12,19 +19,36 @@ import org.springframework.stereotype.Component;
 @Component
 public class Sucursal {
 	
+	@Size(min= 3 , max = 32, message="el nombre del producto debe contener 4-32 caracteres.")
+	@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar únicamente letras.")
 	private String nombre;
+	
+	@NotBlank(message = "Debe seleccionar una de las opciones.")
 	private String direccion;
+	
+	@NotBlank(message = "El campo no puede estar vacio.")
+	@Pattern(regexp = "[a-z A-Z]*", message="No debe ingresar caracteres numericos.")
 	private String barrio;
+	
+	@NotBlank(message = "El campo no puede estar vacio.")
 	private String ciudad;
+	
+	@Pattern(regexp = "[0-9][0-9][0-9]+-+[0-9][0-9][0-9][0-9][0-9][0-9][0-9]", 
+			 message = "ingrese un num de telefono valido. (Ej: (388-1234567)")
 	private String telefono;
+	
+	@NotNull(message = "El campo no debe estar vacío")
+	@PastOrPresent(message = "La fecha no pude ser posterior al actual")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate fechaInauguracion;
+	
+	@NotBlank(message = "Ingrese un URL válido")
 	private String imagen;
+	
+	@NotBlank(message = "Debe seleccionar una de las opciones.")
 	private String estadoStr;
 	private boolean estado;
 	
-	
-
 	public Sucursal() {}
 	
 	/**
@@ -37,7 +61,6 @@ public class Sucursal {
 	 * @param fechaInauguracion La fecha de inauguración de la sucursal
 	 * @param telefono El telefono de la sucursal
 	 */
-	
 	public Sucursal(String nombre, String direccion, String barrio, String ciudad, LocalDate fechaInauguracion, String telefono, String imagen, String estadoStr, boolean estado) {
 		this.nombre = nombre;
 		this.direccion = direccion;
@@ -50,6 +73,7 @@ public class Sucursal {
 		this.estado = estado;
 	}
 
+	// METODOS GETTERS AND SETTERS
 	public String getNombre() {
 		return nombre;
 	}

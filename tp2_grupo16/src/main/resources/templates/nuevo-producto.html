@@ -17,50 +17,53 @@
          <section>
             <div class="row">
                <div class="col-12 col-md-9 col-lg-5 m-auto mt-4">
-                  <form th:action="${codigo} ? @{/productos/}+${codigo} : @{/productos}" th:object="${formProducto}"
-                     method="POST" class="form-nuevoProducto">
+                  <form th:action="${edicion} ? @{/productos/modificar} : @{/productos/guardar}"
+                        th:object="${producto}" method="post" class="form-nuevoProducto">
                      <div class="mb-3">
-                        <label for="nombre-producto" class="form-label">Producto</label>
+                        <label for="nombre-producto" class="form-label">Nombre del producto: </label>
                         <input th:field="*{nombre}" type="text" class="form-control" id="nombre-producto"
-                           placeholder="Nombre de producto">
+                               th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
                         <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                      </div>
                      <div class="mb-3">
-                        <div class="col">
-                           <label for="codigo-producto" class="form-label">Codigo</label>
-                           <input th:field="*{codigo}" th:disabled="${codigo} ? disabled : null" type="number"
-                              class="form-control" id="codigo-producto" placeholder="Codigo">
-                           <div class="text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div>
-                        </div>
+                        <label for="codigo-producto" class="form-label">Código: </label>
+                        <input th:field="*{codigo}" th:disabled="${edicion} ? disabled : null" type="number"
+                               class="form-control" id="codigo-producto"
+                               th:classappend="${#fields.hasErrors('codigo')} and ${not edicion} ? 'is-invalid' : ''">
+                        <div class="text-danger" th:if="${#fields.hasErrors('codigo')} and ${not edicion}" th:errors="*{codigo}"></div>
                      </div>
                      <div class="mb-3">
                      	<div class="col">
-                           <label for="categorias" class="form-label">Categoria</label>
+                           <label for="categorias" class="form-label">Categoría: </label>
                            <select th:field="*{categoria}" class="form-select" aria-label="categorias">
-                              <option value="" selected>Seleccione una opcion</option>
-                              <option value="alimentos">Alimentos</option>
-                              <option value="juguetes">Juguetes</option>
-                              <option value="correas">Correas</option>
+                              <option value="">Seleccione una opción</option>
+                              <option value="Alimentos">Alimentos</option>
+                              <option value="Juguetes">Juguetes</option>
+                              <option value="Accesorios">Accesorios</option>
                            </select>
-                           <div class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
+                           <div class="text-danger" th:if="${#fields.hasErrors('categoria')}"
+                                th:errors="*{categoria}"></div>
                         </div>
                      </div>
                      <div class="mb-3">
                         <div class="col">
-                           <label for="precio-producto" class="form-label">Precio</label>
-                           <input th:field="*{precio}" type="number" class="form-control" id="precio-producto"
-                              placeholder="Precio" >
-                           <div class="text-danger" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
+                           <label for="precio-producto" class="form-label">Precio: </label>
+                           <input th:field="*{precio}" type="number" class="form-control" id="precio-producto">
+                           <div class="text-danger" th:if="${#fields.hasErrors('precio')}"
+                                th:errors="*{precio}">
+                           </div>
                         </div>
                      </div>
                      <div class="mb-3">
                      	<div class="col">
-                           <label for="descuento-producto" class="form-label">Descuento</label>
+                           <label for="descuento-producto" class="form-label">Descuento: </label>
                            <input th:field="*{descuento}" type="number" class="form-control" id="descuento-producto"
-                              placeholder="Descuento">
+                                  th:classappend="${#fields.hasErrors('descuento')} ? 'is-invalid' : ''">
+                           <div class="text-danger" th:if="${#fields.hasErrors('descuento')}"
+                                th:errors="*{descuento}"></div>
                         </div>
                      </div>
-                     <button class="btn btn-light mt-3" type="submit">Guardar</button>
+                     <button class="btn btn-light mt-3" type="submit" th:text="${edicion} ? 'Guardar Cambios' : 'Guardar' "></button>
                   </form>
                </div>
             </div>
