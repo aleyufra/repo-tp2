@@ -2,6 +2,10 @@ package ar.edu.unju.fi.model;
 
 import org.springframework.stereotype.Component;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 /**
  * 
@@ -11,10 +15,14 @@ import jakarta.validation.constraints.NotBlank;
 @Component
 public class Servicio {
 	
-	@NotBlank(message="El nombre no puede estar vacio")
+	
+	@Size(min=3, max=32, message="el nombre del dueño debe contener 3-32 caracteres.")
+	@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar únicamente letras.")
 	private String nombre;
 	
-	@NotBlank(message="El nombre no puede estar vacio")
+	@NotEmpty(message="El campo de nombre no puede estar vacio.")
+	@Size(min=3, max=32, message="el nombre de la mascota debe contener 4-32 caracteres.")
+	@Pattern(regexp= "[a-z A-Z]*", message="Solo puede ingresar caracteres alfanumericos.")
 	private String nombreMascota;
 	
 	@NotBlank(message="Debe seleccionar un servicio")
@@ -28,15 +36,13 @@ public class Servicio {
 	
 	public Servicio() {}
 
-	/**
-	 * Crea una nueva instancia de la clase Servicio
+	/** Crea una nueva instancia de la clase Servicio
 	 * 
 	 * @param nombre El nombre del dueño de la mascota
 	 * @param nombreMascota El nombre de la mascota
 	 * @param servicio El nombre del servicio a realizar
 	 * @param dia El dia a realizar el servicio
 	 */
-	
 	public Servicio(String nombre, String nombreMascota, String servicio, String dia, String hora) {
 		this.nombre = nombre;
 		this.nombreMascota = nombreMascota;

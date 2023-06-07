@@ -22,21 +22,56 @@
 				      	<p>Contacto - Tel: 388-4999999</p>
 				      </div>
 				      <a id="correo" href="https://www.gmail.com">elarriero@gmail.com</a>
-				      <ul class="mt-2">
+				      <ul class="mt-2 d-flex justify-content-evenly p-0">
 				         <li><a class="btn btn-primary" href="https://www.facebook.com">Facebook</a></li>
 				         <li><a class="btn btn-danger" href="https://www.instagram.com">Instagram</a></li>
 				         <li><a class="btn btn-info" href="https://www.twitter.com">Twitter</a></li>
 				      </ul>
-				      <form class="contacto-form" th:action="@{/contacto/enviar}" th:object="${contacto}" method="post">
-				         <label for="nombre">Nombre: <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Ingrese su nombre" required></label>
-				         <label for="email">Email: <input id="email" type="text" class="form-control" name="email" placeholder="Ingrese un email valido" required></label>
-				         <label for="ciudad">Ciudad: <input id="ciudad" type="text" class="form-control" name="ciudad" placeholder="Ingrese su ciudad" required></label>
-				         <label for="mensaje">Mensaje: <input id="mensaje" type="text" class="form-control" size=30 name="mensaje" required></label>
+				      
+				      <form class="contacto-form" th:action="@{/contacto/enviar}" 
+				            th:object="${contacto}" method="post">
+				            
+				         <label class="mb-0" for="nombreContacto">Nombre: </label>
+				         <input th:field="*{nombre}" id="nombreContacto" type="text" class="form-control" name="nombreContacto"
+				                th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
+				         <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+				         
+				         <label class="mt-3 mb-0" for="email">Email: </label>
+				         <input th:field="*{email}" id="email" type="text" class="form-control" name="email"
+				                th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''">
+				         <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+				         
+				         <label class="mt-3 mb-0" for="mensajeAenviar">Mensaje: </label>
+				         <input th:field="*{mensaje}" id="mensajeAenviar" type="text" class="form-control" name="mensajeAenviar"
+				                th:classappend="${#fields.hasErrors('mensaje')} ? 'is-invalid' : ''">
+				         <div class="text-danger" th:if="${#fields.hasErrors('mensaje')}" th:errors="*{mensaje}"></div>
+				         
 				         <p class="text-white" th:if="${enviado}">Su mensaje ha sido enviado. </p>
 				         <button class="btn btn-light mt-3">Enviar</button>
 				      </form>
 				   </div>
 	   			</div>
+	   		</div>
+	   		
+	   		<div class="row">
+	   			<div>
+	   			   <h5 class="text-center" th:if="${mensajes.isEmpty()}">Aún no enviaste mensajes</h5>
+	   			   <h5 class="text-center mb-3" th:if="${not mensajes.isEmpty()}">Mensajes enviados:</h5>
+	   			</div>
+	   			<div th:each="msj : ${mensajes}" class="row mb-3">
+		   			<div class="col-12 col-md-8 col-lg-6 m-auto mensajesEnviados-container">
+		   			    <div class="form-group">
+		   			      <label for="origen">De: </label>
+		   			      <input id="origen" type="text" class="form control" disabled 
+		   			             th:value="${msj.nombre} + '  (' + ${msj.email} + ')'">
+		   			    </div>
+		   			    <div class="form-group">
+						  <label for="mensajeEnviado">Mensaje: </label>
+						  <textarea class="form-control no-resize" id="mensajeEnviado" rows="3" disabled 
+						            th:text="${msj.mensaje}"></textarea>
+						</div>
+		   			</div>
+		   		</div>
 	   		</div>
 	   	</div>
    </div>
