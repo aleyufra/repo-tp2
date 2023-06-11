@@ -19,7 +19,7 @@ import jakarta.validation.constraints.Size;
 @Component
 public class Sucursal {
 	
-	@Size(min= 3 , max = 32, message="el nombre del producto debe contener 4-32 caracteres.")
+	@Size(min= 4 , max = 32, message="el nombre del producto debe contener 4-32 caracteres.")
 	@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar únicamente letras.")
 	private String nombre;
 	
@@ -38,7 +38,7 @@ public class Sucursal {
 	private String telefono;
 	
 	@NotNull(message = "El campo no debe estar vacío")
-	@PastOrPresent(message = "La fecha no pude ser posterior al actual")
+	@PastOrPresent(message = "La fecha no puede ser posterior al actual")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate fechaInauguracion;
 	

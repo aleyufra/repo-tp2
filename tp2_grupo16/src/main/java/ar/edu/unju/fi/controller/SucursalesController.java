@@ -10,18 +10,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ar.edu.unju.fi.listas.ListaSucursales;
 import ar.edu.unju.fi.model.Sucursal;
+import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/sucursales")
 public class SucursalesController {
 	
+	/**
+	 * Inyectamos la interfaz del servicio de Sucursal
+	 */
 	@Autowired
-    private ListaSucursales listaSucursales;
+	private ISucursalService sucursalService;
+	
+	/**
+	 *  variable auxiliar para poder modificar alguna sucursal exitosamente
+	 */
 	@Autowired
-    private Sucursal sucursal, sucursalEncontrada;
+    private Sucursal sucursalEncontrada;
 	
 	/** Ir a la pagina de Sucursales
 	 * @author Yufra Alejandro
@@ -39,7 +46,7 @@ public class SucursalesController {
      */
     @GetMapping("/listado")
     public String getListaDeSucursalesPage(Model model) {
-        model.addAttribute("sucursales", listaSucursales.getSucursales());
+    	model.addAttribute("sucursales", sucursalService.listarSucursales());
         return "sucursales";
     }
     
@@ -50,9 +57,8 @@ public class SucursalesController {
      */
     @GetMapping("/nueva")
     public String getNuevaSucursalPage(Model model) {
-        sucursal = new Sucursal();
         model.addAttribute("edicion", false);
-        model.addAttribute("sucursal", sucursal);
+        model.addAttribute("sucursal", sucursalService.getSucursal());
         return "nueva_sucursal";
     }
     
@@ -67,17 +73,9 @@ public class SucursalesController {
         if (result.hasErrors()) {
         	model.addAttribute("sucursal", sucursal);
         	return "nueva_sucursal";
-        } else {
-	    	sucursal.setNombre(nombreFormat(sucursal.getNombre()));
-	        sucursal.setDireccion(nombreFormat(sucursal.getDireccion()));
-	        sucursal.setBarrio(nombreFormat(sucursal.getBarrio()));
-	        if (sucursal.getEstadoStr().equals("Abierto")) {
-	        	sucursal.setEstado(true);
-	        } else if (sucursal.getEstadoStr().equals("Cerrado")) {
-	        	sucursal.setEstado(false);
-	        }                
-	        listaSucursales.getSucursales().add(sucursal);
-	        model.addAttribute("sucursales", listaSucursales.getSucursales());
+        } else {               
+        	sucursalService.guardarSucursal(sucursal);
+
 	        return "redirect:/sucursales/listado";
         }
     }
@@ -90,20 +88,8 @@ public class SucursalesController {
      */
     @GetMapping("/modificar/{nombre}")
     public String modificarSucursal(@PathVariable("nombre")String nombre, Model model) {
+    	sucursalEncontrada = sucursalService.getBy(nombre);
     	model.addAttribute("edicion", true);
-    	for (Sucursal sucu : listaSucursales.getSucursales()) {
-    		if (sucu.getNombre().equals(nombre)) {
-    			sucursalEncontrada.setNombre(sucu.getNombre());
-    			sucursalEncontrada.setDireccion(sucu.getDireccion());
-    			sucursalEncontrada.setBarrio(sucu.getBarrio());
-    			sucursalEncontrada.setCiudad(sucu.getCiudad());
-    			sucursalEncontrada.setFechaInauguracion(sucu.getFechaInauguracion());
-    			sucursalEncontrada.setTelefono(sucu.getTelefono());
-    			sucursalEncontrada.setImagen(sucu.getImagen());
-    			sucursalEncontrada.setEstadoStr(sucu.getEstadoStr());
-    			sucursalEncontrada.setEstado(sucu.getEstado());
-    		}
-    	}
     	model.addAttribute("sucursal", sucursalEncontrada);
     	return "nueva_sucursal";
     }
@@ -115,30 +101,14 @@ public class SucursalesController {
      */
     @PostMapping("/modificar")
     public String modificarSucursal(@Valid @ModelAttribute("sucursal")Sucursal sucursal, BindingResult result, Model model) {
-    	sucursal.setNombre(sucursalEncontrada.getNombre());
+    	sucursal.setNombre(sucursalEncontrada.getNombre()); // necesario
     	if (result.hasErrors()) {
-    		sucursal.setNombre(sucursalEncontrada.getNombre());
+    		sucursal.setNombre(sucursalEncontrada.getNombre()); // necesario
     		model.addAttribute("sucursal", sucursal);
     		model.addAttribute("edicion", true);
 	    	return "nueva_sucursal";
     	} else {
-	    	for (Sucursal sucu : listaSucursales.getSucursales()) {
-	    		if (sucu.getNombre().equals(sucursalEncontrada.getNombre())) {
-	    			sucu.setDireccion( nombreFormat(sucursal.getDireccion()));
-	    			sucu.setBarrio( nombreFormat(sucursal.getBarrio()));
-	    			sucu.setCiudad(sucursal.getCiudad());
-	    			sucu.setFechaInauguracion(sucursal.getFechaInauguracion());
-	    			sucu.setTelefono(sucursal.getTelefono());
-	    			sucu.setImagen(sucursal.getImagen());
-	    			sucu.setEstadoStr(sucursal.getEstadoStr());
-	    			if (sucu.getEstadoStr().equals("Abierto")) {
-	    				sucu.setEstado(true);
-	    			} else if (sucu.getEstadoStr().equals("Cerrado")) {
-	    				sucu.setEstado(false);
-	    			}
-	    			break;
-	    		}
-	    	}
+	    	sucursalService.modificarSucursal(sucursal);
     		return "redirect:/sucursales/listado";
     	}
     }
@@ -150,23 +120,10 @@ public class SucursalesController {
      */
     @GetMapping("/eliminar/{nombre}")
     public String eliminarSucursal(@PathVariable("nombre")String nombre) {
-    	for (Sucursal sucu : listaSucursales.getSucursales()) {
-    		if (sucu.getNombre().equals(nombre)) {
-    			listaSucursales.getSucursales().remove(sucu);
-    			break;
-    		}
-    	}
+    	sucursalService.eliminarSucursal(nombre);
     	return "redirect:/sucursales/listado";
     }
     
-    /** Convertir Primera Letra en Mayuscula
-     * @author Yufra Alejandro
-     * @param palabra
-     * @return la palabra ingresada como argumento pero con la primera letra en mayuscula
-     */
-    public String nombreFormat(String palabra) {
-    	return palabra.substring(0,1).toUpperCase() + palabra.substring(1).toLowerCase();
-    }
 }
 
 

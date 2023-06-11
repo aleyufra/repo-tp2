@@ -433,7 +433,8 @@ article {
 .form-container {
 	width: 300px;
 	height: fit-content;
-	background-color: darkslategray;
+	background-color: #222;
+	border-radius: 12px;
 	text-align: center;
 	box-sizing: border-box;
 	padding: 20px 30px;
@@ -565,7 +566,7 @@ article {
 }
 
 .form-sucursal-container {
-	background-color: darkslategray;
+	background-color: #222;
 	border: 1px solid #aaa;
 	border-radius: 12px;
 	padding: 30px;

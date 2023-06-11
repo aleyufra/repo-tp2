@@ -10,20 +10,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ar.edu.unju.fi.listas.ListaProductos;
 import ar.edu.unju.fi.model.Producto;
+import ar.edu.unju.fi.service.IProductoService;
 import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/productos")
 public class ProductosController {
 	
-	//inyeccion de dependencias
+	/**
+	 * Inyectamos la interfaz del servicio de Producto
+	 */
 	
 	@Autowired
-	private ListaProductos listaProductos;
+	private IProductoService productoService;
+	
+	/**
+	 *  variable auxiliar para poder modificar algun producto exitosamente
+	 */
 	@Autowired
-	private Producto producto, productoEncontrado;
+	private Producto productoEncontrado;
 	
 	/** Redireccionamiento a pagina de productos
 	 * 
@@ -43,7 +49,7 @@ public class ProductosController {
 	 */
 	@GetMapping("/lista")
 	public String getProductosPage(Model model) {
-		model.addAttribute("productos", listaProductos.getProductos());
+		model.addAttribute("productos", productoService.listarProductos());
 		return "productos";
 	}
 	
@@ -54,9 +60,8 @@ public class ProductosController {
 	 */
 	@GetMapping("/nuevo")
 	public String getNuevoProductoPage(Model model) {
-		producto = new Producto();
 		model.addAttribute("edicion", false);
-		model.addAttribute("producto", producto);
+		model.addAttribute("producto", productoService.getProducto());
 		return "nuevo-producto";
 	}
 	
@@ -75,9 +80,7 @@ public class ProductosController {
 			model.addAttribute("edicion", false);
 			return "nuevo-producto";
 		} else {
-			producto.setPrecioFinal(producto.getPrecio());
-			listaProductos.getProductos().add(producto);
-			model.addAttribute("productos", listaProductos.getProductos());
+			productoService.guardarProducto(producto);
 			return "redirect:/productos/lista";
 		}
 	}	
@@ -90,12 +93,7 @@ public class ProductosController {
 	 */
 	@GetMapping("/modificar/{codigo}")
 	public String getEditarProductoPage(@PathVariable("codigo")String codigo, Model model) {
-		Producto prod = this.buscarProducto(codigo);
-		productoEncontrado.setNombre(prod.getNombre());
-		productoEncontrado.setCategoria(prod.getCategoria());
-		productoEncontrado.setCodigo(prod.getCodigo());
-		productoEncontrado.setPrecio(prod.getPrecio());
-		productoEncontrado.setDescuento(prod.getDescuento());
+	    productoEncontrado = productoService.getBy(codigo.toString());
 		model.addAttribute("producto", productoEncontrado);
 		model.addAttribute("edicion", true);
 		return "nuevo-producto";
@@ -112,23 +110,15 @@ public class ProductosController {
 	 */
 	@PostMapping("/modificar")
 	public String modificarProducto(@Valid @ModelAttribute("producto")Producto producto, BindingResult result, Model model) {
-		producto.setCodigo(productoEncontrado.getCodigo());
+		producto.setCodigo(productoEncontrado.getCodigo()); // necesario
 		if (result.hasFieldErrors("nombre") || result.hasFieldErrors("categoria") ||
 			result.hasFieldErrors("precio") || result.hasFieldErrors("descuento")) {
+			producto.setCodigo(productoEncontrado.getCodigo()); // necesario
 			model.addAttribute("edicion", true);
 			model.addAttribute("producto", producto);
 			return "nuevo-producto";
 		} else {
-			for (Producto prod : listaProductos.getProductos()) {
-				if (prod.getCodigo() == productoEncontrado.getCodigo()) {
-					prod.setNombre(producto.getNombre());
-					prod.setCategoria(producto.getCategoria());
-					prod.setPrecio(producto.getPrecio());
-					prod.setDescuento(producto.getDescuento());
-					prod.setPrecioFinal(producto.getPrecioFinal());
-					break;
-				}
-			}
+			productoService.modificarProducto(producto);
 			return "redirect:/productos/lista";
 		}
 	}
@@ -140,28 +130,9 @@ public class ProductosController {
 	 */
 	@GetMapping("/eliminar/{codigo}")
 	public String deleteProductoPage(@PathVariable("codigo")String codigo) {
-    	Producto productoABorrar = this.buscarProducto(codigo);
-    	listaProductos.getProductos().remove(productoABorrar);
+		System.out.println(codigo);
+    	productoService.eliminarProducto(codigo);
     	return "redirect:/productos/lista";
 	}
 	
-	/**
-	 * Busca un producto por su código.
-	 * 
-	 * @param codigo El código del producto a buscar.
-	 * @return El producto encontrado o null si no se encuentra ningún producto con ese código.
-	 */
-	private Producto buscarProducto(String codigo) {
-		Producto productoBuscado = null;
-    	for (Producto prod : listaProductos.getProductos()) {
-    		String codigoProducto = String.valueOf(prod.getCodigo()); 
-    		if (codigoProducto.equals(codigo)) {
-    			//System.out.println(codigoProducto);
-    			//System.out.println(prod.getCodigo());
-    			productoBuscado = prod;
-    			break;
-    		}
-    	}
-    	return productoBuscado;
-	}
 }
