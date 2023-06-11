@@ -11,16 +11,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ar.edu.unju.fi.listas.ListaServicios;
 import ar.edu.unju.fi.model.Servicio;
+import ar.edu.unju.fi.service.IServicioService;
 import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/servicios")
 public class ServicioDePaseosController {
 	
+	/**
+	 * Inyectamos la interfaz del servicio de Servicio
+	 */
 	@Autowired
-	ListaServicios listaServicios;
+	private IServicioService servicioService;
+	
+	/**
+	 *  variable auxiliar para poder modificar alguna sucursal exitosamente
+	 */
 	@Autowired
-	Servicio servicio, servicioEncontrado;
+	Servicio servicioEncontrado;
 	
 	/** Controlador para redireccionar a la pag de Servicios
 	 * @author Yufra Alejandro
@@ -39,7 +47,7 @@ public class ServicioDePaseosController {
 	 */
 	@GetMapping("/listado")
 	public String getServicioDePaseosPage(Model model) {
-		model.addAttribute("servicios", listaServicios.getServicios());
+		model.addAttribute("servicios", servicioService.listarServicios());
 		return "sdpaseos";
 	}
 	
@@ -50,10 +58,9 @@ public class ServicioDePaseosController {
 	 */
 	@GetMapping("/nuevo")
 	public String getListadoDeServiciosPage(Model model) {
-		servicio = new Servicio();
 		model.addAttribute("edicion", false);
 		model.addAttribute("disabled", false);
-		model.addAttribute("servicio", servicio);
+		model.addAttribute("servicio", servicioService.getServicio());
 		return "nuevo_servicio";
 	}
 	
@@ -70,8 +77,7 @@ public class ServicioDePaseosController {
 			model.addAttribute("servicio", servicio);
 			return "nuevo_servicio";
 		}
-		listaServicios.getServicios().add(servicio);
-        model.addAttribute("servicio", listaServicios.getServicios());
+		servicioService.guardarServicio(servicio);
         return "redirect:/servicios/listado";
     }
 	
@@ -83,15 +89,8 @@ public class ServicioDePaseosController {
 	 */
 	@GetMapping("/modificar/{nombre}")
 	public String getModificarServicioPage(@PathVariable("nombre")String nombre, Model model) {
-    	servicioEncontrado = new Servicio();
-		boolean edicion = true;
-    	model.addAttribute("edicion", edicion);
-		for (Servicio servi: listaServicios.getServicios()) {
-			if (servi.getNombre().equals(nombre)) {
-				servicioEncontrado = servi;
-				break;
-			}
-		}
+    	servicioEncontrado = servicioService.getBy(nombre);
+    	model.addAttribute("edicion", true);
 		model.addAttribute("servicio", servicioEncontrado);
 		return "nuevo_servicio";
 	}
@@ -103,22 +102,14 @@ public class ServicioDePaseosController {
 	 */
 	@PostMapping("/modificar")
 	public String modificarServicio(@Valid @ModelAttribute("servicio")Servicio servicio, BindingResult result, Model model) {
-		servicio.setNombre(servicioEncontrado.getNombre());
+		servicio.setNombre(servicioEncontrado.getNombre()); // necesario
 		if (result.hasErrors()) {
-			servicio.setNombre(servicioEncontrado.getNombre());
+			servicio.setNombre(servicioEncontrado.getNombre()); // necesario
 			model.addAttribute("servicio", servicio);
 			model.addAttribute("edicion", true);
 			return "nuevo_servicio";
 		} else {
-			for (Servicio servi : listaServicios.getServicios()) {
-				if (servi.getNombre().equals(servicioEncontrado.getNombre())) {
-					servi.setNombreMascota(nombreFormat(servicio.getNombreMascota()));
-			        servi.setServicio(servicio.getServicio());
-			        servi.setDia(servicio.getDia());
-			        servi.setHora(servicio.getHora());
-			        break;
-				}
-			}
+			servicioService.modificarServicio(servicio);
 			return "redirect:/servicios/listado";
 		}
 	}
@@ -130,23 +121,9 @@ public class ServicioDePaseosController {
 	 */
 	@GetMapping("/eliminar/{nombre}")
 	public String eliminarServicio(@PathVariable("nombre")String nombre) {
-		for (Servicio servi : listaServicios.getServicios()) {
-			if (servi.getNombre().equals(nombre)) {
-				listaServicios.getServicios().remove(servi);
-				break;
-			}
-		}
+		servicioService.eliminarServicio(nombre);
 		return "redirect:/servicios/listado";
 	}
-	
-	/** Convertir Primera Letra en Mayuscula
-     * @author Yufra Alejandro
-     * @param palabra
-     * @return la palabra ingresada como argumento pero con la primera letra en mayuscula
-     */
-    public String nombreFormat(String palabra) {
-    	return palabra.substring(0,1).toUpperCase() + palabra.substring(1).toLowerCase();
-    }
 	
 }
 
