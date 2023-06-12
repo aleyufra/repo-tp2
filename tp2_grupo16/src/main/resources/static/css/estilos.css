@@ -382,6 +382,15 @@ article {
 	}
 }
 
+.input-texto-consejo {
+	width: 90%;
+	height: 150px;
+	padding: 5px 10px;
+	border-radius: 6px;
+	margin: 10px 0px;
+	text-align: left;
+}
+
 /* ----------------------- Fin consejos de salud -------------------- */
 
 
