@@ -24,6 +24,12 @@ a:link, a:visited {
 	padding: 0 !important;
 }
 */
+.field-disabled {
+  background-color: #dedede !important;
+  cursor: not-allowed;
+  color: #999999;
+}
+
 header {
     background-color: lightblue;
     font-size: 25px;

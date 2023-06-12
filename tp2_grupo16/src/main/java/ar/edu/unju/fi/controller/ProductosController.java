@@ -25,11 +25,6 @@ public class ProductosController {
 	@Autowired
 	private IProductoService productoService;
 	
-	/**
-	 *  variable auxiliar para poder modificar algun producto exitosamente
-	 */
-	@Autowired
-	private Producto productoEncontrado;
 	
 	/** Redireccionamiento a pagina de productos
 	 * 
@@ -93,7 +88,7 @@ public class ProductosController {
 	 */
 	@GetMapping("/modificar/{codigo}")
 	public String getEditarProductoPage(@PathVariable("codigo")String codigo, Model model) {
-	    productoEncontrado = productoService.getBy(codigo.toString());
+	    Producto productoEncontrado = productoService.getBy(codigo.toString());
 		model.addAttribute("producto", productoEncontrado);
 		model.addAttribute("edicion", true);
 		return "nuevo-producto";
@@ -110,10 +105,7 @@ public class ProductosController {
 	 */
 	@PostMapping("/modificar")
 	public String modificarProducto(@Valid @ModelAttribute("producto")Producto producto, BindingResult result, Model model) {
-		producto.setCodigo(productoEncontrado.getCodigo()); // necesario
-		if (result.hasFieldErrors("nombre") || result.hasFieldErrors("categoria") ||
-			result.hasFieldErrors("precio") || result.hasFieldErrors("descuento")) {
-			producto.setCodigo(productoEncontrado.getCodigo()); // necesario
+		if (result.hasErrors()) {
 			model.addAttribute("edicion", true);
 			model.addAttribute("producto", producto);
 			return "nuevo-producto";

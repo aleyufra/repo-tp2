@@ -22,8 +22,8 @@
 	      	      th:object="${consejo}" method="post">
 	         <label for="titulo">Titulo: </label>
 	         <input th:field="*{titulo}" type="text" class="input-servicio" name="titulo" id="titulo" 
-	                th:disabled="${edicion} ? disabled : null"
-	                th:classappend="${#fields.hasErrors('titulo')} and ${not edicion} ? 'is-invalid' : ''">
+	                th:readonly="${edicion} ? 'readonly' : null"
+	                th:classappend="${not #fields.hasErrors('titulo')} and ${edicion} ? 'field-disabled' : 'is-invalid'">
 	         <div class="text-danger mb-3" th:if="${#fields.hasErrors('titulo')} and ${not edicion} " th:errors="*{titulo}"></div>
 	         
 	         <label for="categoria">Categoria: </label>

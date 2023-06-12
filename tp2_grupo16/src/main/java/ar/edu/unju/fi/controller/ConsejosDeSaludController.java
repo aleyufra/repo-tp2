@@ -21,11 +21,6 @@ public class ConsejosDeSaludController {
 	@Autowired
 	private IConsejoService consejoService;
 	
-	/**
-	 *  variable auxiliar para poder modificar algun consejo exitosamente
-	 */
-	@Autowired
-    private Consejo consejoEncontrado;
 
 	/**
 	 * Redirecciona a la página "consejos_de_salud"
@@ -70,10 +65,10 @@ public class ConsejosDeSaludController {
     public String guardarConsejo(@Valid @ModelAttribute("consejo")Consejo consejo, BindingResult result, Model model) {
         if (result.hasErrors()) {
         	model.addAttribute("consejo", consejo);
+        	model.addAttribute("edicion", false);
         	return "nuevo_consejo";
         } else {  
         	consejoService.guardarConsejo(consejo);
-
 	        return "redirect:/consejos_de_salud/listado";
         }
     }
@@ -86,7 +81,7 @@ public class ConsejosDeSaludController {
      */
     @GetMapping("/modificar/{titulo}")
     public String modificarConsejo(@PathVariable("titulo")String titulo, Model model) {
-    	consejoEncontrado = consejoService.getBy(titulo);
+    	Consejo consejoEncontrado = consejoService.getBy(titulo);
     	model.addAttribute("edicion", true);
     	model.addAttribute("consejo", consejoEncontrado);
     	return "nuevo_consejo";
@@ -99,9 +94,7 @@ public class ConsejosDeSaludController {
      */
     @PostMapping("/modificar")
     public String modificarConsejo(@Valid @ModelAttribute("consejo")Consejo consejo, BindingResult result, Model model) {
-    	consejo.setTitulo(consejoEncontrado.getTitulo());
     	if (result.hasErrors()) {
-    		consejo.setTitulo(consejoEncontrado.getTitulo());
     		model.addAttribute("consejo", consejo);
     		model.addAttribute("edicion", true);
 	    	return "nuevo_consejo";
