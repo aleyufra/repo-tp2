@@ -27,9 +27,9 @@
                      </div>
                      <div class="mb-3">
                         <label for="codigo-producto" class="form-label">Código: </label>
-                        <input th:field="*{codigo}" th:disabled="${edicion} ? disabled : null" type="number"
+                        <input th:field="*{codigo}" th:readonly="${edicion} ? 'readonly' : null" type="number"
                                class="form-control" id="codigo-producto"
-                               th:classappend="${#fields.hasErrors('codigo')} and ${not edicion} ? 'is-invalid' : ''">
+                               th:classappend="${not #fields.hasErrors('codigo')} and ${edicion} ? 'field-disabled' : ''">
                         <div class="text-danger" th:if="${#fields.hasErrors('codigo')} and ${not edicion}" th:errors="*{codigo}"></div>
                      </div>
                      <div class="mb-3">

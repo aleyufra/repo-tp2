@@ -24,12 +24,6 @@ public class SucursalesController {
 	@Autowired
 	private ISucursalService sucursalService;
 	
-	/**
-	 *  variable auxiliar para poder modificar alguna sucursal exitosamente
-	 */
-	@Autowired
-    private Sucursal sucursalEncontrada;
-	
 	/** Ir a la pagina de Sucursales
 	 * @author Yufra Alejandro
 	 * @return renderiza el la pag con el listado de sucursales
@@ -88,7 +82,7 @@ public class SucursalesController {
      */
     @GetMapping("/modificar/{nombre}")
     public String modificarSucursal(@PathVariable("nombre")String nombre, Model model) {
-    	sucursalEncontrada = sucursalService.getBy(nombre);
+    	Sucursal sucursalEncontrada = sucursalService.getBy(nombre);
     	model.addAttribute("edicion", true);
     	model.addAttribute("sucursal", sucursalEncontrada);
     	return "nueva_sucursal";
@@ -101,9 +95,7 @@ public class SucursalesController {
      */
     @PostMapping("/modificar")
     public String modificarSucursal(@Valid @ModelAttribute("sucursal")Sucursal sucursal, BindingResult result, Model model) {
-    	sucursal.setNombre(sucursalEncontrada.getNombre()); // necesario
     	if (result.hasErrors()) {
-    		sucursal.setNombre(sucursalEncontrada.getNombre()); // necesario
     		model.addAttribute("sucursal", sucursal);
     		model.addAttribute("edicion", true);
 	    	return "nueva_sucursal";

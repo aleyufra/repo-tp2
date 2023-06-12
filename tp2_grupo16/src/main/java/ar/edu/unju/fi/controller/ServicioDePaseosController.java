@@ -24,11 +24,6 @@ public class ServicioDePaseosController {
 	@Autowired
 	private IServicioService servicioService;
 	
-	/**
-	 *  variable auxiliar para poder modificar alguna sucursal exitosamente
-	 */
-	@Autowired
-	Servicio servicioEncontrado;
 	
 	/** Controlador para redireccionar a la pag de Servicios
 	 * @author Yufra Alejandro
@@ -89,7 +84,7 @@ public class ServicioDePaseosController {
 	 */
 	@GetMapping("/modificar/{nombre}")
 	public String getModificarServicioPage(@PathVariable("nombre")String nombre, Model model) {
-    	servicioEncontrado = servicioService.getBy(nombre);
+    	Servicio servicioEncontrado = servicioService.getBy(nombre);
     	model.addAttribute("edicion", true);
 		model.addAttribute("servicio", servicioEncontrado);
 		return "nuevo_servicio";
@@ -102,9 +97,7 @@ public class ServicioDePaseosController {
 	 */
 	@PostMapping("/modificar")
 	public String modificarServicio(@Valid @ModelAttribute("servicio")Servicio servicio, BindingResult result, Model model) {
-		servicio.setNombre(servicioEncontrado.getNombre()); // necesario
 		if (result.hasErrors()) {
-			servicio.setNombre(servicioEncontrado.getNombre()); // necesario
 			model.addAttribute("servicio", servicio);
 			model.addAttribute("edicion", true);
 			return "nuevo_servicio";
