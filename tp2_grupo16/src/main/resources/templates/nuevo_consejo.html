@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Servicios</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+   <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+   <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+
+<body>
+
+   <header th:replace="~{layouts/header :: header}"></header>
+
+      <div class="container-fluid">
+   		<div class="nuevo-servicio container m-auto">
+	      <div class="form-container col-12 col-sm-10 col-md-8 col-lg-5">
+	   		<h2 class="label-header" th:text="${edicion}?'Modificacion de turno':'Escribi tu consejo'"></h2>
+	   		
+	      	<form th:action="${edicion} ? @{/consejos_de_salud/modificar} : @{/consejos_de_salud/guardar}" 
+	      	      th:object="${consejo}" method="post">
+	         <label for="titulo">Titulo: </label>
+	         <input th:field="*{titulo}" type="text" class="input-servicio" name="titulo" id="titulo" 
+	                th:disabled="${edicion} ? disabled : null"
+	                th:classappend="${#fields.hasErrors('titulo')} and ${not edicion} ? 'is-invalid' : ''">
+	         <div class="text-danger mb-3" th:if="${#fields.hasErrors('titulo')} and ${not edicion} " th:errors="*{titulo}"></div>
+	         
+	         <label for="categoria">Categoria: </label>
+	         <select name="categoria" class="input-servicio" id="categoria" th:field="*{categoria}">
+	            <option value="">Seleccione una categoría</option>
+	            <option value="Alimentacion">Alimentación</option>
+	            <option value="Entrenamiento">Entrenamiento</option>
+	            <option value="Higiene">Higiene</option>
+	         </select>
+	         <div class="text-danger mb-3" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
+	         
+	         <label for="texto">Texto: </label>
+	         <textarea th:field="*{texto}" type="text" class="input-texto-consejo" name="texto" id="texto" 
+
+	                th:classappend="${#fields.hasErrors('texto')} ? 'is-invalid' : ''"></textarea>
+	         <div class="text-danger mb-3" th:if="${#fields.hasErrors('texto')} " th:errors="*{texto}"></div>
+	         
+	         <input type="submit" class="boton-anotarse" 
+	                th:value="${edicion} ? 'Guardar Cambios' : 'Publicar'">
+	      </form>
+	      </div>
+	   </div>
+   </div>
+
+   <footer th:replace="~{layouts/footer :: footer}"></footer>
+
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
