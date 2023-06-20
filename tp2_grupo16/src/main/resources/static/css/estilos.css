@@ -397,6 +397,18 @@ article {
 	text-align: left;
 }
 
+.consejos-publicados-container{
+	padding-top: 80px;
+}
+
+.consejos-publicados {
+	margin-bottom: 25px;
+	background-color: darkslategray;
+	border-radius: 8px;
+	padding: 20px;
+	color: #fff;
+}
+
 /* ----------------------- Fin consejos de salud -------------------- */
 
 
