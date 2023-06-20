@@ -46,6 +46,14 @@
                </div>
             </article>
          </section>
+         <div class="consejos-publicados-container row">
+         	<h2 class="text-center fw-bold mb-4">Consejos de Salud:</h2>
+         	<div th:each="conse: ${consejos_de_salud}" class="col-12 consejos-publicados">
+         		<h4 th:text="${conse.titulo}"></h4>
+         		<p th:text="${conse.categoria}"></p>
+         		<p th:text="${conse.texto}"></p>
+         	</div>
+         </div>
          <h1>Articulos para el cuidado de las mascotas </h1>
          <div class="row">
             <section>
