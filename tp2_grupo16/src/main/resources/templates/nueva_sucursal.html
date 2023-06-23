@@ -25,8 +25,8 @@
                      <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre del la sucursal: </label>
                         <input type="text" class="form-control" name="nombre" id="nombre"
-                           th:readonly="${edicion} ? 'readonly' : null" th:field="*{nombre}"
-                           th:classappend="${not #fields.hasErrors('nombre')} and ${edicion} ? 'field-disabled' : 'is-invalid'">
+                           th:readonly="${edicion} ? 'readonly' : null" th:field="*{nombre}">
+<!--                            th:classappend="${not #fields.hasErrors('nombre')} and ${edicion} ? 'field-disabled' : 'is-invalid'"> -->
                         <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                      </div>
                      <div class="mb-3">

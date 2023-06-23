@@ -2,15 +2,13 @@ package ar.edu.unju.fi.service;
 
 import java.util.List;
 
-import ar.edu.unju.fi.model.Sucursal;
+import ar.edu.unju.fi.entity.Sucursal;
 import jakarta.validation.Valid;
 
+/**
+ *  Clase interfaz del servicio de sucursales
+ */
 public interface ISucursalService {
-	
-	/**
-	 *  Clase interfaz del servicio de sucursales
-	 */
-	
 	
 	/** metodo para obtener la lista de sucursales
 	 * 
@@ -21,33 +19,33 @@ public interface ISucursalService {
 	
 	/** metodo para guardar una sucursal y agregarlo a la lista
 	 * 
-	 * @param sucursal a guardar
+	 * @param sucursal de tipo Sucursal
 	 */
 	void guardarSucursal(@Valid Sucursal sucursal);
 	
 	
 	/** metodo para modificar una sucursal de la lista
 	 * 
-	 * @param sucursal a modificar
+	 * @param sucursal de tipo Sucursal
 	 */
 	void modificarSucursal(Sucursal sucursal);
 	
 	
 	/** metodo para eliminar una sucursal de la lista
 	 * 
-	 * @param nombre de la sucursal
+	 * @param id de la sucursal
 	 */
-	void eliminarSucursal(String nombre);
+	void eliminarSucursal(Long id);
 	
 	
 	/** metodo para buscar una sucursal de a la lista
 	 * 
-	 * @param nombre de la sucursal
+	 * @param id de la sucursal
 	 * @return la sucursal encontrado
 	 */
-	Sucursal getBy(String nombre);
+	Sucursal getById(Long id);
 	
-	
+		
 	/** metodo para instanciar un nuevo objeto de la clase sucursal
 	 * 
 	 * @return la sucursal instanciada sin valores seteados

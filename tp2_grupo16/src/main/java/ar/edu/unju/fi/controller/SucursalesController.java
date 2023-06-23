@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ar.edu.unju.fi.model.Sucursal;
+import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
 
@@ -22,7 +23,10 @@ public class SucursalesController {
 	 * Inyectamos la interfaz del servicio de Sucursal
 	 */
 	@Autowired
+	@Qualifier("sucursalServiceMysqlImp")
 	private ISucursalService sucursalService;
+	
+	Long ide;
 	
 	/** Ir a la pagina de Sucursales
 	 * @author Yufra Alejandro
@@ -69,7 +73,6 @@ public class SucursalesController {
         	return "nueva_sucursal";
         } else {               
         	sucursalService.guardarSucursal(sucursal);
-
 	        return "redirect:/sucursales/listado";
         }
     }
@@ -80,9 +83,10 @@ public class SucursalesController {
      * @param model
      * @return renderiza la pag nueva_sucursal con sus datos que fueron guardados al crearlo
      */
-    @GetMapping("/modificar/{nombre}")
-    public String modificarSucursal(@PathVariable("nombre")String nombre, Model model) {
-    	Sucursal sucursalEncontrada = sucursalService.getBy(nombre);
+    @GetMapping("/modificar/{id}")
+    public String modificarSucursal(@PathVariable("id")Long id, Model model) {
+    	Sucursal sucursalEncontrada = sucursalService.getById(id);
+    	ide = sucursalEncontrada.getId();
     	model.addAttribute("edicion", true);
     	model.addAttribute("sucursal", sucursalEncontrada);
     	return "nueva_sucursal";
@@ -100,6 +104,7 @@ public class SucursalesController {
     		model.addAttribute("edicion", true);
 	    	return "nueva_sucursal";
     	} else {
+    		sucursal.setId(ide);
 	    	sucursalService.modificarSucursal(sucursal);
     		return "redirect:/sucursales/listado";
     	}
@@ -110,9 +115,9 @@ public class SucursalesController {
      * @param nombre
      * @return vuelve a renderizar la pag de sucursales y vuelve a cargar la lista de las sucursales
      */
-    @GetMapping("/eliminar/{nombre}")
-    public String eliminarSucursal(@PathVariable("nombre")String nombre) {
-    	sucursalService.eliminarSucursal(nombre);
+    @GetMapping("/eliminar/{id}")
+    public String eliminarSucursal(@PathVariable("id")Long id) {
+    	sucursalService.eliminarSucursal(id);
     	return "redirect:/sucursales/listado";
     }
     

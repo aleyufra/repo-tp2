@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.listas.ListaSucursales;
-import ar.edu.unju.fi.model.Sucursal;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
 
-@Service
+@Service("SucursalServiceImp")
 public class SucursalServiceImp implements ISucursalService{
 	
 	/**
@@ -66,27 +66,27 @@ public class SucursalServiceImp implements ISucursalService{
 		
 	}
 
-	@Override
-	public void eliminarSucursal(String nombre) {
-		for (Sucursal sucu : listaSucursales.getSucursales()) {
-    		if (sucu.getNombre().equals(nombre)) {
-    			listaSucursales.getSucursales().remove(sucu);
-    			break;
-    		}
-    	}
-	}
+//	@Override
+//	public void eliminarSucursal(String nombre) {
+//		for (Sucursal sucu : listaSucursales.getSucursales()) {
+//    		if (sucu.getNombre().equals(nombre)) {
+//    			listaSucursales.getSucursales().remove(sucu);
+//    			break;
+//    		}
+//    	}
+//	}
 
-	@Override
-	public Sucursal getBy(String nombre) {
-		Sucursal sucursalEncontrada = null;
-		for (Sucursal sucu : listaSucursales.getSucursales()) {
-			if (sucu.getNombre().equals(nombre)) {
-				sucursalEncontrada = sucu;
-				break;
-			}
-		}
-		return sucursalEncontrada;
-	}
+//	@Override
+//	public Sucursal getBy(String nombre) {
+//		Sucursal sucursalEncontrada = null;
+//		for (Sucursal sucu : listaSucursales.getSucursales()) {
+//			if (sucu.getNombre().equals(nombre)) {
+//				sucursalEncontrada = sucu;
+//				break;
+//			}
+//		}
+//		return sucursalEncontrada;
+//	}
 
 	@Override
 	public Sucursal getSucursal() {
@@ -102,4 +102,16 @@ public class SucursalServiceImp implements ISucursalService{
     public String nombreFormat(String palabra) {
     	return palabra.substring(0,1).toUpperCase() + palabra.substring(1).toLowerCase();
     }
+
+	@Override
+	public Sucursal getById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void eliminarSucursal(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
 }

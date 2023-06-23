@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ar.edu.unju.fi.entity.Contacto;
 import ar.edu.unju.fi.listas.ListaMensajes;
-import ar.edu.unju.fi.model.Contacto;
 import jakarta.validation.Valid;
 
 @Controller

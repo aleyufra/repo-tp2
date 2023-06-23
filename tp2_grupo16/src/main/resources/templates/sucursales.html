@@ -42,8 +42,8 @@
                            <td th:text="${sucu.telefono}"></td>
                            <td th:text="${sucu.estadoStr}"></td>
                            <td>
-                              <a class="btn btn-secondary" th:href="@{/sucursales/modificar/}+${sucu.nombre}">Modificar</a>
-                              <a class="btn btn-danger" th:href="@{/sucursales/eliminar/}+${sucu.nombre}">Eliminar</a>
+                              <a class="btn btn-secondary" th:href="@{/sucursales/modificar/}+${sucu.id}">Modificar</a>
+                              <a class="btn btn-danger" th:href="@{/sucursales/eliminar/}+${sucu.id}">Eliminar</a>
                            </td>
                         </tr>
                      </tbody>
