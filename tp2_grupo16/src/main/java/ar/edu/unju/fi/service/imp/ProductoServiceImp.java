@@ -41,9 +41,10 @@ public class ProductoServiceImp implements IProductoService {
 	@Override
 	public void modificarProducto(Producto producto) {
 		for (Producto prod : listaProductos.getProductos()) {
-			if (prod.getCodigo() == producto.getCodigo()) {
+			if (prod.getCodigo().equals(producto.getCodigo())) {
 				prod.setNombre(producto.getNombre());
 				prod.setCategoria(producto.getCategoria());
+				prod.setImagen(producto.getImagen());
 				prod.setPrecio(producto.getPrecio());
 				prod.setDescuento(producto.getDescuento());
 				prod.setPrecioFinal(producto.getPrecioFinal());

@@ -35,6 +35,9 @@ public class Producto {
 	@Max(value=9999, message="Debe ingresar un codigo de 4 digitos.")
 	private Integer codigo;
 	
+	@NotBlank(message = "Ingrese un URL válido")
+	private String imagen;
+	
 	@NotNull(message = "El campo de precio no puede estar vacío")
 	@DecimalMin(value="1.0", message="El precio deber ser minimo $1.00.")
 	@DecimalMax(value="999999.9", message="El precio debe ser menor a un millon.")
@@ -58,10 +61,11 @@ public class Producto {
 	 * @param precio del producto
 	 * @param descuento del producto, entero entre [1, 50]
 	 */
-	public Producto(String nombre, String categoria, Integer codigo, Double precio, Byte descuento) {
+	public Producto(String nombre, String categoria, Integer codigo, String imagen, Double precio, Byte descuento) {
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.codigo = codigo;
+		this.imagen = imagen;
 		this.precio = (Double) precio;
 		this.descuento = (Byte) descuento;
 		this.precioFinal = this.calcularPrecioConDescuento((Byte) this.descuento);
@@ -85,6 +89,12 @@ public class Producto {
 	}
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
+	}
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 	public Double getPrecio() {
 		return precio;

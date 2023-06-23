@@ -122,7 +122,6 @@ public class ProductosController {
 	 */
 	@GetMapping("/eliminar/{codigo}")
 	public String deleteProductoPage(@PathVariable("codigo")String codigo) {
-		System.out.println(codigo);
     	productoService.eliminarProducto(codigo);
     	return "redirect:/productos/lista";
 	}
