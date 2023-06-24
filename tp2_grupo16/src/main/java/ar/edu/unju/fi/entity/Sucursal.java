@@ -75,7 +75,7 @@ public class Sucursal {
 	
 	@ManyToOne
 	@JoinColumn(name = "prov_id")
-	@NotNull(message = "Debe seleccionar una de las opciones.")
+//	@NotNull(message = "Debe seleccionar una de las opciones.")
 	private Provincia provincia;
 	
 	public Sucursal() {}

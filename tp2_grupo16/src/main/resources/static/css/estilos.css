@@ -538,6 +538,7 @@ article {
 	white-space: wrap;
 	font-family: 'Roboto', sans-serif;
 	font-style: normal;
+	padding: 5px 3px;
 }
 
 .table thead tr th {
@@ -647,11 +648,11 @@ article {
 	max-width: 450px;
 }
 
-.form-sucursal #ciudad,
-.form-sucursal #fechaInauguracion,
-.form-sucursal #telefono {
-	max-width: 350px;
-}
+/* .form-sucursal #ciudad, */
+/* .form-sucursal #fechaInauguracion, */
+/* .form-sucursal #telefono { */
+/* 	max-width: 350px; */
+/* } */
 
 #bth-nuevaSucursal {
 	width: fit-content;

@@ -63,12 +63,9 @@ public class SucursalesController {
      */
     @GetMapping("/nueva")
     public String getNuevaSucursalPage(Model model) {
-    	List<Provincia> provincias = provinciaService.getProvincias();
-    	Sucursal nuevaSucursal = sucursalService.getSucursal();
-    	nuevaSucursal.setProvincia(new Provincia()); // Asignar una instancia vacía de Provincia
         model.addAttribute("edicion", false);
         model.addAttribute("sucursal", sucursalService.getSucursal());
-        model.addAttribute("provincias", provincias);
+        model.addAttribute("provincias", provinciaService.getProvincias());
         return "nueva_sucursal";
     }
     
@@ -80,7 +77,7 @@ public class SucursalesController {
      */
     @PostMapping("/guardar")
     public String guardarSucursal(@Valid @ModelAttribute("sucursal")Sucursal sucursal, BindingResult result, Model model) {
-    	if (sucursal.getProvincia().getId() == null) {
+    	if (sucursal.getProvincia() == null || sucursal.getProvincia().getId() == null) {
     		sucursal.setProvincia(null);
             result.rejectValue("provincia", "error.provincia", "Debe seleccionar una provincia");
     	}
@@ -117,6 +114,10 @@ public class SucursalesController {
      */
     @PostMapping("/modificar")
     public String modificarSucursal(@Valid @ModelAttribute("sucursal")Sucursal sucursal, BindingResult result, Model model) {
+    	if (sucursal.getProvincia() == null || sucursal.getProvincia().getId() == null) {
+     		sucursal.setProvincia(null);
+            result.rejectValue("provincia", "error.provincia", "Debe seleccionar una provincia");
+     	}
     	if (result.hasErrors()) {
     		model.addAttribute("sucursal", sucursal);
     		model.addAttribute("provincias", provinciaService.getProvincias());

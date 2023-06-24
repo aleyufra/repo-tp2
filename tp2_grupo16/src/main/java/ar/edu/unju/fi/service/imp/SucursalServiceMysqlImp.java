@@ -28,8 +28,10 @@ public class SucursalServiceMysqlImp implements ISucursalService {
 	public void guardarSucursal(@Valid Sucursal sucursal) {
 		if (sucursal.getEstadoStr().equals("Abierto")) {
 			sucursal.setEstado(true);
+			sucursal.setEstadoStr("Abierto");
 		} else if (sucursal.getEstadoStr().equals("Cerrado")) {
 			sucursal.setEstado(false);
+			sucursal.setEstadoStr("Cerrado");
 		}
 		sucursalRepository.save(sucursal);
 	}
