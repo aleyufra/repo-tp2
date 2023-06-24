@@ -1,9 +1,11 @@
 package ar.edu.unju.fi.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ar.edu.unju.fi.entity.Provincia;
 import ar.edu.unju.fi.entity.Sucursal;
@@ -33,8 +36,7 @@ public class SucursalesController {
 	@Autowired
 	@Qualifier("provinciaServiceImp")
 	private IProvinciaService provinciaService;
-	
-	Long ide;
+
 	
 	/** Ir a la pagina de Sucursales
 	 * @author Yufra Alejandro
@@ -44,6 +46,7 @@ public class SucursalesController {
     public String getSucursalesPage() {
         return "redirect:/sucursales/listado";
     }
+    
     
     /** Cargar el listado de las sucursales 
      * @author Yufra Alejandro
@@ -55,6 +58,7 @@ public class SucursalesController {
     	model.addAttribute("sucursales", sucursalService.listarSucursales());
         return "sucursales";
     }
+    
     
     /** Crear una nueva Sucursal seleccionada
      * @author Yufra Alejandro
@@ -68,6 +72,7 @@ public class SucursalesController {
         model.addAttribute("provincias", provinciaService.getProvincias());
         return "nueva_sucursal";
     }
+    
     
     /** Guardar una nueva Sucursal
      * @author Yufra Alejandro
@@ -90,6 +95,7 @@ public class SucursalesController {
 	        return "redirect:/sucursales/listado";
         }
     }
+	Long ide; // variable auxiliar
     
     /** Modifica una Sucursal de la lista
      * @author Yufra Alejandro
@@ -106,6 +112,7 @@ public class SucursalesController {
     	model.addAttribute("provincias", provinciaService.getProvincias());
     	return "nueva_sucursal";
     }
+    
     
     /** Modifica la Sucursal seleccionada
      * @author Yufra Alejandro
@@ -130,8 +137,9 @@ public class SucursalesController {
     	}
     }
     
+    
     /** Eliminar una sucursal de la lista
-     * @author Yufra Alejandro
+     
      * @param nombre
      * @return vuelve a renderizar la pag de sucursales y vuelve a cargar la lista de las sucursales
      */
@@ -139,6 +147,26 @@ public class SucursalesController {
     public String eliminarSucursal(@PathVariable("id")Long id) {
     	sucursalService.eliminarSucursal(id);
     	return "redirect:/sucursales/listado";
+    }
+    
+    
+    /** Filtrar las sucursales entre fechas
+     * 
+     * @author Yufra Alejandro
+     * @param fechaInicio
+     * @param fechaFin
+     * @param model
+     * @return renderiza la pagina de sucursales con la lista de sucursales filtradas
+     */
+    @GetMapping("/filtrar-sucursales")
+    public String filtrarSucursales(@RequestParam("fechaInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechaInicio,
+        @RequestParam("fechaFin") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechaFin, Model model) {
+        List<Sucursal> sucursalesFiltradas = sucursalService.getSucursalesByFecha(fechaInicio, fechaFin);
+        model.addAttribute("sucursales", sucursalesFiltradas);
+        System.out.println(fechaInicio);
+        System.out.println(fechaFin);
+        System.out.println("funciona guey");
+        return "sucursales";
     }
     
 }

@@ -17,7 +17,17 @@
       <div class="sucursales-container container m-auto">
          <section class="section-sucursales row">
             <article class="article-sucursales col-12">
-               <a class="btn btn-dark btn-agregarSucursal" th:href="@{/sucursales/nueva}">Agregar Sucursal</a>
+               <div class="sucursales-opciones-container">
+                   <a class="btn btn-dark btn-agregarSucursal" th:href="@{/sucursales/nueva}">Agregar Sucursal</a>
+	               <form action="/sucursales/filtrar-sucursales" method="get">
+					    <label for="fechaInicio">Fecha de inicio:</label>
+					    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
+					    <label for="fechaFin">Fecha de fin:</label>
+					    <input type="date" class="form-control" id="fechaFin" name="fechaFin" required>
+					    <input type="submit" class="btn btn-sm btn-dark" value="Filtrar">
+					    <a class="btn btn-dark btn-sm" th:href="@{/sucursales/listado}">Sin Filtro</a>
+					</form>
+               </div>
                <div class="table-responsive">
                   <table class="table align-middle">
                      <thead>

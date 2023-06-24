@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.service.imp;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,5 +114,12 @@ public class SucursalServiceImp implements ISucursalService{
 	public void eliminarSucursal(Long id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public List<Sucursal> getSucursalesByFecha(LocalDate fechaInicio, LocalDate fechaFin) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

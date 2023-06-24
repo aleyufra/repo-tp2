@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import ar.edu.unju.fi.entity.Sucursal;
@@ -31,7 +32,7 @@ public interface ISucursalService {
 	void modificarSucursal(Sucursal sucursal);
 	
 	
-	/** metodo para eliminar una sucursal de la lista
+	/** metodo para cambiar el estado de una sucursal a Cerrado
 	 * 
 	 * @param id de la sucursal
 	 */
@@ -51,5 +52,13 @@ public interface ISucursalService {
 	 * @return la sucursal instanciada sin valores seteados
 	 */
 	Sucursal getSucursal();
-
+	
+	
+	/** metodo para filtrar sucursales entre dos fechas
+	 * 
+	 * @param fechaInicio de tipo LocalDate
+	 * @param fechaFin de tipo LocalDate
+	 * @return ArrayList de sucursales filtradas
+	 */
+	List<Sucursal> getSucursalesByFecha(LocalDate fechaInicio, LocalDate fechaFin);
 }

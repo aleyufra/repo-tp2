@@ -516,10 +516,33 @@ article {
 
 .btn-agregarSucursal {
 	margin-bottom: 20px;
+	height: fit-content;
+	width: 200px;
 }
 
 .article-sucursales {
 	padding: 0px !important;
+}
+
+.sucursales-opciones-container {
+	display: flex;
+	height: fit-content;
+}
+
+.sucursales-opciones-container form {
+	display: flex;
+	align-items: center;
+	height: fit-content;
+/* 	border: 1px solid red; */
+	width: 100%;
+	margin-left: 20px;
+}
+
+.sucursales-opciones-container input {
+	margin: 0px 10px;
+	max-width: 200px;
+	height: fit-content;
+	max-height: 30px;
 }
 
 .table {
