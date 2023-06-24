@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ar.edu.unju.fi.entity.Provincia;
 import ar.edu.unju.fi.entity.Sucursal;
+import ar.edu.unju.fi.repository.ISucursalRepository;
 import ar.edu.unju.fi.service.IProvinciaService;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
@@ -36,15 +37,20 @@ public class SucursalesController {
 	@Autowired
 	@Qualifier("provinciaServiceImp")
 	private IProvinciaService provinciaService;
-
+	
+	/*
+	 * variable auxiliar para al cambiar de pagina la lista no se reestablesca a tener todas las sucursales despues de filtrar
+	 */
+	private List<Sucursal> listaDeLasSucursales;
 	
 	/** Ir a la pagina de Sucursales
 	 * @author Yufra Alejandro
 	 * @return renderiza el la pag con el listado de sucursales
 	 */
     @GetMapping("")
-    public String getSucursalesPage() {
-        return "redirect:/sucursales/listado";
+    public String getSucursalesPage(Model model) {
+    	model.addAttribute("sucursales", listaDeLasSucursales);
+        return "sucursales";
     }
     
     
@@ -55,8 +61,9 @@ public class SucursalesController {
      */
     @GetMapping("/listado")
     public String getListaDeSucursalesPage(Model model) {
+    	listaDeLasSucursales = sucursalService.listarSucursales();
     	model.addAttribute("sucursales", sucursalService.listarSucursales());
-        return "sucursales";
+        return "gestion";
     }
     
     
@@ -133,7 +140,7 @@ public class SucursalesController {
     	} else {
     		sucursal.setId(ide);
 	    	sucursalService.modificarSucursal(sucursal);
-    		return "redirect:/sucursales/listado";
+	    	return "redirect:/sucursales/listado";
     	}
     }
     
@@ -162,14 +169,11 @@ public class SucursalesController {
     public String filtrarSucursales(@RequestParam("fechaInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechaInicio,
         @RequestParam("fechaFin") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechaFin, Model model) {
         List<Sucursal> sucursalesFiltradas = sucursalService.getSucursalesByFecha(fechaInicio, fechaFin);
+        listaDeLasSucursales = sucursalesFiltradas;
         model.addAttribute("sucursales", sucursalesFiltradas);
-        System.out.println(fechaInicio);
-        System.out.println(fechaFin);
-        System.out.println("funciona guey");
-        return "sucursales";
+        return "gestion";
     }
     
 }
-
 
 

@@ -69,6 +69,7 @@ public class SucursalServiceMysqlImp implements ISucursalService {
 		// realizamos una eliminacion logica
 		Sucursal sucu = sucursalRepository.findById(id).get();
 		sucu.setEstado(false);
+		sucu.setEstadoStr("Cerrado");
 		sucursalRepository.save(sucu);
 	}
 

@@ -17,52 +17,9 @@
       <div class="sucursales-container container m-auto">
          <section class="section-sucursales row">
             <article class="article-sucursales col-12">
-               <div class="sucursales-opciones-container">
-                   <a class="btn btn-dark btn-agregarSucursal" th:href="@{/sucursales/nueva}">Agregar Sucursal</a>
-	               <form action="/sucursales/filtrar-sucursales" method="get">
-					    <label for="fechaInicio">Fecha de inicio:</label>
-					    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
-					    <label for="fechaFin">Fecha de fin:</label>
-					    <input type="date" class="form-control" id="fechaFin" name="fechaFin" required>
-					    <input type="submit" class="btn btn-sm btn-dark" value="Filtrar">
-					    <a class="btn btn-dark btn-sm" th:href="@{/sucursales/listado}">Sin Filtro</a>
-					</form>
-               </div>
-               <div class="table-responsive">
-                  <table class="table align-middle">
-                     <thead>
-                        <tr>
-                           <th scope="col">#ID</th>
-                           <th scope="col">Nombre</th>
-                           <th scope="col">Dirección</th>
-<!--                            <th scope="col">Barrio</th> -->
-                           <th scope="col">Ciudad</th>
-                           <th scope="col">Provincia</th>
-                           <th scope="col">Inaugurado</th>
-                           <th scope="col">Teléfono</th>
-                           <th scope="col">Estado</th>
-                           <th scope="col">Acciones</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr th:each="sucu: ${sucursales}">
-                           <td scope="row" th:text="${sucu.id}"></td>
-                           <td th:text="${sucu.nombre}"></td>
-                           <td th:text="${sucu.direccion}"></td>
-<!--                            <td th:text="${sucu.barrio}"></td> -->
-                           <td th:text="${sucu.ciudad}"></td>
-                           <td th:text="${sucu.provincia.nombre}"></td>
-                           <td th:text="${#temporals.format(sucu.fechaInauguracion, 'dd/MM/yyyy')}"></td>
-                           <td th:text="${sucu.telefono}"></td>
-                           <td th:text="${sucu.estadoStr}"></td>
-                           <td>
-                              <a class="btn btn-sm btn-secondary" th:href="@{/sucursales/modificar/}+${sucu.id}">Modificar</a>
-                              <a class="btn btn-sm btn-danger" th:href="@{/sucursales/eliminar/}+${sucu.id}">Eliminar</a>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
+            
+<!--              <p>se paso la tabla a la pagina gestion</p> -->
+                            
             </article>
          </section>
 		 
