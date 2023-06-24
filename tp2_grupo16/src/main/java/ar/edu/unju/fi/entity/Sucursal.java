@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -55,7 +57,7 @@ public class Sucursal {
 	private String telefono;
 	
 	@Column(name = "sucu_fechaInauguracion", nullable = false)
-	@NotNull(message = "El campo no debe estar vacío")
+	@NotNull(message = "Debe asignar una fecha")
 	@PastOrPresent(message = "La fecha no puede ser posterior al actual")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate fechaInauguracion;
@@ -71,6 +73,11 @@ public class Sucursal {
 	@Column(name = "sucu_estado", nullable = false)
 	private boolean estado;
 	
+	@ManyToOne
+	@JoinColumn(name = "prov_id")
+	@NotNull(message = "Debe seleccionar una de las opciones.")
+	private Provincia provincia;
+	
 	public Sucursal() {}
 	
 	/**
@@ -83,7 +90,8 @@ public class Sucursal {
 	 * @param fechaInauguracion La fecha de inauguración de la sucursal
 	 * @param telefono El telefono de la sucursal
 	 */
-	public Sucursal(Long id, String nombre, String direccion, String barrio, String ciudad, LocalDate fechaInauguracion, String telefono, String imagen, String estadoStr, boolean estado) {
+	public Sucursal(Long id, String nombre, String direccion, String barrio, String ciudad, LocalDate fechaInauguracion, 
+			String telefono, String imagen, String estadoStr, boolean estado, Provincia provincia) {
 		this.id = id;
 		this.nombre = nombre;
 		this.direccion = direccion;
@@ -94,9 +102,10 @@ public class Sucursal {
 		this.imagen = imagen;
 		this.estadoStr = estadoStr;
 		this.estado = estado;
+		this.provincia = provincia;
 	}
 
-	// METODOS GETTERS AND SETTERS
+	// getters and setters
 	
 	public Long getId() {
 		return id;
@@ -152,7 +161,6 @@ public class Sucursal {
 	 * 
 	 * @param fechaInauguracion es la fecha de inauguración a establecer
 	 */
-	
 	public void setFechaInauguracion(LocalDate fechaInauguracion) {
 		this.fechaInauguracion = fechaInauguracion;
 	}
@@ -180,4 +188,15 @@ public class Sucursal {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+
+	public Provincia getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+		//provincia.getSucursales().add(this); // Establece la asociación en ambos lados
+	}
+	
+	
 }

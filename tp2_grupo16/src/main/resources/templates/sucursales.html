@@ -22,10 +22,12 @@
                   <table class="table table-striped align-middle">
                      <thead>
                         <tr>
+                           <th scope="col">Id</th>
                            <th scope="col">Nombre</th>
                            <th scope="col">Dirección</th>
-                           <th scope="col">Barrio</th>
+<!--                            <th scope="col">Barrio</th> -->
                            <th scope="col">Ciudad</th>
+                           <th scope="col">Provincia</th>
                            <th scope="col">Fecha de inauguración</th>
                            <th scope="col">Teléfono</th>
                            <th scope="col">Estado</th>
@@ -34,16 +36,18 @@
                      </thead>
                      <tbody>
                         <tr th:each="sucu: ${sucursales}">
-                           <td scope="row" th:text="${sucu.nombre}"></td>
+                           <td scope="row" th:text="${sucu.id}"></td>
+                           <td th:text="${sucu.nombre}"></td>
                            <td th:text="${sucu.direccion}"></td>
-                           <td th:text="${sucu.barrio}"></td>
+<!--                            <td th:text="${sucu.barrio}"></td> -->
                            <td th:text="${sucu.ciudad}"></td>
+                           <td th:text="${sucu.provincia.nombre}"></td>
                            <td th:text="${#temporals.format(sucu.fechaInauguracion, 'dd/MM/yyyy')}"></td>
                            <td th:text="${sucu.telefono}"></td>
                            <td th:text="${sucu.estadoStr}"></td>
                            <td>
-                              <a class="btn btn-secondary" th:href="@{/sucursales/modificar/}+${sucu.id}">Modificar</a>
-                              <a class="btn btn-danger" th:href="@{/sucursales/eliminar/}+${sucu.id}">Eliminar</a>
+                              <a class="btn btn-sm btn-secondary" th:href="@{/sucursales/modificar/}+${sucu.id}">Modificar</a>
+                              <a class="btn btn-sm btn-danger" th:href="@{/sucursales/eliminar/}+${sucu.id}">Eliminar</a>
                            </td>
                         </tr>
                      </tbody>
@@ -62,9 +66,9 @@
 		                        alt="antipulgas y garrapatas" />
 		                     <h2 th:text="${sucu.nombre}"></h2>
 		                     <p th:text="'Direccion: ' + ${sucu.direccion}"></p>
-		                     <p th:text="'Barrio: ' + ${sucu.barrio}"></p>
-		                     <p th:text="${sucu.ciudad}"></p>
-		                     <p th:text="'Telefono: ' + ${sucu.telefono}"></p>
+		                     <p th:text="'Barrio: ' + ${sucu.barrio}"></p>		                     
+		                     <p th:text="${sucu.ciudad} + ', ' + ${sucu.provincia.nombre}"></p>
+		                     <p th:text="'Telefono: ' + ${sucu.telefono} + ' - ' + ${sucu.estadoStr}"></p>
 		                  </div>
 	                  </div>
                </article>

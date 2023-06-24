@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ar.edu.unju.fi.entity.Provincia;
 import ar.edu.unju.fi.entity.Sucursal;
+import ar.edu.unju.fi.service.IProvinciaService;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
 
@@ -25,6 +29,10 @@ public class SucursalesController {
 	@Autowired
 	@Qualifier("sucursalServiceMysqlImp")
 	private ISucursalService sucursalService;
+	
+	@Autowired
+	@Qualifier("provinciaServiceImp")
+	private IProvinciaService provinciaService;
 	
 	Long ide;
 	
@@ -55,8 +63,12 @@ public class SucursalesController {
      */
     @GetMapping("/nueva")
     public String getNuevaSucursalPage(Model model) {
+    	List<Provincia> provincias = provinciaService.getProvincias();
+    	Sucursal nuevaSucursal = sucursalService.getSucursal();
+    	nuevaSucursal.setProvincia(new Provincia()); // Asignar una instancia vacía de Provincia
         model.addAttribute("edicion", false);
         model.addAttribute("sucursal", sucursalService.getSucursal());
+        model.addAttribute("provincias", provincias);
         return "nueva_sucursal";
     }
     
@@ -68,8 +80,13 @@ public class SucursalesController {
      */
     @PostMapping("/guardar")
     public String guardarSucursal(@Valid @ModelAttribute("sucursal")Sucursal sucursal, BindingResult result, Model model) {
-        if (result.hasErrors()) {
+    	if (sucursal.getProvincia().getId() == null) {
+    		sucursal.setProvincia(null);
+            result.rejectValue("provincia", "error.provincia", "Debe seleccionar una provincia");
+    	}
+    	if (result.hasErrors()) {
         	model.addAttribute("sucursal", sucursal);
+        	model.addAttribute("provincias", provinciaService.getProvincias());
         	return "nueva_sucursal";
         } else {               
         	sucursalService.guardarSucursal(sucursal);
@@ -89,6 +106,7 @@ public class SucursalesController {
     	ide = sucursalEncontrada.getId();
     	model.addAttribute("edicion", true);
     	model.addAttribute("sucursal", sucursalEncontrada);
+    	model.addAttribute("provincias", provinciaService.getProvincias());
     	return "nueva_sucursal";
     }
     
@@ -101,6 +119,7 @@ public class SucursalesController {
     public String modificarSucursal(@Valid @ModelAttribute("sucursal")Sucursal sucursal, BindingResult result, Model model) {
     	if (result.hasErrors()) {
     		model.addAttribute("sucursal", sucursal);
+    		model.addAttribute("provincias", provinciaService.getProvincias());
     		model.addAttribute("edicion", true);
 	    	return "nueva_sucursal";
     	} else {
