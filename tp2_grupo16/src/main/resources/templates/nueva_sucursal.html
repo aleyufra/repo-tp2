@@ -24,9 +24,7 @@
                         th:object="${sucursal}" method="post">
                      <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre del la sucursal: </label>
-                        <input type="text" class="form-control" name="nombre" id="nombre"
-                           th:readonly="${edicion} ? 'readonly' : null" th:field="*{nombre}"
-                           th:classappend="${not #fields.hasErrors('nombre')} and ${edicion} ? 'field-disabled' : 'is-invalid'">
+                        <input type="text" class="form-control" name="nombre" id="nombre" th:field="*{nombre}">
                         <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                      </div>
                      <div class="mb-3">
@@ -48,15 +46,17 @@
                      </div>
                      <div class="mb-3">
                         <label for="ciudad" class="form-label">Ciudad: </label>
-                        <select name="ciudad" class="form-select" id="ciudad" th:field="*{ciudad}">
-                           <option value="">Seleccione una opción</option>
-                           <option value="San Salvador De Jujuy">San Salvador de Jujuy</option>
-                           <option value="Palpalá">Palpalá</option>
-                           <option value="El Carmen">El Cármen</option>
-                           <option value="Perico">Perico</option>
-                        </select>
+                        <input type="text" name="ciudad" class="form-control" id="ciudad" th:field="*{ciudad}">
                         <div class="text-danger" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></div>
                      </div>
+                     <div class="mb-3">
+				        <label for="provincia" class="form-label">Provincia:</label>
+				        <select class="form-select" id="provincia" name="provincia.id" th:field="*{provincia}">
+				            <option value="">Seleccione una opción</option>
+				            <option th:each="provincia : ${provincias}" th:value="${provincia.id}" th:text="${provincia.nombre}"></option>
+				        </select>
+				        <div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
+				    </div>
                      <div class="mb-3">
                         <label for="fechaInauguracion" class="form-label text-start">Fecha de Inauguracion</label>
                         <input type="date" class="form-control" name="fechaInauguracion"

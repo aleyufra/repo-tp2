@@ -4,8 +4,15 @@ import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Pattern;
@@ -17,37 +24,59 @@ import jakarta.validation.constraints.Size;
  *
  */
 @Component
+@Entity
+@Table(name = "sucursales")
 public class Sucursal {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "sucu_id")
+	private Long id;
+	
+	@Column(name = "sucu_nombre", nullable = false)
 	@Size(min= 4 , max = 32, message="el nombre del producto debe contener 4-32 caracteres.")
 	@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar únicamente letras.")
 	private String nombre;
 	
+	@Column(name = "sucu_direccion", nullable = false)
 	@NotBlank(message = "Debe seleccionar una de las opciones.")
 	private String direccion;
 	
+	@Column(name = "sucu_barrio", nullable = false)
 	@NotBlank(message = "El campo no puede estar vacio.")
 	@Pattern(regexp = "[a-z A-Z]*", message="No debe ingresar caracteres numericos.")
 	private String barrio;
 	
+	@Column(name = "sucu_ciudad", nullable = false)
 	@NotBlank(message = "El campo no puede estar vacio.")
 	private String ciudad;
 	
+	@Column(name = "sucu_telefono", nullable = false)
 	@Pattern(regexp = "[0-9][0-9][0-9]+-+[0-9][0-9][0-9][0-9][0-9][0-9][0-9]", 
 			 message = "ingrese un num de telefono valido. (Ej: (388-1234567)")
 	private String telefono;
 	
-	@NotNull(message = "El campo no debe estar vacío")
+	@Column(name = "sucu_fechaInauguracion", nullable = false)
+	@NotNull(message = "Debe asignar una fecha")
 	@PastOrPresent(message = "La fecha no puede ser posterior al actual")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate fechaInauguracion;
 	
+	@Column(name = "sucu_imagen", nullable = false)
 	@NotBlank(message = "Ingrese un URL válido")
 	private String imagen;
 	
+	@Column(name = "sucu_estadoStr", nullable = false)
 	@NotBlank(message = "Debe seleccionar una de las opciones.")
 	private String estadoStr;
+	
+	@Column(name = "sucu_estado", nullable = false)
 	private boolean estado;
+	
+	@ManyToOne
+	@JoinColumn(name = "prov_id")
+//	@NotNull(message = "Debe seleccionar una de las opciones.")
+	private Provincia provincia;
 	
 	public Sucursal() {}
 	
@@ -61,7 +90,9 @@ public class Sucursal {
 	 * @param fechaInauguracion La fecha de inauguración de la sucursal
 	 * @param telefono El telefono de la sucursal
 	 */
-	public Sucursal(String nombre, String direccion, String barrio, String ciudad, LocalDate fechaInauguracion, String telefono, String imagen, String estadoStr, boolean estado) {
+	public Sucursal(Long id, String nombre, String direccion, String barrio, String ciudad, LocalDate fechaInauguracion, 
+			String telefono, String imagen, String estadoStr, boolean estado, Provincia provincia) {
+		this.id = id;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.barrio = barrio;
@@ -71,13 +102,20 @@ public class Sucursal {
 		this.imagen = imagen;
 		this.estadoStr = estadoStr;
 		this.estado = estado;
+		this.provincia = provincia;
 	}
 
-	// METODOS GETTERS AND SETTERS
+	// getters and setters
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -123,7 +161,6 @@ public class Sucursal {
 	 * 
 	 * @param fechaInauguracion es la fecha de inauguración a establecer
 	 */
-	
 	public void setFechaInauguracion(LocalDate fechaInauguracion) {
 		this.fechaInauguracion = fechaInauguracion;
 	}
@@ -151,4 +188,15 @@ public class Sucursal {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+
+	public Provincia getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+		//provincia.getSucursales().add(this); // Establece la asociación en ambos lados
+	}
+	
+	
 }
