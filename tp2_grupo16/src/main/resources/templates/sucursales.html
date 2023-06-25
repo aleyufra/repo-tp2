@@ -17,54 +17,25 @@
       <div class="sucursales-container container m-auto">
          <section class="section-sucursales row">
             <article class="article-sucursales col-12">
-               <a class="btn btn-dark btn-agregarSucursal" th:href="@{/sucursales/nueva}">Agregar Sucursal</a>
-               <div class="table-responsive">
-                  <table class="table table-striped align-middle">
-                     <thead>
-                        <tr>
-                           <th scope="col">Nombre</th>
-                           <th scope="col">Dirección</th>
-                           <th scope="col">Barrio</th>
-                           <th scope="col">Ciudad</th>
-                           <th scope="col">Fecha de inauguración</th>
-                           <th scope="col">Teléfono</th>
-                           <th scope="col">Estado</th>
-                           <th scope="col">Acciones</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr th:each="sucu: ${sucursales}">
-                           <td scope="row" th:text="${sucu.nombre}"></td>
-                           <td th:text="${sucu.direccion}"></td>
-                           <td th:text="${sucu.barrio}"></td>
-                           <td th:text="${sucu.ciudad}"></td>
-                           <td th:text="${#temporals.format(sucu.fechaInauguracion, 'dd/MM/yyyy')}"></td>
-                           <td th:text="${sucu.telefono}"></td>
-                           <td th:text="${sucu.estadoStr}"></td>
-                           <td>
-                              <a class="btn btn-secondary" th:href="@{/sucursales/modificar/}+${sucu.nombre}">Modificar</a>
-                              <a class="btn btn-danger" th:href="@{/sucursales/eliminar/}+${sucu.nombre}">Eliminar</a>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
+            
+<!--              <p>se paso la tabla a la pagina gestion</p> -->
+                            
             </article>
          </section>
 		 
-         <div class="row">
+         <div class="row mt-3">
             <div class="col-12">
                <article class="article-sucursales row d-flex flex-wrap">
+               		  <h3 class="text-center">Visita nuestras Sucursales!</h3>
 	                  <div th:each="sucu: ${sucursales}"
 	                       th:classappend="${sucu.estado} ? 'd-block' : 'd-none'" class="sucursal col-12 col-md-6">
 	                  	  <div  class="sucursal-body">
 		                     <img class="imagen-producto" th:src="@{${sucu.imagen}}"
 		                        alt="antipulgas y garrapatas" />
 		                     <h2 th:text="${sucu.nombre}"></h2>
-		                     <p th:text="'Direccion: ' + ${sucu.direccion}"></p>
-		                     <p th:text="'Barrio: ' + ${sucu.barrio}"></p>
-		                     <p th:text="${sucu.ciudad}"></p>
-		                     <p th:text="'Telefono: ' + ${sucu.telefono}"></p>
+		                     <p th:text="'Direccion: ' + ${sucu.direccion} + ', ' + ${sucu.barrio}"></p>                     
+		                     <p th:text="${sucu.ciudad} + ', ' + ${sucu.provincia.nombre}"></p>
+		                     <p th:text="'Telefono: ' + ${sucu.telefono} + ' - ' + ${sucu.estadoStr}"></p>
 		                  </div>
 	                  </div>
                </article>
