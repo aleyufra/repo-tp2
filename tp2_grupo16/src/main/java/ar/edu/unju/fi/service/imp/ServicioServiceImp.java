@@ -10,7 +10,7 @@ import ar.edu.unju.fi.listas.ListaServicios;
 import ar.edu.unju.fi.service.IServicioService;
 import jakarta.validation.Valid;
 
-@Service
+@Service("servicioServiceImp")
 public class ServicioServiceImp implements IServicioService {
 	
 	/**
@@ -52,27 +52,29 @@ public class ServicioServiceImp implements IServicioService {
 		}
 	}
 
-	@Override
-	public void eliminarServicio(String nombre) {
-		for (Servicio servi : listaServicios.getServicios()) {
-			if (servi.getNombre().equals(nombre)) {
-				listaServicios.getServicios().remove(servi);
-				break;
-			}
-		}
-	}
 
-	@Override
-	public Servicio getBy(String nombre) {
-		Servicio servicioEncontrado = null;
-		for (Servicio servi: listaServicios.getServicios()) {
-			if (servi.getNombre().equals(nombre)) {
-				servicioEncontrado = servi;
-				break;
-			}
-		}
-		return servicioEncontrado;
-	}
+//	@Override
+//	public void eliminarServicio(String nombre) {
+//		for (Servicio servi : listaServicios.getServicios()) {
+//			if (servi.getNombre().equals(nombre)) {
+//				listaServicios.getServicios().remove(servi);
+//				break;
+//			}
+//		}
+//	}
+
+//	@Override
+//	public Servicio getBy(String nombre) {
+//		Servicio servicioEncontrado = null;
+//		for (Servicio servi: listaServicios.getServicios()) {
+//			if (servi.getNombre().equals(nombre)) {
+//				servicioEncontrado = servi;
+//				break;
+//			}
+//		}
+//		return servicioEncontrado;
+//	}
+
 
 	@Override
 	public Servicio getServicio() {
@@ -88,4 +90,14 @@ public class ServicioServiceImp implements IServicioService {
     	return palabra.substring(0,1).toUpperCase() + palabra.substring(1).toLowerCase();
     }
 	
+    @Override
+    public Servicio getById(Long id) {
+    	// TODO Auto-generated method stub
+    	return null;
+    }
+    
+    @Override
+    public void eliminarServicio(Long id) {
+    	// TODO Auto-generated method stub
+    }
 }

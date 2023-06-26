@@ -51,6 +51,9 @@ public class Servicio {
 	@NotBlank(message="Debe seleccionar un horario")
 	private String hora;
 	
+	@Column(name= "serv_estado", nullable = false)
+	private boolean estado;
+	
 	public Servicio() {}
 
 	/** Crea una nueva instancia de la clase Servicio
@@ -66,6 +69,22 @@ public class Servicio {
 		this.servicio = servicio;
 		this.dia = dia;
 		this.hora = hora;
+	}
+	
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+
+	public Long getServ_id() {
+		return serv_id;
+	}
+
+	public void setServ_id(Long serv_id) {
+		this.serv_id = serv_id;
 	}
 
 	public String getNombre() {

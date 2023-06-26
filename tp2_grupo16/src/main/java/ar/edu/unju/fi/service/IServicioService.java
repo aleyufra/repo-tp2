@@ -37,7 +37,7 @@ public interface IServicioService {
 	 * 
 	 * @param nombre del dueño de tipo String
 	 */
-	void eliminarServicio(String nombre);
+	void eliminarServicio(Long id);
 	
 	
 	/** metodo para buscar un servicio de a la lista
@@ -45,7 +45,7 @@ public interface IServicioService {
 	 * @param nombre del dueño de tipo String
 	 * @return el nombre del servicio encontrado
 	 */
-	Servicio getBy(String nombre);
+	Servicio getById(Long id);
 	
 	
 	/** metodo para instanciar un nuevo objeto de clase servicio
