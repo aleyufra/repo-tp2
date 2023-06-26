@@ -57,6 +57,7 @@ public class ProductosController {
 	public String getNuevoProductoPage(Model model) {
 		model.addAttribute("edicion", false);
 		model.addAttribute("producto", productoService.getProducto());
+		model.addAttribute("categorias", productoService.listarCategorias());
 		return "nuevo-producto";
 	}
 	
@@ -73,6 +74,7 @@ public class ProductosController {
 		if (result.hasErrors()) {
 			model.addAttribute("producto", producto);
 			model.addAttribute("edicion", false);
+			model.addAttribute("categorias", productoService.listarCategorias());
 			return "nuevo-producto";
 		} else {
 			productoService.guardarProducto(producto);
@@ -82,15 +84,16 @@ public class ProductosController {
 	
 	/** Controlador para mostrar la página de modificación de un producto específico
 	 * 
-	 * @param codigo
+	 * @param id
 	 * @param model
 	 * @return renderiza la pagina nuevo-producto
 	 */
-	@GetMapping("/modificar/{codigo}")
-	public String getEditarProductoPage(@PathVariable("codigo")String codigo, Model model) {
-	    Producto productoEncontrado = productoService.getBy(codigo.toString());
+	@GetMapping("/modificar/{id}")
+	public String getEditarProductoPage(@PathVariable("id")Long id, Model model) {
+	    Producto productoEncontrado = productoService.findById(id);
 		model.addAttribute("producto", productoEncontrado);
 		model.addAttribute("edicion", true);
+		model.addAttribute("categorias", productoService.listarCategorias());
 		return "nuevo-producto";
 		
 	}
@@ -108,6 +111,7 @@ public class ProductosController {
 		if (result.hasErrors()) {
 			model.addAttribute("edicion", true);
 			model.addAttribute("producto", producto);
+			model.addAttribute("categorias", productoService.listarCategorias());
 			return "nuevo-producto";
 		} else {
 			productoService.modificarProducto(producto);
@@ -117,12 +121,12 @@ public class ProductosController {
 	
 	/** Controlador para eliminar un producto específico
 	 * 
-	 * @param codigo
+	 * @param id
 	 * @return redirecciona a la pagina productos y recarga su lista
 	 */
-	@GetMapping("/eliminar/{codigo}")
-	public String deleteProductoPage(@PathVariable("codigo")String codigo) {
-    	productoService.eliminarProducto(codigo);
+	@GetMapping("/eliminar/{id}")
+	public String deleteProductoPage(@PathVariable("id")Long id) {
+    	productoService.eliminarProducto(id);
     	return "redirect:/productos/lista";
 	}
 	
