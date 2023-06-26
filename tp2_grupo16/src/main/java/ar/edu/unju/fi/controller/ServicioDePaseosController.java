@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,7 @@ public class ServicioDePaseosController {
 	/**
 	 * Inyectamos la interfaz del servicio de Servicio
 	 */
+	@Qualifier("servicioServiceImp")
 	@Autowired
 	private IServicioService servicioService;
 	
@@ -77,15 +79,18 @@ public class ServicioDePaseosController {
         return "redirect:/servicios/listado";
     }
 	
+	Long aux;
+	
 	/** Controlador para mostrar la página de modificación de un servicio existente.
 	 * @author Yufra Alejandro
 	 * @param model
 	 * @param nombre
 	 * @return renderiza la pag nuevo_serivicio
 	 */
-	@GetMapping("/modificar/{nombre}")
-	public String getModificarServicioPage(@PathVariable("nombre")String nombre, Model model) {
-    	Servicio servicioEncontrado = servicioService.getBy(nombre);
+	@GetMapping("/modificar/{id}")
+	public String getModificarServicioPage(@PathVariable("id")Long id, Model model) {
+    	Servicio servicioEncontrado = servicioService.getById(id);
+    	aux = servicioEncontrado.getServ_id();
     	model.addAttribute("edicion", true);
 		model.addAttribute("servicio", servicioEncontrado);
 		return "nuevo_servicio";
@@ -113,9 +118,9 @@ public class ServicioDePaseosController {
 	 * @param nombre
 	 * @return renderiza la pag servicios y recarga su listado de servicios
 	 */
-	@GetMapping("/eliminar/{nombre}")
-	public String eliminarServicio(@PathVariable("nombre")String nombre) {
-		servicioService.eliminarServicio(nombre);
+	@GetMapping("/eliminar/{id}")
+	public String eliminarServicio(@PathVariable("id")Long id) {
+		servicioService.eliminarServicio(id);
 		return "redirect:/servicios/listado";
 	}
 	
