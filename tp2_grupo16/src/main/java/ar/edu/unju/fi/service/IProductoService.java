@@ -2,6 +2,7 @@ package ar.edu.unju.fi.service;
 
 import java.util.List;
 
+import ar.edu.unju.fi.entity.Categoria;
 import ar.edu.unju.fi.entity.Producto;
 import jakarta.validation.Valid;
 
@@ -17,6 +18,12 @@ public interface IProductoService {
 	 */
 	List<Producto> listarProductos();
 	
+	/** metodo para obtener la lista de categorias
+	 * 
+	 * @return la lista de categorias
+	 */
+	List<Categoria> listarCategorias();
+	
 	/** metodo para guardar un producto y agregarlo a la lista
 	 * 
 	 * @param producto
@@ -31,16 +38,16 @@ public interface IProductoService {
 	
 	/** metodo para eliminar un producto de la lista
 	 * 
-	 * @param codigo de tipo String
+	 * @param id de tipo Long
 	 */
-	void eliminarProducto(String codigo);
+	void eliminarProducto(Long id);
 	
 	/** metodo para buscar un producto de a la lista
 	 * 
-	 * @param codigo
-	 * @return el id de tipo String
+	 * @param id
+	 * @return un producto si lo encuentra
 	 */
-	Producto getBy(String codigo);
+	Producto findById(Long id);
 	
 	/** metodo para instanciar un nuevo objeto de clase producto
 	 * 

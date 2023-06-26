@@ -70,6 +70,9 @@ public class Producto {
 	@Column(name="prod_precio_final", nullable=false)
 	private double precioFinal;
 	
+	@Column(name= "prod_estado", nullable = false)
+	private boolean estado;
+	
 	// Constructor por defecto
 	public Producto() { }
 	
@@ -136,8 +139,18 @@ public class Producto {
 	public void setPrecioFinal(double precioFinal) {
 		this.precioFinal = this.calcularPrecioConDescuento((Byte) this.descuento);
 	}
-	
-	
+	public boolean getEstado() {
+		return this.estado;
+	}
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	/** Metodo que calcula el descuento aplicado al precio del producto.
 	 * 
 	 * @return El precio final con descuento

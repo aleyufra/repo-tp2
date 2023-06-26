@@ -19,6 +19,7 @@
                <div class="col-12 col-md-9 col-lg-5 m-auto mt-4">
                   <form th:action="${edicion} ? @{/productos/modificar} : @{/productos/guardar}"
                         th:object="${producto}" method="post" class="form-nuevoProducto">
+                     <input th:field="*{id}" type="hidden">
                      <div class="mb-3">
                         <label for="nombre-producto" class="form-label">Nombre del producto: </label>
                         <input th:field="*{nombre}" type="text" class="form-control" id="nombre-producto"
@@ -35,11 +36,9 @@
                      <div class="mb-3">
                      	<div class="col">
                            <label for="categorias" class="form-label">Categoría: </label>
-                           <select th:field="*{categoria}" class="form-select" aria-label="categorias">
+                           <select th:field="*{categoria.id}" class="form-select" aria-label="categorias">
                               <option value="">Seleccione una opción</option>
-                              <option value="Alimentos">Alimentos</option>
-                              <option value="Juguetes">Juguetes</option>
-                              <option value="Accesorios">Accesorios</option>
+                              <option th:each="cat: ${categorias}" th:value="${cat.id}" th:text=${cat.nombre}></option>     
                            </select>
                            <div class="text-danger" th:if="${#fields.hasErrors('categoria')}"
                                 th:errors="*{categoria}"></div>
@@ -69,6 +68,7 @@
                                 th:errors="*{descuento}"></div>
                         </div>
                      </div>
+                     <input th:field="*{estado}" type="hidden">
                      <button class="btn btn-light mt-3" type="submit" th:text="${edicion} ? 'Guardar Cambios' : 'Guardar' "></button>
                   </form>
                </div>

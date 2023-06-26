@@ -21,6 +21,9 @@ public class Categoria {
 	@Column(name="cat_nombre", nullable=false)
 	private String nombre;
 	
+	@Column(name= "cat_estado", nullable = false)
+	private boolean estado;
+	
 	public Categoria() {
 		// TODO Auto-generated constructor stub
 	}

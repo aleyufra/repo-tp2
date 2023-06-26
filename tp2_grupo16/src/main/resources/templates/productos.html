@@ -49,16 +49,16 @@
                                     <tbody>
                                        <tr th:each="prod: ${productos}">
                                           <td th:text="${prod.nombre}"></td>
-                                          <td th:text="${prod.categoria}"></td>
+                                          <td th:text="${prod.categoria.nombre}"></td>
                                           <td th:text="${prod.codigo}"></td>
                                           <td th:text="'$' + ${prod.precio}"></td>
                                           <td th:text="${prod.descuento} + '%'"></td>
                                           <td th:text="'$' + ${prod.precioFinal}"></td>
                                           <td>
-                                             <a th:href="@{/productos/modificar/}+${prod.codigo}"
+                                             <a th:href="@{/productos/modificar/}+${prod.id}"
                                                 class="btn btn-secondary">Modificar
                                              </a>
-                                             <a th:href="@{/productos/eliminar/}+${prod.codigo}"
+                                             <a th:href="@{/productos/eliminar/}+${prod.id}"
                                                 class="btn btn-danger">Eliminar
                                              </a>
                                           </td>
