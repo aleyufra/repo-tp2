@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
@@ -39,10 +41,9 @@ public class Producto {
 	@Column(name="prod_nombre", nullable=false)
 	private String nombre;
 	
-	@NotBlank(message="Debe seleccionar una de las opciones.")
-	@Column(name="prod_categoria", nullable=false)
-	private String categoria;
-	
+    @ManyToOne
+    @JoinColumn(name="cat_id", nullable=false)
+    private Categoria categoria;
 
 	@NotNull(message = "El campo de codigo no puede estar vacío")
 	@Min(value=1000, message="Debe ingresar un codigo de 4 digitos.")
@@ -80,7 +81,7 @@ public class Producto {
 	 * @param precio del producto
 	 * @param descuento del producto, entero entre [1, 50]
 	 */
-	public Producto(String nombre, String categoria, Integer codigo, String imagen, Double precio, Byte descuento) {
+	public Producto(String nombre, Categoria categoria, Integer codigo, String imagen, Double precio, Byte descuento) {
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.codigo = codigo;
@@ -97,10 +98,10 @@ public class Producto {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 	public Integer getCodigo() {
