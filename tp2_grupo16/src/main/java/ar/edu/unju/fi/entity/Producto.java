@@ -2,6 +2,12 @@ package ar.edu.unju.fi.entity;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
@@ -19,35 +25,48 @@ import jakarta.validation.constraints.Size;
  *
  */
 @Component
+@Entity
+@Table(name="productos")
 public class Producto {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="prod_id")
+	private Long id;
 	
 	@NotEmpty(message="El campo de nombre no puede estar vacio.")
 	@Size(min=3, max=32, message="el nombre del producto debe contener 4-32 caracteres.")
 	@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar únicamente letras.")
+	@Column(name="prod_nombre", nullable=false)
 	private String nombre;
 	
 	@NotBlank(message="Debe seleccionar una de las opciones.")
+	@Column(name="prod_categoria", nullable=false)
 	private String categoria;
 	
 
 	@NotNull(message = "El campo de codigo no puede estar vacío")
 	@Min(value=1000, message="Debe ingresar un codigo de 4 digitos.")
 	@Max(value=9999, message="Debe ingresar un codigo de 4 digitos.")
+	@Column(name="prod_codigo", nullable=false)
 	private Integer codigo;
 	
 	@NotBlank(message = "Ingrese un URL válido")
+	@Column(name="prod_imagen", nullable=false)
 	private String imagen;
 	
 	@NotNull(message = "El campo de precio no puede estar vacío")
 	@DecimalMin(value="1.0", message="El precio deber ser minimo $1.00.")
 	@DecimalMax(value="999999.9", message="El precio debe ser menor a un millon.")
+	@Column(name="prod_precio", nullable=false)
 	private Double precio;
 	
 	@NotNull(message = "El campo de descuento no puede estar vacío")
 	@PositiveOrZero(message = "el descuento debe ser un valor positivo.")
 	@Max(value = 50, message = "El maximo descuento es 50%.")
+	@Column(name="prod_descuento", nullable=false)
 	private Byte descuento;
 	
+	@Column(name="prod_precio_final", nullable=false)
 	private double precioFinal;
 	
 	// Constructor por defecto
