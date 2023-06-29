@@ -17,33 +17,7 @@
       <div class="consejos-de-salud container m-auto">
       <section class="section-sucursales row">
             <article class="article-sucursales col-12">
-               <a class="btn btn-dark btn-agregarSucursal" th:href="@{/consejos_de_salud/nuevo}">Agregar Consejo de Salud</a>
-               <div class="table-responsive">
-                  <table class="table table-striped align-middle">
-                     <thead>
-                        <tr>
-                           <th scope="col">Titulo</th>
-                           <th scope="col">Categoria</th>
-                           <th scope="col">Texto</th>
-                           <th scope="col">Acciones</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                              <tr th:each="conse: ${consejos_de_salud}">
-                                 <td th:text="${conse.titulo}"></td>
-                                 <td th:text="${conse.categoria}"></td>
-                                 <td>
-						         	<span th:text="${#strings.substring(conse.texto, 0, 14)}"></span>
-						         	<span th:if="${#strings.length(conse.texto) > 20}">...</span>
-						         </td>
-                                 <td>
-                                    <a class="btn btn-secondary" th:href="@{/consejos_de_salud/modificar/}+${conse.titulo}">Modificar</a>
-                                    <a class="btn btn-danger" th:href="@{/consejos_de_salud/eliminar/}+${conse.titulo}">Eliminar</a>
-                                 </td>
-                              </tr>
-                      </tbody>
-                  </table>
-               </div>
+
             </article>
          </section>
          <div class="consejos-publicados-container row">

@@ -17,6 +17,8 @@ import jakarta.persistence.Table;
 @Table(name = "provincias")
 public class Provincia {
 	
+	/* MAPEO DE LA CLASE PROVINCIA */
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "provincia_id")
@@ -25,6 +27,8 @@ public class Provincia {
 	@Column(name = "provincia_nombre")
 	private String nombre;
 	
+	/* Relacion uno a muchos 
+	   se vincula con el atributo de provincia de la clase Sucursal */
 	@OneToMany(mappedBy = "provincia")
     private List<Sucursal> sucursales;
 

@@ -11,6 +11,7 @@ import ar.edu.unju.fi.entity.Sucursal;
 @Repository
 public interface ISucursalRepository extends CrudRepository<Sucursal, Long> {
 	
+	/* buscamos las sucursales cuyo estado se encuentre en true */
 	public List<Sucursal> findByEstado(boolean estado);
 	
 }

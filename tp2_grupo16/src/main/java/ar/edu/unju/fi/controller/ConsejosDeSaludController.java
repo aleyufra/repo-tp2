@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,14 +13,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ar.edu.unju.fi.entity.Consejo;
 import ar.edu.unju.fi.service.IConsejoService;
+import ar.edu.unju.fi.service.IProvinciaService;
+import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/consejos_de_salud")
 public class ConsejosDeSaludController {
 	
+	/* inyeccion de dependencias */
+	
 	@Autowired
+	@Qualifier("consejoServiceMysqlImp")
 	private IConsejoService consejoService;
+	
+	@Autowired
+	@Qualifier("sucursalServiceMysqlImp")
+	private ISucursalService sucursalService;
+	
+	@Autowired
+	@Qualifier("provinciaServiceImp")
+	private IProvinciaService provinciaService;
 	
 
 	/**
@@ -69,9 +83,11 @@ public class ConsejosDeSaludController {
         	return "nuevo_consejo";
         } else {  
         	consejoService.guardarConsejo(consejo);
-	        return "redirect:/consejos_de_salud/listado";
+    		return "redirect:/gestion";
         }
     }
+    
+    Long ide; // variable auxiliar
     
     /** Modifica un consejo de la lista
      * @author Gutierrez Karen
@@ -79,9 +95,10 @@ public class ConsejosDeSaludController {
      * @param model
      * @return renderiza la pag nuevo_consejo con sus datos que fueron guardados al crearlo
      */
-    @GetMapping("/modificar/{titulo}")
-    public String modificarConsejo(@PathVariable("titulo")String titulo, Model model) {
-    	Consejo consejoEncontrado = consejoService.getBy(titulo);
+    @GetMapping("/modificar/{id}")
+    public String modificarConsejo(@PathVariable("id")Long id, Model model) {
+    	Consejo consejoEncontrado = consejoService.getBy(id);
+    	ide = id;
     	model.addAttribute("edicion", true);
     	model.addAttribute("consejo", consejoEncontrado);
     	return "nuevo_consejo";
@@ -99,8 +116,9 @@ public class ConsejosDeSaludController {
     		model.addAttribute("edicion", true);
 	    	return "nuevo_consejo";
     	} else {
+    		consejo.setId(ide);
     		consejoService.modificarConsejo(consejo);
-    		return "redirect:/consejos_de_salud/listado";
+    		return "redirect:/gestion";
     	}
     }
     
@@ -109,9 +127,9 @@ public class ConsejosDeSaludController {
      * @param nombre
      * @return vuelve a renderizar la pag de consejos y vuelve a cargar el listado de los consejos
      */
-    @GetMapping("/eliminar/{titulo}")
-    public String eliminarConsejo(@PathVariable("titulo")String titulo) {
-    	consejoService.eliminarConsejo(titulo);
-    	return "redirect:/consejos_de_salud/listado";
+    @GetMapping("/eliminar/{id}")
+    public String eliminarConsejo(@PathVariable("id")Long id) {
+    	consejoService.eliminarConsejo(id);
+		return "redirect:/gestion";
     }
 }
