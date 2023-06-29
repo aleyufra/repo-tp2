@@ -15,6 +15,8 @@ import jakarta.validation.Valid;
 @Service("sucursalServiceMysqlImp")
 public class SucursalServiceMysqlImp implements ISucursalService {
 
+	/* inyeccion de dependencias */
+	
 	@Autowired
 	private ISucursalRepository sucursalRepository;
 	

@@ -12,22 +12,39 @@ import ar.edu.unju.fi.service.IProvinciaService;
 @Service("provinciaServiceImp")
 public class ProvinciaServiceImp implements IProvinciaService {
 	
+	/* inyeccion de dependencias */
+	
 	@Autowired
 	private IProvinciaRepository provinciaRepository;
 	
 	@Autowired
 	private Provincia provincia;
 	
+	/**
+	 * metodo para obtener un listado de todas provincias de la base de datos
+	 * @author Yufra, Alejandro
+	 * @return lista de objetos de tipo Provincia
+	 */
 	@Override
 	public List<Provincia> getProvincias() {
 		return (List<Provincia>) provinciaRepository.findAll();
 	}
-
+	
+	/**
+	 * guardar una provincia a la base de datos
+	 * @author Yufra, Alejandro
+	 * @param provincia de tipo Provincia
+	 */
 	@Override
 	public void saveProvincia(Provincia provincia) {
 		provinciaRepository.save(provincia);
 	}
 
+	/**
+	 * nueva instancia de objeto Provincia
+	 * @author Yufra, Alejandro
+	 * @return objeto Provincia
+	 */
 	@Override
 	public Provincia getProvincia() {
 		return provincia;

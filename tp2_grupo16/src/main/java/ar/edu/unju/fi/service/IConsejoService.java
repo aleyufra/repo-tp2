@@ -5,15 +5,11 @@ import java.util.List;
 import ar.edu.unju.fi.entity.Consejo;
 import jakarta.validation.Valid;
 
-//import ar.edu.unju.fi.model.Consejo;
-
+/**
+ *  Clase interfaz del servicio de consejos
+ */
 public interface IConsejoService {
 
-	/**
-	 *  Clase interfaz del servicio de consejos
-	 */
-	
-	
 	/** metodo para obtener la lista de consejos
 	 * 
 	 * @return la lista de consejos
@@ -38,7 +34,7 @@ public interface IConsejoService {
 	 * @param titulo del consejo
 	 */
 	
-	void eliminarConsejo(String titulo);
+	void eliminarConsejo(Long id);
 	
 	/** metodo para buscar un consejo de a la lista
 	 * 
@@ -46,7 +42,7 @@ public interface IConsejoService {
 	 * @return el consejo encontrado
 	 */
 	
-	Consejo getBy(String titulo);
+	Consejo getBy(Long id);
 	
 	/** metodo para instanciar un nuevo objeto de la clase consejo
 	 * 

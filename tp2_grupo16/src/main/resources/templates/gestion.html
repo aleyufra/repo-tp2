@@ -13,20 +13,60 @@
 	
 	<div class="container-fluid gestion-container">
 	   <div class="container">
-	      <div class="row">
+	   	  <h2 class="text-center h1 mb-3">Gestion de datos</h2>
+	   	  <div class="row">
+	   	     <div class="col-12 m-auto mb-5">
+	   	       <h3 class="mb-3">Gestion de Consejos</h3>
+	   	       <a class="btn btn-dark btn-agregarSucursal" th:href="@{/consejos_de_salud/nuevo}">Agregar Consejo de Salud</a>
+               <div class="table-responsive">
+                  <table class="table table-striped align-middle">
+                     <thead>
+                        <tr>
+                           <th scope="col">Titulo</th>
+                           <th scope="col">Categoria</th>
+                           <th scope="col">Texto</th>
+                           <th scope="col">Acciones</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                         <tr th:each="conse: ${consejos_de_salud}">
+                             <td th:text="${conse.titulo}"></td>
+                             <td th:text="${conse.categoria}"></td>
+                             <td>
+		         			<span th:text="${#strings.substring(conse.texto, 0, 14)}"></span>
+		         			<span th:if="${#strings.length(conse.texto) > 20}">...</span>
+		         		 </td>
+                             <td>
+                                <a class="btn btn-secondary" th:href="@{/consejos_de_salud/modificar/}+${conse.id}">Modificar</a>
+                                <a class="btn btn-danger" th:href="@{/consejos_de_salud/eliminar/}+${conse.id}">Eliminar</a>
+                             </td>
+                         </tr>
+                      </tbody>
+                  </table>
+               </div>
+	   	     </div>
+	   	  </div>
+	   	  
+	   	  <hr>
+	   	  
+	      <div class="row my-5">
 	         <div class="col-12 m-auto">
-	            <h2 class="text-center h1 mb-3">Gestion de datos</h2>
+
 				<h3 class="mb-3">Gestion de Sucursales</h3>
 				
-				<div class="sucursales-opciones-container">
-                   <a class="btn btn-dark btn-agregarSucursal" th:href="@{/sucursales/nueva}">Agregar Sucursal</a>
-	               <form action="/sucursales/filtrar-sucursales" method="get">
-					    <label for="fechaInicio">Fecha de inicio:</label>
-					    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
-					    <label for="fechaFin">Fecha de fin:</label>
-					    <input type="date" class="form-control" id="fechaFin" name="fechaFin" required>
-					    <input type="submit" class="btn btn-sm btn-dark" value="Filtrar">
-					    <a class="btn btn-dark btn-sm" th:href="@{/sucursales/listado}">Sin Filtro</a>
+				<div class="sucursales-opciones-container mb-3">
+                   <a class="btn btn-dark btn-sucuagregar btn-agregarSucursal" th:href="@{/sucursales/nueva}">Agregar Sucursal</a>
+	               <form action="/sucursales/filtrar-sucursales" method="get" class="row">
+					    <div class="col-12 col-lg-6 fechas mb-3 mb-lg-0">
+					        <label for="fechaInicio">Fecha de inicio:</label>
+						    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
+						    <label for="fechaFin">Fecha de fin:</label>
+						    <input type="date" class="form-control" id="fechaFin" name="fechaFin" required>
+					    </div>
+					    <div class="col-12 col-lg-6">
+					        <input type="submit" class="btn btn-sm btn-dark" value="Filtrar">
+					    	<a class="btn btn-dark btn-sm" th:href="@{/sucursales/sin-filtro}">sin filtro</a>
+					    </div>
 					</form>
                </div>
                <div class="table-responsive">

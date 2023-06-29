@@ -7,18 +7,29 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ar.edu.unju.fi.service.IConsejoService;
 import ar.edu.unju.fi.service.ISucursalService;
 
 @Controller
 @RequestMapping("/gestion")
 public class GestionController {
 
+	/*
+	 * inyeccion de dependencias
+	 */
+	
 	@Autowired
-	@Qualifier("sucursalServiceMysqlImp")
+	private IConsejoService consejoService;
+	
+	@Autowired
 	private ISucursalService sucuService;
 	
+	/*
+	 * cargamos la pagina de gestion con todos los atributos necesarios para e cargado de listas en la pagina
+	 */
     @GetMapping("")
     public String getListaDeSucursalesPage(Model model) {
+    	model.addAttribute("consejos_de_salud", consejoService.listarConsejos());
     	model.addAttribute("sucursales", sucuService.listarSucursales());
         return "gestion";
     }

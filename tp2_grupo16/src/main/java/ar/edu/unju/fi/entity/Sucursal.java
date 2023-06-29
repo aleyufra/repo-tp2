@@ -28,6 +28,8 @@ import jakarta.validation.constraints.Size;
 @Table(name = "sucursales")
 public class Sucursal {
 	
+	/* MAPEO DE LA CLASE SUCURSAL */
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sucu_id")
@@ -73,6 +75,7 @@ public class Sucursal {
 	@Column(name = "sucu_estado", nullable = false)
 	private boolean estado;
 	
+	/* Relacion muchos a uno */
 	@ManyToOne
 	@JoinColumn(name = "prov_id")
 //	@NotNull(message = "Debe seleccionar una de las opciones.")

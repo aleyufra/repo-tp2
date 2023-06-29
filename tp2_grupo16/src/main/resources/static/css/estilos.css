@@ -398,12 +398,12 @@ article {
 }
 
 .consejos-publicados-container{
-	padding-top: 80px;
+	padding-top: 30px;
 }
 
 .consejos-publicados {
 	margin-bottom: 25px;
-	background-color: darkslategray;
+	background-color: #343434;
 	border-radius: 8px;
 	padding: 20px;
 	color: #fff;
@@ -515,26 +515,21 @@ article {
 	padding: 0px !important;
 }
 
-.sucursales-opciones-container {
-	display: flex;
-	height: fit-content;
+.btn-sucuagregar {
+	white-space: nowrap;
+	min-width: 250px;
 }
 
-.sucursales-opciones-container form {
+.fechas {
 	display: flex;
-	align-items: center;
-	height: fit-content;
-/* 	border: 1px solid red; */
-	width: 100%;
-	margin-left: 20px;
+	height: 35px;
 }
 
-.sucursales-opciones-container input {
+.fechas input {
+	max-width: 180px;
 	margin: 0px 10px;
-	max-width: 200px;
-	height: fit-content;
-	max-height: 30px;
 }
+
 
 .table {
 	border: 1px solid #000;

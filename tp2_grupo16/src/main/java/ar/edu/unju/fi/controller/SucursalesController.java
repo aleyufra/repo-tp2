@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ar.edu.unju.fi.entity.Provincia;
 import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.repository.ISucursalRepository;
+import ar.edu.unju.fi.service.IConsejoService;
 import ar.edu.unju.fi.service.IProvinciaService;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
@@ -38,10 +39,14 @@ public class SucursalesController {
 	@Qualifier("provinciaServiceImp")
 	private IProvinciaService provinciaService;
 	
+	@Autowired
+	private IConsejoService consejoService;
+	
 	/*
 	 * variable auxiliar para al cambiar de pagina la lista no se reestablesca a tener todas las sucursales despues de filtrar
 	 */
 	private List<Sucursal> listaDeLasSucursales;
+	boolean filtrado;
 	
 	/** Ir a la pagina de Sucursales
 	 * @author Yufra Alejandro
@@ -49,8 +54,7 @@ public class SucursalesController {
 	 */
     @GetMapping("")
     public String getSucursalesPage(Model model) {
-    	model.addAttribute("sucursales", listaDeLasSucursales);
-        return "sucursales";
+        return "redirect:sucursales/listado";
     }
     
     
@@ -61,9 +65,12 @@ public class SucursalesController {
      */
     @GetMapping("/listado")
     public String getListaDeSucursalesPage(Model model) {
-    	listaDeLasSucursales = sucursalService.listarSucursales();
-    	model.addAttribute("sucursales", sucursalService.listarSucursales());
-        return "gestion";
+    	if(filtrado) 
+    		model.addAttribute("sucursales", listaDeLasSucursales);
+    	else 
+    		model.addAttribute("sucursales", sucursalService.listarSucursales());
+    	
+        return "sucursales";
     }
     
     
@@ -99,7 +106,7 @@ public class SucursalesController {
         	return "nueva_sucursal";
         } else {               
         	sucursalService.guardarSucursal(sucursal);
-	        return "redirect:/sucursales/listado";
+	        return "redirect:/gestion";
         }
     }
 	Long ide; // variable auxiliar
@@ -140,7 +147,7 @@ public class SucursalesController {
     	} else {
     		sucursal.setId(ide);
 	    	sucursalService.modificarSucursal(sucursal);
-	    	return "redirect:/sucursales/listado";
+	    	return "redirect:/gestion";
     	}
     }
     
@@ -153,7 +160,7 @@ public class SucursalesController {
     @GetMapping("/eliminar/{id}")
     public String eliminarSucursal(@PathVariable("id")Long id) {
     	sucursalService.eliminarSucursal(id);
-    	return "redirect:/sucursales/listado";
+    	return "redirect:/gestion";
     }
     
     
@@ -170,8 +177,19 @@ public class SucursalesController {
         @RequestParam("fechaFin") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechaFin, Model model) {
         List<Sucursal> sucursalesFiltradas = sucursalService.getSucursalesByFecha(fechaInicio, fechaFin);
         listaDeLasSucursales = sucursalesFiltradas;
+        filtrado=true;
         model.addAttribute("sucursales", sucursalesFiltradas);
+        model.addAttribute("consejos_de_salud", consejoService.listarConsejos());
         return "gestion";
+    }
+    
+    @GetMapping("/sin-filtro")
+    public String sinFiltrarSucursal(Model model) {
+    	filtrado=false;
+    	listaDeLasSucursales = sucursalService.listarSucursales();
+    	model.addAttribute("sucursales", listaDeLasSucursales);
+    	model.addAttribute("consejos_de_salud", consejoService.listarConsejos());
+    	return "gestion";
     }
     
 }
