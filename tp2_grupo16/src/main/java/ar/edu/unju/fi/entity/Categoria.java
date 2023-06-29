@@ -9,7 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Component
@@ -19,27 +19,19 @@ public class Categoria {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="cat_id")
+	@Column(name="categoria_id")
 	private Long id;
 	
-	@Column(name="cat_nombre", nullable=false)
+	@Column(name="categoria_nombre", nullable=false)
 	private String nombre;
 	
-	@ManyToMany(mappedBy = "categorias")
+	@OneToMany(mappedBy = "categoria")
 	private List<Producto> productos;
-	
-	
-	@Column(name= "cat_estado", nullable = false)
-	private boolean estado;
 	
 	public Categoria() { }
 	
 	
 	// getter and setter
-	
-	public Categoria(String nombre) {
-		this.nombre = nombre;
-	}
 
 	public Long getId() {
 		return id;
@@ -56,4 +48,15 @@ public class Categoria {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
+	public List<Producto> getProductos() {
+		return productos;
+	}
+
+
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
+	}
+	
 }

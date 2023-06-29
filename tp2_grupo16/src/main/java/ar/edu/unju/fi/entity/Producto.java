@@ -47,8 +47,9 @@ public class Producto {
 	@Column(name="prod_nombre", nullable=false)
 	private String nombre;
 	
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Categoria> categorias;
+    @ManyToOne
+    @JoinColumn(name = "cate_id")
+    private Categoria categoria;
 
 	@NotNull(message = "El campo de codigo no puede estar vacío")
 	@Min(value=1000, message="Debe ingresar un codigo de 4 digitos.")
@@ -89,9 +90,9 @@ public class Producto {
 	 * @param precio del producto
 	 * @param descuento del producto, entero entre [1, 50]
 	 */
-	public Producto(String nombre, List<Categoria> categorias, Integer codigo, String imagen, Double precio, Byte descuento) {
+	public Producto(String nombre, Categoria categoria, Integer codigo, String imagen, Double precio, Byte descuento) {
 		this.nombre = nombre;
-		this.categorias = categorias;
+		this.categoria = categoria;
 		this.codigo = codigo;
 		this.imagen = imagen;
 		this.precio = (Double) precio;
@@ -114,11 +115,11 @@ public class Producto {
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
-	public List<Categoria> getCategorias() {
-		return categorias;
+	public Categoria getCategorias() {
+		return categoria;
 	}
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
+	public void setCategorias(Categoria categoria) {
+		this.categoria = categoria;
 	}
 	public String getImagen() {
 		return imagen;

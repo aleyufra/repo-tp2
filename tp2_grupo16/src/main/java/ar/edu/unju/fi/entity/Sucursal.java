@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Pattern;
@@ -35,6 +36,7 @@ public class Sucursal {
 	@Column(name = "sucu_id")
 	private Long id;
 	
+	@NotEmpty(message="El campo de nombre no puede estar vacio.")
 	@Column(name = "sucu_nombre", nullable = false)
 	@Size(min= 4 , max = 32, message="el nombre del producto debe contener 4-32 caracteres.")
 	@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar únicamente letras.")
@@ -78,7 +80,6 @@ public class Sucursal {
 	/* Relacion muchos a uno */
 	@ManyToOne
 	@JoinColumn(name = "prov_id")
-//	@NotNull(message = "Debe seleccionar una de las opciones.")
 	private Provincia provincia;
 	
 	public Sucursal() {}
@@ -198,7 +199,6 @@ public class Sucursal {
 
 	public void setProvincia(Provincia provincia) {
 		this.provincia = provincia;
-		//provincia.getSucursales().add(this); // Establece la asociación en ambos lados
 	}
 	
 	

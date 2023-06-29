@@ -20,6 +20,7 @@ import ar.edu.unju.fi.entity.Provincia;
 import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.repository.ISucursalRepository;
 import ar.edu.unju.fi.service.IConsejoService;
+import ar.edu.unju.fi.service.IProductoService;
 import ar.edu.unju.fi.service.IProvinciaService;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
@@ -41,6 +42,9 @@ public class SucursalesController {
 	
 	@Autowired
 	private IConsejoService consejoService;
+	
+	@Autowired
+	private IProductoService productoService;
 	
 	/*
 	 * variable auxiliar para al cambiar de pagina la lista no se reestablesca a tener todas las sucursales despues de filtrar
@@ -180,6 +184,7 @@ public class SucursalesController {
         filtrado=true;
         model.addAttribute("sucursales", sucursalesFiltradas);
         model.addAttribute("consejos_de_salud", consejoService.listarConsejos());
+        model.addAttribute("productos", productoService.listarProductos());
         return "gestion";
     }
     
@@ -189,6 +194,7 @@ public class SucursalesController {
     	listaDeLasSucursales = sucursalService.listarSucursales();
     	model.addAttribute("sucursales", listaDeLasSucursales);
     	model.addAttribute("consejos_de_salud", consejoService.listarConsejos());
+    	model.addAttribute("productos", productoService.listarProductos());
     	return "gestion";
     }
     
