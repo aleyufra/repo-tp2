@@ -11,4 +11,6 @@ import ar.edu.unju.fi.entity.Producto;
 public interface IProductoRepository extends CrudRepository<Producto, Long>{
 	
 	public List<Producto> findByEstado(boolean estado);
+	
+	public List<Producto> findByCategoria(String categoria);
 }

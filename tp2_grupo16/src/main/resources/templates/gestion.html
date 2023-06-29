@@ -14,14 +14,75 @@
 	<div class="container-fluid gestion-container">
 	   <div class="container">
 	   	  <h2 class="text-center h1 mb-3">Gestion de datos</h2>
+	   	  
 	   	  <div class="row">
+              <article class="article-productos">
+                   <div class="col-12 tabla-productos-container">
+                        <a th:href="@{/productos/nuevo}" class="btn btn-dark mb-3">Nuevo producto</a>
+                        <div class="mb-4">
+                           <form action="/productos/filtrar-productos" method="get" class="row">
+                             	<div class="col-12 col-lg-6 fechas mb-3 mb-lg-0">
+								     <label for="categoria">filtrar por: </label>
+									 <select class="form-control" id="categoria" name="categoria" required>
+									   	<option th:each="prod : ${categoriasList}" th:value="${prod.nombre}" th:text="${prod.nombre}">
+									 </select>
+								</div>
+								<div class="col-12 col-lg-6">
+								      <input type="submit" class="btn btn-sm btn-dark" value="Filtrar">
+								      <a class="btn btn-dark btn-sm" th:href="@{/productos/sin-filtro}">sin filtro</a>
+								</div>
+                           </form>
+                         </div>
+                         <div class="table-responsive">
+                              <table class="table">
+                                   <thead class="table-dark">
+                                       <tr>
+                                       	  <th>#ID</th>
+                                          <th>Nombre</th>
+                                          <th>Categoria</th>
+                                          <th>Codigo</th>
+                                          <th>Precio</th>
+                                          <th>Descuento</th>
+                                          <th>Precio final</th>
+                                          <th>Acciones</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr th:each="prod: ${productos}">
+                                          <td th:text="${prod.id}"></td>
+                                          <td th:text="${prod.nombre}"></td>
+                                          <td th:text="${prod.categorias.nombre}"></td>
+                                          <td th:text="${prod.codigo}"></td>
+                                          <td th:text="'$' + ${prod.precio}"></td>
+                                          <td th:text="${prod.descuento} + '%'"></td>
+                                          <td th:text="'$' + ${prod.precioFinal}"></td>
+                                          <td>
+                                             <a th:href="@{/productos/modificar/}+${prod.id}"
+                                                class="btn btn-sm btn-secondary">Modificar
+                                             </a>
+                                             <a th:href="@{/productos/eliminar/}+${prod.id}"
+                                                class="btn btn-sm btn-danger">Eliminar
+                                             </a>
+                                          </td>
+                                       </tr>
+                                   </tbody>
+                              </table>
+                          </div>
+                    </div>
+             </article>
+          </div>
+	   	  
+	   	  <hr>
+	   	  
+	   	  <div class="row mt-5">
 	   	     <div class="col-12 m-auto mb-5">
 	   	       <h3 class="mb-3">Gestion de Consejos</h3>
 	   	       <a class="btn btn-dark btn-agregarSucursal" th:href="@{/consejos_de_salud/nuevo}">Agregar Consejo de Salud</a>
                <div class="table-responsive">
-                  <table class="table table-striped align-middle">
+                  <table class="table align-middle">
                      <thead>
                         <tr>
+                           <th scope="col">#ID</th>
                            <th scope="col">Titulo</th>
                            <th scope="col">Categoria</th>
                            <th scope="col">Texto</th>
@@ -30,6 +91,7 @@
                      </thead>
                      <tbody>
                          <tr th:each="conse: ${consejos_de_salud}">
+                             <td th:text="${conse.id}"></td>
                              <td th:text="${conse.titulo}"></td>
                              <td th:text="${conse.categoria}"></td>
                              <td>
@@ -37,8 +99,8 @@
 		         			<span th:if="${#strings.length(conse.texto) > 20}">...</span>
 		         		 </td>
                              <td>
-                                <a class="btn btn-secondary" th:href="@{/consejos_de_salud/modificar/}+${conse.id}">Modificar</a>
-                                <a class="btn btn-danger" th:href="@{/consejos_de_salud/eliminar/}+${conse.id}">Eliminar</a>
+                                <a class="btn btn-sm btn-secondary" th:href="@{/consejos_de_salud/modificar/}+${conse.id}">Modificar</a>
+                                <a class="btn btn-sm btn-danger" th:href="@{/consejos_de_salud/eliminar/}+${conse.id}">Eliminar</a>
                              </td>
                          </tr>
                       </tbody>

@@ -9,5 +9,6 @@ import ar.edu.unju.fi.entity.Categoria;
 
 @Repository
 public interface ICategoriaRepository extends CrudRepository<Categoria, Long>{
-	public List<Categoria> findByEstado(boolean estado);
+
+	
 }

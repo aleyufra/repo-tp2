@@ -29,46 +29,7 @@
                         </article>
                      </div>
 
-                     <div class="row">
-                        <article class="article-productos">
-                           <div class="col-12 tabla-productos-container">
-                              <a th:href="@{/productos/nuevo}" class="btn btn-dark mb-3">Nuevo producto</a>
-                              <div class="table-responsive">
-                                 <table class="table table-striped">
-                                    <thead class="table-dark">
-                                       <tr>
-                                          <th>Nombre</th>
-                                          <th>Categoria</th>
-                                          <th>Codigo</th>
-                                          <th>Precio</th>
-                                          <th>Descuento</th>
-                                          <th>Precio final</th>
-                                          <th>Acciones</th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                       <tr th:each="prod: ${productos}">
-                                          <td th:text="${prod.nombre}"></td>
-                                          <td th:text="${prod.categoria.nombre}"></td>
-                                          <td th:text="${prod.codigo}"></td>
-                                          <td th:text="'$' + ${prod.precio}"></td>
-                                          <td th:text="${prod.descuento} + '%'"></td>
-                                          <td th:text="'$' + ${prod.precioFinal}"></td>
-                                          <td>
-                                             <a th:href="@{/productos/modificar/}+${prod.id}"
-                                                class="btn btn-secondary">Modificar
-                                             </a>
-                                             <a th:href="@{/productos/eliminar/}+${prod.id}"
-                                                class="btn btn-danger">Eliminar
-                                             </a>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                              </div>
-                           </div>
-                        </article>
-                     </div>
+                     
 
                      <div class="row">
                         <article class="article-productos">
@@ -76,7 +37,7 @@
                               <div class="producto-info col-12">
                                  <h3>Alimentos</h3>
                               </div>
-                              <div th:each="prod : ${productos}" th:if="${prod.categoria == 'Alimentos'}" class="producto-contenido col-12 col-md-6 col-lg-4">
+                              <div th:each="prod : ${productos}" th:if="${prod.categorias.nombre == 'Alimentos'}" class="producto-contenido col-12 col-md-6 col-lg-4">
                                  <div class="producto">
                                     <img th:src="${prod.imagen}">
                                     <h5 th:text="${prod.nombre}"></h5>
@@ -94,7 +55,7 @@
                               <div class="producto-info col-12">
                                  <h3>Accesorios</h3>
                               </div>
-                              <div th:each="prod : ${productos}" th:if="${prod.categoria == 'Accesorios'}" class="producto-contenido col-12 col-md-6 col-lg-4">
+                              <div th:each="prod : ${productos}" th:if="${prod.categorias.nombre == 'Accesorios'}" class="producto-contenido col-12 col-md-6 col-lg-4">
                                  <div class="producto">
                                     <img th:src="${prod.imagen}">
                                     <h5 th:text="${prod.nombre}"></h5>
@@ -111,7 +72,7 @@
                               <div class="producto-info col-12 columna">
                                  <h3>Juguetes!</h3>
                               </div>
-                              <div th:each="prod : ${productos}" th:if="${prod.categoria == 'Juguetes'}" class="producto-contenido col-12 col-md-6 col-lg-4">
+                              <div th:each="prod : ${productos}" th:if="${prod.categorias.nombre == 'Juguetes'}" class="producto-contenido col-12 col-md-6 col-lg-4">
                                  <div class="producto">
                                     <img th:src="${prod.imagen}">
                                     <h5 th:text="${prod.nombre}"></h5>

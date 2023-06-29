@@ -18,11 +18,7 @@ public interface IProductoService {
 	 */
 	List<Producto> listarProductos();
 	
-	/** metodo para obtener la lista de categorias
-	 * 
-	 * @return la lista de categorias
-	 */
-	List<Categoria> listarCategorias();
+
 	
 	/** metodo para guardar un producto y agregarlo a la lista
 	 * 
@@ -54,5 +50,7 @@ public interface IProductoService {
 	 * @return el producto instanciado sin valores seteados
 	 */
 	Producto getProducto();
+	
+	List<Producto> getProductosPorCategoria(String categoria);
 	
 }

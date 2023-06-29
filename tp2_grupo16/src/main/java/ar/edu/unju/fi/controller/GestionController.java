@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ar.edu.unju.fi.service.IConsejoService;
+import ar.edu.unju.fi.service.IProductoService;
 import ar.edu.unju.fi.service.ISucursalService;
 
 @Controller
@@ -24,6 +25,9 @@ public class GestionController {
 	@Autowired
 	private ISucursalService sucuService;
 	
+	@Autowired
+	private IProductoService productoService;
+	
 	/*
 	 * cargamos la pagina de gestion con todos los atributos necesarios para e cargado de listas en la pagina
 	 */
@@ -31,6 +35,7 @@ public class GestionController {
     public String getListaDeSucursalesPage(Model model) {
     	model.addAttribute("consejos_de_salud", consejoService.listarConsejos());
     	model.addAttribute("sucursales", sucuService.listarSucursales());
+    	model.addAttribute("productos", productoService.listarProductos());
         return "gestion";
     }
     

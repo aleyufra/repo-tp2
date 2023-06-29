@@ -1,13 +1,18 @@
 package ar.edu.unju.fi.entity;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMax;
@@ -30,6 +35,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name="productos")
 public class Producto {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="prod_id")
@@ -42,7 +48,7 @@ public class Producto {
 	private String nombre;
 	
     @ManyToOne
-    @JoinColumn(name="cat_id", nullable=false)
+    @JoinColumn(name = "cate_id")
     private Categoria categoria;
 
 	@NotNull(message = "El campo de codigo no puede estar vacío")
@@ -73,7 +79,7 @@ public class Producto {
 	@Column(name= "prod_estado", nullable = false)
 	private boolean estado;
 	
-	// Constructor por defecto
+	/* Constructor por defecto */
 	public Producto() { }
 	
 	/** Constructor de Producto
@@ -94,6 +100,7 @@ public class Producto {
 		this.precioFinal = this.calcularPrecioConDescuento((Byte) this.descuento);
 	}
 	
+
 	// getters and setters
 	public String getNombre() {
 		return nombre;
@@ -101,17 +108,18 @@ public class Producto {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+
 	public Integer getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
+	}
+	public Categoria getCategorias() {
+		return categoria;
+	}
+	public void setCategorias(Categoria categoria) {
+		this.categoria = categoria;
 	}
 	public String getImagen() {
 		return imagen;
