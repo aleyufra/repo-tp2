@@ -1,13 +1,18 @@
 package ar.edu.unju.fi.entity;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMax;
@@ -30,6 +35,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name="productos")
 public class Producto {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="prod_id")
@@ -41,9 +47,8 @@ public class Producto {
 	@Column(name="prod_nombre", nullable=false)
 	private String nombre;
 	
-    @ManyToOne
-    @JoinColumn(name="cat_id", nullable=false)
-    private Categoria categoria;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Categoria> categorias;
 
 	@NotNull(message = "El campo de codigo no puede estar vacío")
 	@Min(value=1000, message="Debe ingresar un codigo de 4 digitos.")
@@ -73,7 +78,7 @@ public class Producto {
 	@Column(name= "prod_estado", nullable = false)
 	private boolean estado;
 	
-	// Constructor por defecto
+	/* Constructor por defecto */
 	public Producto() { }
 	
 	/** Constructor de Producto
@@ -84,9 +89,9 @@ public class Producto {
 	 * @param precio del producto
 	 * @param descuento del producto, entero entre [1, 50]
 	 */
-	public Producto(String nombre, Categoria categoria, Integer codigo, String imagen, Double precio, Byte descuento) {
+	public Producto(String nombre, List<Categoria> categorias, Integer codigo, String imagen, Double precio, Byte descuento) {
 		this.nombre = nombre;
-		this.categoria = categoria;
+		this.categorias = categorias;
 		this.codigo = codigo;
 		this.imagen = imagen;
 		this.precio = (Double) precio;
@@ -94,6 +99,7 @@ public class Producto {
 		this.precioFinal = this.calcularPrecioConDescuento((Byte) this.descuento);
 	}
 	
+
 	// getters and setters
 	public String getNombre() {
 		return nombre;
@@ -101,17 +107,18 @@ public class Producto {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+
 	public Integer getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
+	}
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 	public String getImagen() {
 		return imagen;
